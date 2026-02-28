@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transaction-Executing Agents: The Accountability Question — RiskHelm</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #201f50; --teal: #008992; --orange: #E07B35;
+      --cream: #ebebeb; --text-body: #3a3a5c; --text-muted: #7a7a9a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; font-size: 17px; font-weight: 500; line-height: 1.75; color: var(--navy); background: #fff; }
+    a { text-decoration: none; color: inherit; }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 0.4;
+    }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 128px; background: #fff; border-bottom: 1px solid rgba(32,31,80,0.08); }
+    .nav-logo img { height: 112px; display: block; mix-blend-mode: multiply; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 700; color: var(--navy); }
+    .nav-links a { transition: color 0.2s; letter-spacing: 0.01em; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta { display: flex; align-items: center; gap: 10px; }
+    .btn-navy { padding: 9px 20px; border-radius: 7px; font-size: 14px; font-weight: 700; color: #fff; background: var(--navy); border: none; cursor: pointer; font-family: 'Manrope', sans-serif; transition: background 0.2s, transform 0.15s; box-shadow: 0 2px 12px rgba(32,31,80,0.25); }
+    .btn-navy:hover { background: #2d2c6b; transform: translateY(-1px); }
+
+    /* ARTICLE HEADER */
+    .article-header { background: var(--navy); background-image: radial-gradient(ellipse at 20% 100%, rgba(0,137,146,0.25) 0%, transparent 55%); padding: 56px 5% 48px; }
+    .article-header-inner { max-width: 860px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 28px; transition: color 0.2s; }
+    .back-link:hover { color: rgba(255,255,255,0.75); }
+    .article-tag-header { display: inline-flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 20px; background: rgba(0,137,146,0.25); color: rgba(255,255,255,0.75); border: 1px solid rgba(0,137,146,0.3); }
+    .article-h1 { font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #fff; margin-bottom: 20px; max-width: 720px; }
+    .article-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .article-meta-date { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; }
+    .article-meta-author { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.65); }
+    .article-meta-sep { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.25); }
+
+    /* FEATURED IMAGE */
+    .featured-image-wrap { max-width: 1000px; margin: 0 auto; }
+    .featured-image-wrap img { width: 100%; height: 420px; object-fit: cover; display: block; }
+    .image-caption { max-width: 860px; margin: 0 auto; padding: 10px 5% 0; font-size: 11px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.03em; }
+
+    /* ARTICLE BODY */
+    .article-body-wrap { background: #fff; padding: 56px 5% 80px; }
+    .article-body-inner { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 1fr 320px; gap: 64px; align-items: start; }
+    .article-content p { font-size: 16px; line-height: 1.82; color: var(--text-body); margin-bottom: 22px; }
+    .article-content h2 { font-size: 22px; font-weight: 800; color: var(--navy); letter-spacing: -0.025em; line-height: 1.2; margin-top: 40px; margin-bottom: 14px; }
+    .article-content strong { color: var(--navy); font-weight: 700; }
+    .article-content a { color: var(--teal); font-weight: 600; }
+    .article-content a:hover { text-decoration: underline; }
+    .pull-quote { border-left: 3px solid var(--teal); padding: 16px 0 16px 24px; margin: 32px 0; }
+    .pull-quote p { font-size: 19px; font-weight: 700; color: var(--navy); line-height: 1.45; letter-spacing: -0.01em; margin: 0; font-style: italic; }
+    .pull-quote cite { display: block; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); font-style: normal; margin-top: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .scenario-box { background: rgba(0,137,146,0.04); border: 1px solid rgba(0,137,146,0.15); border-radius: 12px; padding: 24px 28px; margin: 28px 0; }
+    .scenario-box-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+    .scenario-box h3 { font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+    .scenario-box p { font-size: 14px; line-height: 1.72; color: var(--text-body); margin: 0; }
+    .aal-callout { background: rgba(32,31,80,0.03); border: 1px solid rgba(32,31,80,0.1); border-left: 3px solid var(--navy); border-radius: 0 10px 10px 0; padding: 24px 28px; margin: 32px 0; }
+    .aal-callout-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
+    .aal-callout p { font-size: 14px; line-height: 1.72; color: var(--text-body); margin: 0; }
+    .sources-section { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(32,31,80,0.1); }
+    .sources-section h3 { font-size: 12px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+    .sources-list { list-style: none; }
+    .sources-list li { font-size: 12px; line-height: 1.6; color: var(--text-muted); padding: 5px 0; border-bottom: 1px solid rgba(32,31,80,0.06); }
+    .sources-list li:last-child { border-bottom: none; }
+    .sources-list a { color: var(--teal); font-weight: 600; }
+    .sources-list a:hover { text-decoration: underline; }
+
+    /* SIDEBAR */
+    .article-sidebar { position: sticky; top: 160px; }
+    .sidebar-card { background: #f9f9f9; border: 1px solid rgba(32,31,80,0.07); border-radius: 14px; padding: 24px; margin-bottom: 20px; }
+    .sidebar-card h4 { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+    .stat-row { display: flex; flex-direction: column; gap: 16px; }
+    .stat-item { border-bottom: 1px solid rgba(32,31,80,0.07); padding-bottom: 14px; }
+    .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .stat-num { font-size: 28px; font-weight: 800; color: var(--navy); letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
+    .stat-num.orange { color: var(--orange); }
+    .stat-num.teal { color: var(--teal); }
+    .stat-label { font-size: 12px; line-height: 1.5; color: var(--text-muted); }
+    .related-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .related-links li a { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.3; transition: color 0.2s; }
+    .related-links li a:hover { color: var(--orange); }
+    .related-links li .rel-tag { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal); display: block; margin-top: 3px; font-weight: 500; }
+
+    /* FOOTER */
+    footer { background: #f5f5f5; padding: 40px 5% 28px; border-top: 1px solid rgba(32,31,80,0.09); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-simple { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; margin-bottom: 24px; }
+    .footer-logo img { height: 112px; display: block; mix-blend-mode: multiply; }
+    .footer-nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav-links a { font-size: 13px; font-weight: 600; color: rgba(32,31,80,0.5); transition: color 0.2s; }
+    .footer-nav-links a:hover { color: var(--navy); }
+    .footer-legal-links { display: flex; gap: 18px; margin-left: auto; }
+    .footer-legal-links a { font-size: 12px; color: rgba(32,31,80,0.35); transition: color 0.2s; }
+    .footer-legal-links a:hover { color: var(--navy); }
+    .footer-bottom { border-top: 1px solid rgba(32,31,80,0.1); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: rgba(32,31,80,0.38); flex-wrap: wrap; gap: 12px; }
+    .footer-tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; color: var(--orange); background: rgba(224,123,53,0.12); padding: 4px 10px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .article-h1 { font-size: 28px; }
+      .article-body-inner { grid-template-columns: 1fr; }
+      .article-sidebar { position: static; }
+      .footer-simple { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .footer-legal-links { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-logo">
+      <a href="../index.html"><img src="../brand_assets/Logo.PNG" alt="RiskHelm" /></a>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#framework">Framework</a>
+      <a href="../index.html#collaborate">Collaborate</a>
+      <a href="../resources.html">Resources</a>
+    </div>
+    <div class="nav-cta">
+      <a href="../contact.html"><button class="btn-navy">Request Discussion</button></a>
+    </div>
+  </nav>
+
+  <div class="article-header">
+    <div class="article-header-inner">
+      <a href="../resources.html" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Resources
+      </a>
+      <div class="article-tag-header">Risk Management</div>
+      <h1 class="article-h1">Transaction-Executing Agents: The Accountability Question Enterprises Can't Defer</h1>
+      <div class="article-meta">
+        <span class="article-meta-date">Feb 20, 2026</span>
+        <span class="article-meta-sep"></span>
+        <span class="article-meta-author">RiskHelm Research</span>
+        <span class="article-meta-sep"></span>
+        <span class="article-meta-date">5 min read</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured-image-wrap">
+    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&h=420&q=85" alt="Digital financial transaction flows representing autonomous agent commerce" />
+  </div>
+  <p class="image-caption">Autonomous agents are increasingly executing financial transactions without human approval at every step. Photo: Unsplash</p>
+
+  <div class="article-body-wrap">
+    <div class="article-body-inner">
+
+      <div class="article-content">
+
+        <p>Proskauer Rose asks the central question: "Contract Law in the Age of Agentic AI: Who's Really Clicking 'Accept'?" Across procurement, financial services, logistics, and HR workflows, AI agents are clicking accept — committing capital, entering binding agreements, and routing funds — at speeds no human approval chain could match. Mayer Brown frames the consequence precisely: agentic AI <strong>shifts the contracting model from SaaS to services</strong>. The enterprise is no longer licensing software — it is deploying an agent that acts on its behalf, with the full legal weight of that authorization.</p>
+
+        <h2>The Statutory Void</h2>
+
+        <p>Traditional agency law — apparent authority, scope of employment, ratification — assumes a human agent who can form intent and be held to a duty of care. When an AI agent enters a contract, that framework breaks at every point. Mayer Brown is direct: companies may find themselves <strong>strictly liable for all AI agent conduct</strong>, whether or not the specific action was predicted. Unlike negligence, strict liability attaches to deployment itself. The EU AI Act adds a parallel obligation: high-risk AI system operators must maintain technical documentation proving systems operated within intended parameters — a requirement that maps directly onto the authority specification that makes agent conduct insurable.</p>
+
+        <div class="pull-quote">
+          <p>"While companies can assert defenses when human agents act outside their scope of authority, the law of AI agents is undefined. Companies may find themselves strictly liable for all AI agent conduct — whether or not predicted or intended."</p>
+          <cite>— Mayer Brown LLP, Contracting for Agentic AI Solutions, Feb 2026</cite>
+        </div>
+
+        <h2>The Scenarios Are Not Edge Cases</h2>
+
+        <p>These accountability gaps are manifesting in live deployments. Three patterns recur:</p>
+
+        <div class="scenario-box">
+          <div class="scenario-box-label">Scenario A · Procurement</div>
+          <h3>Spending Limit Exceedance</h3>
+          <p>A procurement agent authorized at $25,000 per vendor per quarter executes a $180,000 contract due to a parameter misconfiguration. The supplier delivers. The enterprise disputes the obligation. The vendor's counsel argues apparent authority. No existing policy was designed to sit between these positions — the enterprise absorbs the loss, or the dispute becomes litigation.</p>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-box-label">Scenario B · Finance Operations</div>
+          <h3>Counterparty List Deviation</h3>
+          <p>A treasury settlement agent authorized to pay 14 registered counterparties routes a $2.3M payment to an account matching an approved name format but not on the registered list. Cyber disclaims — no intrusion occurred. D&amp;O disclaims — no director authorized the payment. The loss sits uninsured on the balance sheet.</p>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-box-label">Scenario C · Legal / Contracts</div>
+          <h3>Non-Standard Clause Execution</h3>
+          <p>A contract management agent authorized to execute standard NDAs from an approved template library accepts a non-standard agreement containing a broad IP assignment clause. The counterparty asserts the clause in an acquisition context. The general counsel has no execution record — the deviation was automated and unflagged. No insurance product covers the loss pathway.</p>
+        </div>
+
+        <p>The pattern is identical across all three: <strong>the agent acted within its technical capability but outside its authorized scope</strong>. Each loss is real, documentable, and causally linked to a deployment governance decision — and none fits any existing coverage trigger.</p>
+
+        <h2>Governance Solves the Record Problem, Not the Loss Problem</h2>
+
+        <p>Leading risk teams are investing in governance: 60% of enterprises restrict agent access to sensitive data without human oversight, and Google's Agent Payments Protocol (AP2) generates tamper-proof audit trails for agent transactions. These are essential investments — but they establish causation, not indemnity. An audit trail proves what happened; it does not fund remediation. Authorized Agent Liability fills that gap: coverage that activates on a verified authority breach and provides evidence-based reimbursement for the resulting loss.</p>
+
+        <h2>The Deferral Window Is Closing</h2>
+
+        <p>Enterprises deploying transaction-executing agents and deferring the insurance question are self-insuring against authority-scope breach at whatever scale their fleet operates. Legal and regulatory commentary is converging: enterprise accountability for AI agent conduct is no longer theoretical — it is emerging doctrine. Only the quantum of liability remains to be set by courts. The insurance question is one enforcement event away from becoming urgent.</p>
+
+        <h2>Market and Regulatory Acceleration</h2>
+
+        <p>Enterprise risk infrastructure is maturing rapidly. <strong>Riskonnect launched its Intelligent Risk Framework</strong> this month, embedding AI capabilities to enable autonomous risk monitoring, predictive exposure management, and real-time executive intelligence. The system transforms how organizations use risk data for decisions involving AI agents — with autogenerated insights and AI-accelerated remediation workflows.</p>
+
+        <p>Simultaneously, AI agent insurance has gone from theoretical to operational. <strong>ElevenLabs secured the first AIUC-1-backed insurance policy</strong> covering AI voice agents — demonstrating that certification-based approaches can unlock insurer confidence. The certification subjects systems to over 5,000 adversarial simulations spanning safety, security, reliability, and accountability. For transaction-executing agents, this points toward a solution: <strong>standardized authority specification combined with rigorous pre-deployment validation</strong> makes agent conduct risk insurable. The trust gap stalling 95% of enterprise AI pilots is now addressable through proper governance and insurance infrastructure.</p>
+
+        <div class="sources-section">
+          <h3>Sources</h3>
+          <ul class="sources-list">
+            <li><a href="https://www.mayerbrown.com/en/insights/publications/2026/02/contracting-for-agentic-ai-solutions-shifting-the-model-from-saas-to-services" target="_blank" rel="noopener">Contracting for Agentic AI Solutions: Shifting the Model from SaaS to Services</a> — Mayer Brown, Feb 2026</li>
+            <li><a href="https://www.dlapiper.com/en/insights/publications/ai-outlook/2025/the-rise-of-agentic-ai--potential-new-legal-and-organizational-risks" target="_blank" rel="noopener">The Rise of Agentic AI: Potential New Legal and Organizational Risks</a> — DLA Piper, 2025</li>
+            <li><a href="https://www.proskauer.com/blog/contract-law-in-the-age-of-agentic-ai-whos-really-clicking-accept" target="_blank" rel="noopener">Contract Law in the Age of Agentic AI: Who's Really Clicking "Accept"?</a> — Proskauer Rose, 2026</li>
+            <li><a href="https://www.joneswalker.com/en/insights/blogs/ai-law-blog/ai-vendor-liability-squeeze-courts-expand-accountability-while-contracts-shift-r.html" target="_blank" rel="noopener">AI Vendor Liability Squeeze: Courts Expand Accountability While Contracts Shift Risk</a> — Jones Walker, 2025</li>
+            <li><a href="https://cloudwars.com/ai/enterprise-ai-in-2026-scaling-ai-agents-with-autonomy-orchestration-and-accountability/" target="_blank" rel="noopener">Enterprise AI in 2026: Scaling AI Agents with Autonomy, Orchestration, and Accountability</a> — Cloud Wars, 2026</li>
+            <li><a href="https://aufaittechnologies.com/blog/agentic-commerce-ai-driven-transactions-enterprises/" target="_blank" rel="noopener">Agentic Commerce Explained: AI-Driven Transactions for Enterprises</a> — Aufait Technologies, 2025</li>
+            <li><a href="https://riskonnect.com/press/riskonnect-enterprise-scale-ai-risk-management-agentforce-360/" target="_blank" rel="noopener">Riskonnect Announces Enterprise-scale AI for Risk Powered by Agentforce 360</a> — Riskonnect, Feb 2026</li>
+            <li><a href="https://www.prnewswire.com/news-releases/elevenlabs-secures-first-of-its-kind-ai-agent-insurance-302684587.html" target="_blank" rel="noopener">ElevenLabs Secures First-of-Its-Kind AI Agent Insurance</a> — PR Newswire, Feb 2026</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="article-sidebar">
+        <div class="sidebar-card">
+          <h4>Key Figures · Enterprise Agent Transactions</h4>
+          <div class="stat-row">
+            <div class="stat-item">
+              <div class="stat-num teal">90%</div>
+              <div class="stat-label">Of procurement leaders already considering or using AI agents in source-to-pay workflows</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num orange">60%</div>
+              <div class="stat-label">Of enterprises restrict agent access to sensitive data without human oversight</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">$10–50M</div>
+              <div class="stat-label">Capital allocated per enterprise to secure agentic architectures in 2026</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">15%</div>
+              <div class="stat-label">Of day-to-day work decisions projected to be made autonomously by agents by 2028</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h4>Related Reading</h4>
+          <ul class="related-links">
+            <li>
+              <a href="agentic-ai-liability.html">
+                <span>Agentic AI Spend Reaches $47B: Who Owns the Liability?<span class="rel-tag">Industry Insight</span></span>
+              </a>
+            </li>
+            <li>
+              <a href="reinsurers-ai-risk.html">
+                <span>How Reinsurers Are Approaching the AI Agent Risk Class<span class="rel-tag">Capital Markets</span></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card" style="background:var(--navy); border-color:transparent;">
+          <h4 style="color:rgba(255,255,255,0.4);">RiskHelm Program</h4>
+          <p style="font-size:13px; line-height:1.6; color:rgba(255,255,255,0.7); margin-bottom:16px;">Authorized Agent Liability coverage is designed for enterprises with active agent deployments.  Discuss your deployment context.  </p>
+          <a href="../contact.html" style="display:inline-block; padding:10px 18px; background:var(--orange); color:#fff; border-radius:7px; font-size:13px; font-weight:700; transition: background 0.2s;">Request Discussion →</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-simple">
+        <div class="footer-logo">
+          <a href="../index.html"><img src="../brand_assets/Logo.PNG" alt="RiskHelm" /></a>
+        </div>
+        <nav class="footer-nav-links">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#framework">Framework</a>
+          <a href="../index.html#collaborate">Collaborate</a>
+          <a href="../resources.html">Resources</a>
+          <a href="../contact.html">Request Discussion</a>
+        </nav>
+        <div class="footer-legal-links">
+          <a href="../legal.html#privacy">Privacy Policy</a>
+          <a href="../legal.html#terms">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 RiskHelm MGA, Inc.  All rights reserved.  </span>
+        <div class="footer-tag">Authorized Agent Liability · Shadow Mode Pilot</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

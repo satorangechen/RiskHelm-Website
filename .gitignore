@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Temporary files
+temporary screenshots/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+
+# Large reference images
+*.png
+!brand_assets/*.png

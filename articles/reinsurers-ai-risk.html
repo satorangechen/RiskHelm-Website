@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Reinsurers Are Approaching the AI Agent Risk Class — RiskHelm</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #201f50; --teal: #008992; --orange: #E07B35;
+      --cream: #ebebeb; --text-body: #3a3a5c; --text-muted: #7a7a9a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; font-size: 17px; font-weight: 500; line-height: 1.75; color: var(--navy); background: #fff; }
+    a { text-decoration: none; color: inherit; }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 0.4;
+    }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 128px; background: #fff; border-bottom: 1px solid rgba(32,31,80,0.08); }
+    .nav-logo img { height: 112px; display: block; mix-blend-mode: multiply; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 700; color: var(--navy); }
+    .nav-links a { transition: color 0.2s; letter-spacing: 0.01em; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta { display: flex; align-items: center; gap: 10px; }
+    .btn-navy { padding: 9px 20px; border-radius: 7px; font-size: 14px; font-weight: 700; color: #fff; background: var(--navy); border: none; cursor: pointer; font-family: 'Manrope', sans-serif; transition: background 0.2s, transform 0.15s; box-shadow: 0 2px 12px rgba(32,31,80,0.25); }
+    .btn-navy:hover { background: #2d2c6b; transform: translateY(-1px); }
+
+    /* ARTICLE HEADER */
+    .article-header { background: var(--navy); background-image: radial-gradient(ellipse at 90% 80%, rgba(224,123,53,0.22) 0%, transparent 50%), radial-gradient(ellipse at 10% 0%, rgba(0,137,146,0.15) 0%, transparent 50%); padding: 56px 5% 48px; }
+    .article-header-inner { max-width: 860px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 28px; transition: color 0.2s; }
+    .back-link:hover { color: rgba(255,255,255,0.75); }
+    .article-tag-header { display: inline-flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 20px; background: rgba(224,123,53,0.25); color: rgba(255,255,255,0.75); border: 1px solid rgba(224,123,53,0.3); }
+    .article-h1 { font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #fff; margin-bottom: 20px; max-width: 720px; }
+    .article-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .article-meta-date { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; }
+    .article-meta-author { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.65); }
+    .article-meta-sep { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.25); }
+
+    /* FEATURED IMAGE */
+    .featured-image-wrap { max-width: 1000px; margin: 0 auto; }
+    .featured-image-wrap img { width: 100%; height: 420px; object-fit: cover; display: block; }
+    .image-caption { max-width: 860px; margin: 0 auto; padding: 10px 5% 0; font-size: 11px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.03em; }
+
+    /* ARTICLE BODY */
+    .article-body-wrap { background: #fff; padding: 56px 5% 80px; }
+    .article-body-inner { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 1fr 320px; gap: 64px; align-items: start; }
+    .article-content p { font-size: 16px; line-height: 1.82; color: var(--text-body); margin-bottom: 22px; }
+    .article-content h2 { font-size: 22px; font-weight: 800; color: var(--navy); letter-spacing: -0.025em; line-height: 1.2; margin-top: 40px; margin-bottom: 14px; }
+    .article-content strong { color: var(--navy); font-weight: 700; }
+    .article-content a { color: var(--teal); font-weight: 600; }
+    .article-content a:hover { text-decoration: underline; }
+    .pull-quote { border-left: 3px solid var(--orange); padding: 16px 0 16px 24px; margin: 32px 0; }
+    .pull-quote p { font-size: 19px; font-weight: 700; color: var(--navy); line-height: 1.45; letter-spacing: -0.01em; margin: 0; font-style: italic; }
+    .pull-quote cite { display: block; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); font-style: normal; margin-top: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .criteria-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0; }
+    .criteria-item { background: #f9f9f9; border: 1px solid rgba(32,31,80,0.07); border-radius: 10px; padding: 18px 20px; }
+    .criteria-item-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+    .criteria-item h4 { font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 6px; letter-spacing: -0.01em; }
+    .criteria-item p { font-size: 12px; line-height: 1.6; color: var(--text-body); margin: 0; }
+    .criteria-item.highlight { background: rgba(32,31,80,0.04); border-color: rgba(32,31,80,0.12); }
+    .aal-callout { background: rgba(224,123,53,0.05); border: 1px solid rgba(224,123,53,0.2); border-left: 3px solid var(--orange); border-radius: 0 10px 10px 0; padding: 24px 28px; margin: 32px 0; }
+    .aal-callout-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+    .aal-callout p { font-size: 14px; line-height: 1.72; color: var(--text-body); margin: 0; }
+    .sources-section { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(32,31,80,0.1); }
+    .sources-section h3 { font-size: 12px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+    .sources-list { list-style: none; }
+    .sources-list li { font-size: 12px; line-height: 1.6; color: var(--text-muted); padding: 5px 0; border-bottom: 1px solid rgba(32,31,80,0.06); }
+    .sources-list li:last-child { border-bottom: none; }
+    .sources-list a { color: var(--teal); font-weight: 600; }
+    .sources-list a:hover { text-decoration: underline; }
+
+    /* SIDEBAR */
+    .article-sidebar { position: sticky; top: 160px; }
+    .sidebar-card { background: #f9f9f9; border: 1px solid rgba(32,31,80,0.07); border-radius: 14px; padding: 24px; margin-bottom: 20px; }
+    .sidebar-card h4 { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+    .stat-row { display: flex; flex-direction: column; gap: 16px; }
+    .stat-item { border-bottom: 1px solid rgba(32,31,80,0.07); padding-bottom: 14px; }
+    .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .stat-num { font-size: 28px; font-weight: 800; color: var(--navy); letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
+    .stat-num.orange { color: var(--orange); }
+    .stat-num.teal { color: var(--teal); }
+    .stat-label { font-size: 12px; line-height: 1.5; color: var(--text-muted); }
+    .related-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .related-links li a { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.3; transition: color 0.2s; }
+    .related-links li a:hover { color: var(--orange); }
+    .related-links li .rel-tag { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal); display: block; margin-top: 3px; font-weight: 500; }
+
+    /* FOOTER */
+    footer { background: #f5f5f5; padding: 40px 5% 28px; border-top: 1px solid rgba(32,31,80,0.09); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-simple { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; margin-bottom: 24px; }
+    .footer-logo img { height: 112px; display: block; mix-blend-mode: multiply; }
+    .footer-nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav-links a { font-size: 13px; font-weight: 600; color: rgba(32,31,80,0.5); transition: color 0.2s; }
+    .footer-nav-links a:hover { color: var(--navy); }
+    .footer-legal-links { display: flex; gap: 18px; margin-left: auto; }
+    .footer-legal-links a { font-size: 12px; color: rgba(32,31,80,0.35); transition: color 0.2s; }
+    .footer-legal-links a:hover { color: var(--navy); }
+    .footer-bottom { border-top: 1px solid rgba(32,31,80,0.1); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: rgba(32,31,80,0.38); flex-wrap: wrap; gap: 12px; }
+    .footer-tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; color: var(--orange); background: rgba(224,123,53,0.12); padding: 4px 10px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .article-h1 { font-size: 28px; }
+      .article-body-inner { grid-template-columns: 1fr; }
+      .article-sidebar { position: static; }
+      .criteria-grid { grid-template-columns: 1fr; }
+      .footer-simple { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .footer-legal-links { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-logo">
+      <a href="../index.html"><img src="../brand_assets/Logo.PNG" alt="RiskHelm" /></a>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#framework">Framework</a>
+      <a href="../index.html#collaborate">Collaborate</a>
+      <a href="../resources.html">Resources</a>
+    </div>
+    <div class="nav-cta">
+      <a href="../contact.html"><button class="btn-navy">Request Discussion</button></a>
+    </div>
+  </nav>
+
+  <div class="article-header">
+    <div class="article-header-inner">
+      <a href="../resources.html" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Resources
+      </a>
+      <div class="article-tag-header">Capital Markets</div>
+      <h1 class="article-h1">How Reinsurers Are Approaching the AI Agent Risk Class</h1>
+      <div class="article-meta">
+        <span class="article-meta-date">Feb 12, 2026</span>
+        <span class="article-meta-sep"></span>
+        <span class="article-meta-author">RiskHelm Research</span>
+        <span class="article-meta-sep"></span>
+        <span class="article-meta-date">5 min read</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured-image-wrap">
+    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&h=420&q=85" alt="Financial district representing the reinsurance and capital markets engaging with new AI risk" />
+  </div>
+  <p class="image-caption">Capital providers are cautiously exploring a new risk class with attractive correlation characteristics. Photo: Unsplash</p>
+
+  <div class="article-body-wrap">
+    <div class="article-body-inner">
+
+      <div class="article-content">
+
+        <p>Reinsurance capital moves cautiously. The market carries long institutional memory of novel risk classes — cyber in the early 2000s, pandemic in the 2010s, climate in the 2020s — where initial optimism gave way to unexpected correlation and catastrophic accumulation. That caution is now being applied to AI agent conduct risk. The signals from capacity markets are not dismissive. They are analytical.</p>
+
+        <p>In 2025, Reinsurance News reported the launch of an AI-focused underwriting company backed by a <strong>$15 million seed round</strong> — specialist capital funding infrastructure before the primary market fully formed. Federato, an AI-native underwriting platform, raised <strong>$180 million</strong>, with investors backing its agentic underwriting workflow as production-ready. These are directional commitments: infrastructure is being funded ahead of product, as it was with cyber.</p>
+
+        <h2>Why This Risk Class Is Attracting Attention</h2>
+
+        <p>The reinsurance market evaluates new risk classes on four dimensions: correlation profile, tail exposure, trigger clarity, and accumulation scenario. AI agent conduct risk — <em>properly scoped to authority-breach events</em> — presents a surprisingly attractive picture on all four.</p>
+
+        <div class="criteria-grid">
+          <div class="criteria-item highlight">
+            <div class="criteria-item-label">Correlation</div>
+            <h4>Non-Correlated Loss Drivers</h4>
+            <p>Authority-scope breach events are driven by individual deployment governance decisions, not macroeconomic conditions, weather, or systemic cyber events. There is no shared exogenous shock that causes simultaneous breach across multiple policyholders.</p>
+          </div>
+          <div class="criteria-item highlight">
+            <div class="criteria-item-label">Tail Profile</div>
+            <h4>Finite Maximum Exposure</h4>
+            <p>The formal authority limit assigned to each agent at deployment functions as the policy's natural maximum loss. A policy covering breach of a $2M authority limit cannot produce a $20M loss — structurally different from systemic AI model failure, where tail exposure is theoretically unbounded.</p>
+          </div>
+          <div class="criteria-item">
+            <div class="criteria-item-label">Trigger</div>
+            <h4>Binary, Objective Breach Event</h4>
+            <p>The trigger is deterministic. An agent either acted within its documented authority, or it did not — eliminating the interpretive ambiguity that has complicated trigger determination in PFAS liability, climate attribution, and broad "AI error" claims.</p>
+          </div>
+          <div class="criteria-item">
+            <div class="criteria-item-label">Accumulation</div>
+            <h4>No Common-Mode Scenario</h4>
+            <p>A simultaneous mass breach across multiple policyholders would require a coordinated governance failure across independently configured deployments — not a shared model failure. This is materially more bounded than silent cyber, where one vulnerability can propagate across thousands of insureds instantly.</p>
+          </div>
+        </div>
+
+        <p>The contrast with broad "AI liability" is critical. Reinsurance hesitation around AI stems from <em>model opacity</em> — the impossibility of bounding an LLM's behavior across all inputs. Authority-scope breach sidesteps this entirely. The underwriting question is not "what might the model do?" but "did this agent act within its formal authority?" That is a binary question answerable from log data.</p>
+
+        <div class="pull-quote">
+          <p>"The reinsurance industry must engage with AI-driven risks now — not when claims start coming in. The time to develop frameworks, data standards, and treaty language is before the market matures, not after."</p>
+          <cite>— Roots AI, 10 Insurance AI Predictions for 2026, Jan 2026</cite>
+        </div>
+
+        <h2>What Reinsurers Need Before They Commit</h2>
+
+        <p>No major reinsurer will write this risk on a speculative basis. Three preconditions drive the conversations. First, <strong>loss data</strong>: reinsurers need actuarial history, and AI agent conduct risk has limited track record — the Shadow Mode phase is the data-generation phase. Second, <strong>standardized authority documentation</strong>: for risk to be consistently underwritable across cedents, authority specification must follow a standard schema allowing portfolio aggregation. Third, <strong>model and version records</strong>: reinsurers already require model cards from cedents using AI in underwriting; the same standard applies when agent conduct risk is presented for treaty.</p>
+
+        <h2>Treaty Structure and Market Formation</h2>
+
+        <p>When capacity engages at scale, the structure will follow specialty lines precedent: excess-of-loss with per-occurrence and aggregate caps, priced against authorized transaction volume of the policyholder's agent fleet. An enterprise authorizing $500M in annual agent-executed procurement represents greater exposure than one authorizing $5M — a natural governance incentive embedded in pricing. Authorized Agent Liability is designed with this architecture in mind: the five-stage governance framework produces the standardized records — version logs, authority specs, compliance trails, breach events — that reinsurers need.</p>
+
+        <p>The reinsurance market's engagement with cyber took seven years from first specialist products to meaningful treaty capacity. AI agent conduct risk has structural advantages that should compress that timeline: more deterministic trigger, more bounded accumulation scenario, and governance documentation designed in from the start. The pattern of capital backing infrastructure ahead of product — visible in 2025 and accelerating now — is the same pattern that characterized cyber's formative period. <strong>The market-formation work is underway.</strong></p>
+
+        <h2>Standards and Infrastructure Accelerate</h2>
+
+        <p>Regulatory momentum is building rapidly. <strong>NIST launched its AI Agent Standards Initiative</strong> through the Center for AI Standards and Innovation — supporting development of interoperable and secure AI agent systems. NIST issued a Request for Information on securing AI agents and announced listening sessions to identify barriers to AI adoption in financial services. The signal is clear: as autonomous agents move from experimentation to deployment, compliance and governance frameworks must keep pace.</p>
+
+        <p>On the infrastructure side, <strong>CoverGo launched AI agents built specifically for insurance</strong> — embedding domain-trained AI directly into core operations for automated underwriting, distribution, servicing, and claims. <strong>Riskonnect launched its Intelligent Risk Framework</strong>, enabling autonomous risk monitoring, predictive exposure management, and AI-accelerated remediation. These deployments are generating the operational data reinsurers need to price AI agent conduct risk with actuarial confidence.</p>
+
+        <div class="sources-section">
+          <h3>Sources</h3>
+          <ul class="sources-list">
+            <li><a href="https://www.reinsurancene.ws/artificial-intelligence-underwriting-company-launches-with-15m-seed-round/" target="_blank" rel="noopener">Artificial Intelligence Underwriting Company Launches with $15M Seed Round</a> — Reinsurance News, 2025</li>
+            <li><a href="https://www.hyperexponential.com/blog/agentic-ai-insurance-underwriting" target="_blank" rel="noopener">Agentic AI in Insurance Underwriting: 6 Use Cases</a> — Hyperexponential / hyperexponential.com, 2025</li>
+            <li><a href="https://insurtechdigital.com/news/generative-ai-reshapes-insurance-claims-and-underwriting" target="_blank" rel="noopener">Generative AI Reshapes Insurance Claims and Underwriting</a> — InsurTech Digital, 2025</li>
+            <li><a href="https://www.roots.ai/blog/10-insurance-ai-predictions-2026-forecasting-shift-from-promise-performance" target="_blank" rel="noopener">10 Insurance AI Predictions for 2026: Forecasting the Shift From Promise to Performance</a> — Roots AI, 2026</li>
+            <li><a href="https://riskandinsurance.com/reimagine-underwriting-with-agentic-ai-at-the-cpcu-societys-in2risk-2025/" target="_blank" rel="noopener">Reimagine Underwriting With Agentic AI at the CPCU Society's In2Risk 2025</a> — Risk &amp; Insurance, 2025</li>
+            <li><a href="https://send.technology/resources/blog/top-10-insurance-industry-trends-shaping-underwriting-in-2026/" target="_blank" rel="noopener">Top 10 Insurance Industry Trends Shaping Underwriting in 2026</a> — Send Technology, 2026</li>
+            <li><a href="https://www.fenwick.com/insights/publications/tracking-the-evolution-of-ai-insurance-regulation" target="_blank" rel="noopener">Tracking the Evolution of AI Insurance Regulation</a> — Fenwick &amp; West, 2025</li>
+            <li><a href="https://www.pillsburylaw.com/en/news-and-insights/nist-ai-agent-standards.html" target="_blank" rel="noopener">NIST Launches AI Agent Standards Initiative and Seeks Industry Input</a> — Pillsbury Law, Feb 2026</li>
+            <li><a href="https://insurance-canada.ca/2026/02/27/covergo-launch-ai-agents-automate-operations/" target="_blank" rel="noopener">CoverGo Launches AI Agents to Automate Insurance Operations</a> — Insurance Canada, Feb 2026</li>
+            <li><a href="https://riskonnect.com/press/riskonnect-enterprise-scale-ai-risk-management-agentforce-360/" target="_blank" rel="noopener">Riskonnect Announces Enterprise-scale AI for Risk Powered by Agentforce 360</a> — Riskonnect, Feb 2026</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="article-sidebar">
+        <div class="sidebar-card">
+          <h4>Capital Market Signals · 2025–2026</h4>
+          <div class="stat-row">
+            <div class="stat-item">
+              <div class="stat-num orange">$180M</div>
+              <div class="stat-label">Federato raised for AI-native underwriting platform — capacity backing AI risk infrastructure</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">$15M</div>
+              <div class="stat-label">Seed round for AI underwriting company (Reinsurance News) — specialist capital forming</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num teal">$40M</div>
+              <div class="stat-label">Annual underwriting profit improvement projected for $1B premium portfolio with AI underwriting</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">70%</div>
+              <div class="stat-label">AI adoption in underwriting forecast to reach this by 2028, up from 14% today</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h4>Related Reading</h4>
+          <ul class="related-links">
+            <li>
+              <a href="agentic-ai-liability.html">
+                <span>Agentic AI Spend Reaches $47B: Who Owns the Liability?<span class="rel-tag">Industry Insight</span></span>
+              </a>
+            </li>
+            <li>
+              <a href="transaction-executing-agents.html">
+                <span>Transaction-Executing Agents: The Accountability Question Enterprises Can't Defer<span class="rel-tag">Risk Management</span></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card" style="background:var(--navy); border-color:transparent;">
+          <h4 style="color:rgba(255,255,255,0.4);">Capacity Provider Inquiries</h4>
+          <p style="font-size:13px; line-height:1.6; color:rgba(255,255,255,0.7); margin-bottom:16px;">We are in active conversations with reinsurers and capacity providers about the Authorized Agent Liability risk class.  Reach us to discuss the underwriting framework.  </p>
+          <a href="../contact.html" style="display:inline-block; padding:10px 18px; background:var(--orange); color:#fff; border-radius:7px; font-size:13px; font-weight:700; transition: background 0.2s;">Request Discussion →</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-simple">
+        <div class="footer-logo">
+          <a href="../index.html"><img src="../brand_assets/Logo.PNG" alt="RiskHelm" /></a>
+        </div>
+        <nav class="footer-nav-links">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#framework">Framework</a>
+          <a href="../index.html#collaborate">Collaborate</a>
+          <a href="../resources.html">Resources</a>
+          <a href="../contact.html">Request Discussion</a>
+        </nav>
+        <div class="footer-legal-links">
+          <a href="../legal.html#privacy">Privacy Policy</a>
+          <a href="../legal.html#terms">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 RiskHelm MGA, Inc.  All rights reserved.  </span>
+        <div class="footer-tag">Authorized Agent Liability · Shadow Mode Pilot</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

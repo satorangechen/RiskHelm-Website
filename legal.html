@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legal — RiskHelm</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #201f50; --teal: #008992; --orange: #E07B35;
+      --cream: #ebebeb; --text-body: #3a3a5c; --text-muted: #7a7a9a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; font-size: 17px; font-weight: 500; line-height: 1.75; color: var(--navy); background: #fff; }
+    a { text-decoration: none; color: inherit; }
+
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 0.4;
+    }
+
+    /* ─── NAV ─── */
+    .nav { position: sticky; top: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 128px; background: #fff; border-bottom: 1px solid rgba(32,31,80,0.08); }
+    .nav-logo img { height: 112px; display: block; mix-blend-mode: multiply; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 700; color: var(--navy); }
+    .nav-links a { transition: color 0.2s; letter-spacing: 0.01em; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta { display: flex; align-items: center; gap: 10px; }
+    .btn-navy { padding: 9px 20px; border-radius: 7px; font-size: 14px; font-weight: 700; color: #fff; background: var(--navy); border: none; cursor: pointer; font-family: 'Manrope', sans-serif; transition: background 0.2s, transform 0.15s; box-shadow: 0 2px 12px rgba(32,31,80,0.25); }
+    .btn-navy:hover { background: #2d2c6b; transform: translateY(-1px); }
+    .btn-navy:active { transform: translateY(0); }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header { background: var(--navy); background-image: radial-gradient(ellipse at 80% 0%, rgba(224,123,53,0.18) 0%, transparent 55%); padding: 56px 5% 48px; }
+    .page-header-inner { max-width: 860px; margin: 0 auto; }
+    .page-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.5); padding: 5px 12px; border-radius: 100px; background: rgba(255,255,255,0.08); margin-bottom: 20px; letter-spacing: 0.07em; text-transform: uppercase; }
+    .page-h1 { font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #fff; margin-bottom: 12px; }
+    .page-sub { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.55); }
+
+    /* ─── TAB NAV ─── */
+    .tab-nav-wrap { background: #fff; border-bottom: 1px solid rgba(32,31,80,0.08); position: sticky; top: 128px; z-index: 100; }
+    .tab-nav { max-width: 860px; margin: 0 auto; padding: 0 5%; display: flex; gap: 0; }
+    .tab-link { display: inline-block; padding: 16px 24px; font-size: 14px; font-weight: 700; color: var(--text-muted); border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; cursor: pointer; letter-spacing: 0.01em; }
+    .tab-link:hover { color: var(--navy); }
+    .tab-link.active { color: var(--navy); border-bottom-color: var(--orange); }
+
+    /* ─── LEGAL CONTENT ─── */
+    .legal-body { background: #f9f9f9; padding: 64px 5%; min-height: calc(100vh - 128px); }
+    .legal-inner { max-width: 860px; margin: 0 auto; }
+    .legal-section { background: #fff; border: 1px solid rgba(32,31,80,0.07); border-radius: 16px; padding: 48px 52px; margin-bottom: 32px; scroll-margin-top: 200px; }
+    .legal-section-label { display: inline-flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 16px; }
+    .label-privacy { background: rgba(32,31,80,0.08); color: var(--navy); }
+    .label-terms { background: rgba(0,137,146,0.1); color: var(--teal); }
+    .legal-h2 { font-size: 28px; font-weight: 800; color: var(--navy); letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 6px; }
+    .legal-effective { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); margin-bottom: 32px; letter-spacing: 0.04em; }
+    .legal-h3 { font-size: 16px; font-weight: 800; color: var(--navy); margin-top: 32px; margin-bottom: 10px; letter-spacing: -0.01em; }
+    .legal-p { font-size: 14px; line-height: 1.78; color: var(--text-body); margin-bottom: 14px; }
+    .legal-ul { list-style: none; margin: 0 0 16px 0; padding: 0; }
+    .legal-ul li { font-size: 14px; line-height: 1.7; color: var(--text-body); padding: 4px 0 4px 18px; position: relative; }
+    .legal-ul li::before { content: '—'; position: absolute; left: 0; color: var(--text-muted); font-size: 12px; top: 6px; }
+    .legal-divider { border: none; border-top: 1px solid rgba(32,31,80,0.08); margin: 28px 0; }
+    .legal-contact-box { background: rgba(32,31,80,0.03); border: 1px solid rgba(32,31,80,0.08); border-radius: 10px; padding: 20px 24px; margin-top: 28px; }
+    .legal-contact-box p { font-size: 13px; line-height: 1.7; color: var(--text-body); margin: 0; }
+    .legal-contact-box a { color: var(--teal); font-weight: 700; }
+    .legal-contact-box a:hover { text-decoration: underline; }
+
+    /* ─── FOOTER ─── */
+    footer { background: #f5f5f5; padding: 40px 5% 28px; border-top: 1px solid rgba(32,31,80,0.09); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-simple { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; margin-bottom: 24px; }
+    .footer-logo img { height: 112px; display: block; mix-blend-mode: multiply; }
+    .footer-nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav-links a { font-size: 13px; font-weight: 600; color: rgba(32,31,80,0.5); transition: color 0.2s; }
+    .footer-nav-links a:hover { color: var(--navy); }
+    .footer-legal-links { display: flex; gap: 18px; margin-left: auto; }
+    .footer-legal-links a { font-size: 12px; color: rgba(32,31,80,0.35); transition: color 0.2s; }
+    .footer-legal-links a:hover { color: var(--navy); }
+    .footer-bottom { border-top: 1px solid rgba(32,31,80,0.1); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: rgba(32,31,80,0.38); flex-wrap: wrap; gap: 12px; }
+    .footer-tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; color: var(--orange); background: rgba(224,123,53,0.12); padding: 4px 10px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .legal-section { padding: 32px 24px; }
+      .footer-simple { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .footer-legal-links { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-logo">
+      <a href="index.html"><img src="brand_assets/Logo.PNG" alt="RiskHelm" /></a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#framework">Framework</a>
+      <a href="index.html#collaborate">Collaborate</a>
+      <a href="resources.html">Resources</a>
+    </div>
+    <div class="nav-cta">
+      <a href="contact.html"><button class="btn-navy">Request Discussion</button></a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-eyebrow">Legal</div>
+      <h1 class="page-h1">Privacy Policy &amp; Terms of Service</h1>
+      <p class="page-sub">Please read these documents carefully.  They govern your use of RiskHelm's website and services.  </p>
+    </div>
+  </div>
+
+  <div class="tab-nav-wrap">
+    <div class="tab-nav">
+      <a href="#privacy" class="tab-link active">Privacy Policy</a>
+      <a href="#terms" class="tab-link">Terms of Service</a>
+    </div>
+  </div>
+
+  <div class="legal-body">
+    <div class="legal-inner">
+
+      <!-- ─── PRIVACY POLICY ─── -->
+      <div id="privacy" class="legal-section">
+        <span class="legal-section-label label-privacy">Privacy Policy</span>
+        <h2 class="legal-h2">Privacy Policy</h2>
+        <p class="legal-effective">Effective Date: February 1, 2026 &nbsp;·&nbsp; Last Updated: February 1, 2026</p>
+
+        <p class="legal-p">RiskHelm MGA, Inc. ("RiskHelm," "we," "our," or "us") is committed to protecting the privacy of visitors to our website and individuals who interact with our services. This Privacy Policy describes how we collect, use, disclose, and safeguard information when you visit <strong>riskhelm.com</strong> (the "Site") or engage with our Authorized Agent Liability program.</p>
+
+        <p class="legal-p">By using the Site, you agree to the collection and use of information in accordance with this policy. If you do not agree with the terms of this Privacy Policy, please do not access the Site.</p>
+
+        <hr class="legal-divider" />
+
+        <h3 class="legal-h3">1. Information We Collect</h3>
+        <p class="legal-p">We collect information you provide directly to us, information collected automatically, and information from third parties.</p>
+
+        <p class="legal-p"><strong>Information you provide:</strong></p>
+        <ul class="legal-ul">
+          <li>Contact information (name, company name, job title, email address, phone number) submitted through our "Request Discussion" form.</li>
+          <li>Details about your AI agent deployment context, organizational structure, and risk exposure that you voluntarily share during qualification conversations.</li>
+          <li>Correspondence and communications you send to us.</li>
+        </ul>
+
+        <p class="legal-p"><strong>Information collected automatically:</strong></p>
+        <ul class="legal-ul">
+          <li>Log data including IP address, browser type, operating system, referring URLs, pages viewed, and the date and time of your visit.</li>
+          <li>Cookie data and similar tracking technologies used to improve Site performance and understand usage patterns.</li>
+          <li>Device information including hardware model and unique device identifiers.</li>
+        </ul>
+
+        <h3 class="legal-h3">2. How We Use Your Information</h3>
+        <p class="legal-p">We use the information we collect to:</p>
+        <ul class="legal-ul">
+          <li>Respond to your inquiries and conduct qualification discussions for our PoC program.</li>
+          <li>Communicate with you about RiskHelm products, services, and industry developments relevant to AI agent risk.</li>
+          <li>Improve, personalize, and develop the Site and our service offerings.</li>
+          <li>Monitor and analyze usage patterns and trends to enhance user experience.</li>
+          <li>Comply with applicable legal obligations, including financial services regulations.</li>
+          <li>Protect the rights, property, and safety of RiskHelm, our partners, and others.</li>
+        </ul>
+
+        <p class="legal-p">We do not sell, rent, or trade your personal information to third parties for their marketing purposes. We are in an early-stage proof-of-concept phase, and all information shared with us is treated with institutional-grade confidentiality.</p>
+
+        <h3 class="legal-h3">3. Information Sharing and Disclosure</h3>
+        <p class="legal-p">We may share your information in the following limited circumstances:</p>
+        <ul class="legal-ul">
+          <li><strong>Service Providers:</strong> We may engage trusted third-party vendors (e.g., CRM systems, email services, analytics) who process data on our behalf and are contractually bound to use it only for purposes we specify.</li>
+          <li><strong>Capacity Partners:</strong> With your consent, we may share relevant deployment context with prospective capacity providers or reinsurers participating in the AAL program structuring process. We will notify you before doing so.</li>
+          <li><strong>Legal Requirements:</strong> We may disclose information if required by law, regulation, legal process, or governmental request, including applicable insurance and financial services regulations.</li>
+          <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</li>
+        </ul>
+
+        <h3 class="legal-h3">4. Cookies and Tracking Technologies</h3>
+        <p class="legal-p">We use cookies and similar tracking technologies to operate and improve the Site. You can control cookie settings through your browser preferences. Disabling cookies may affect certain Site functionality. We do not currently use third-party advertising cookies. Analytics cookies (such as those provided by Google Analytics) help us understand aggregate usage patterns.</p>
+
+        <h3 class="legal-h3">5. Data Retention</h3>
+        <p class="legal-p">We retain personal information for as long as necessary to fulfil the purposes described in this policy, unless a longer retention period is required by law. Information submitted through our contact form is retained for a minimum of three years in connection with our insurance program recordkeeping obligations. You may request deletion of your data at any time (subject to legal retention requirements) by contacting us at the address below.</p>
+
+        <h3 class="legal-h3">6. Security</h3>
+        <p class="legal-p">We implement commercially reasonable administrative, technical, and physical safeguards to protect information from unauthorized access, use, disclosure, alteration, or destruction. However, no internet transmission or electronic storage method is 100% secure. We encourage you to use caution when transmitting sensitive information online.</p>
+
+        <h3 class="legal-h3">7. Your Rights</h3>
+        <p class="legal-p">Depending on your jurisdiction, you may have rights to access, correct, delete, or restrict the processing of your personal information. Residents of California (under CCPA) and the European Economic Area (under GDPR) have specific rights including the right to know what personal data we hold, the right to request deletion, and the right to opt out of certain data uses. To exercise these rights, please contact us using the details below.</p>
+
+        <h3 class="legal-h3">8. Children's Privacy</h3>
+        <p class="legal-p">The Site is intended for business professionals and is not directed at individuals under the age of 18. We do not knowingly collect personal information from minors. If we become aware that a minor has submitted information to us, we will promptly delete it.</p>
+
+        <h3 class="legal-h3">9. Changes to This Policy</h3>
+        <p class="legal-p">We may update this Privacy Policy from time to time. We will notify you of material changes by posting the revised policy on the Site with an updated effective date. Your continued use of the Site following any changes constitutes your acceptance of the revised policy.</p>
+
+        <div class="legal-contact-box">
+          <p><strong>Privacy Inquiries:</strong> For questions, requests, or complaints regarding this Privacy Policy, please contact us at <a href="mailto:privacy@riskhelm.com">privacy@riskhelm.com</a> or write to: RiskHelm MGA, Inc., Attn: Privacy Officer, [Address on file]. We will respond to all legitimate requests within 30 days.</p>
+        </div>
+      </div>
+
+      <!-- ─── TERMS OF SERVICE ─── -->
+      <div id="terms" class="legal-section">
+        <span class="legal-section-label label-terms">Terms of Service</span>
+        <h2 class="legal-h2">Terms of Service</h2>
+        <p class="legal-effective">Effective Date: February 1, 2026 &nbsp;·&nbsp; Last Updated: February 1, 2026</p>
+
+        <p class="legal-p">These Terms of Service ("Terms") govern your access to and use of the website located at <strong>riskhelm.com</strong> (the "Site"), operated by RiskHelm MGA, Inc. ("RiskHelm"). By accessing or using the Site, you agree to be bound by these Terms. If you do not agree, do not access or use the Site.</p>
+
+        <p class="legal-p">These Terms do not govern any insurance product, coverage, or indemnity arrangement. Insurance terms and conditions are governed separately by applicable policy documentation to be agreed between the parties in connection with any formal program.</p>
+
+        <hr class="legal-divider" />
+
+        <h3 class="legal-h3">1. Use of the Site</h3>
+        <p class="legal-p">The Site is provided for informational purposes only, to describe RiskHelm's Authorized Agent Liability program concept and to facilitate preliminary qualification conversations with prospective program participants. Nothing on the Site constitutes an offer to provide insurance coverage, a binding commitment, or a solicitation in any jurisdiction where RiskHelm is not licensed or authorized.</p>
+
+        <p class="legal-p">You agree not to:</p>
+        <ul class="legal-ul">
+          <li>Use the Site in any way that violates applicable federal, state, local, or international law or regulation.</li>
+          <li>Transmit unsolicited commercial communications or interfere with the Site's technical operation.</li>
+          <li>Attempt to gain unauthorized access to any portion of the Site or its related systems.</li>
+          <li>Reproduce, duplicate, copy, sell, or resell any portion of the Site without our express written consent.</li>
+          <li>Use automated means to scrape, crawl, or extract data from the Site.</li>
+        </ul>
+
+        <h3 class="legal-h3">2. No Insurance Solicitation</h3>
+        <p class="legal-p">RiskHelm is a managing general agent operating in proof-of-concept stage. The AAL program is in active development and has not been finalized or approved in all jurisdictions. <strong>Nothing on this Site constitutes an insurance contract, an offer of coverage, or a guarantee of insurability.</strong> Any coverage terms, limits, premiums, or conditions described are illustrative and subject to change. Actual insurance products, if and when offered, will be subject to separate policy documents, regulatory approvals, and carrier agreements.</p>
+
+        <h3 class="legal-h3">3. Intellectual Property</h3>
+        <p class="legal-p">All content on the Site — including text, graphics, logos, design elements, and the RiskHelm brand assets — is the property of RiskHelm MGA, Inc. or its licensors and is protected by copyright, trademark, and other intellectual property laws. You may not use, reproduce, or distribute any Site content without prior written permission, except for personal, non-commercial viewing.</p>
+
+        <p class="legal-p">The terms "Authorized Agent Liability," "AAL," and "RiskHelm" are proprietary designations. Any use of these marks without our prior written consent is prohibited.</p>
+
+        <h3 class="legal-h3">4. Disclaimers and No Warranties</h3>
+        <p class="legal-p">THE SITE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. RISKHELM DOES NOT WARRANT THAT THE SITE WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.</p>
+
+        <p class="legal-p">Content on the Site is provided for general informational purposes only and does not constitute legal, financial, insurance, or professional advice. You should consult qualified advisors before making decisions based on any information provided here.</p>
+
+        <h3 class="legal-h3">5. Limitation of Liability</h3>
+        <p class="legal-p">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, RISKHELM AND ITS AFFILIATES, OFFICERS, EMPLOYEES, AGENTS, AND LICENSORS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO YOUR USE OF THE SITE, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN NO EVENT SHALL OUR TOTAL LIABILITY TO YOU EXCEED ONE HUNDRED U.S. DOLLARS ($100).</p>
+
+        <h3 class="legal-h3">6. Third-Party Links</h3>
+        <p class="legal-p">The Site may contain links to third-party websites or resources. These links are provided for convenience only. We have no control over the content of those sites and accept no responsibility for them or for any loss or damage that may arise from your use of them.</p>
+
+        <h3 class="legal-h3">7. Governing Law and Dispute Resolution</h3>
+        <p class="legal-p">These Terms are governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of law provisions. Any dispute arising from or relating to these Terms or the Site shall be resolved exclusively in the state or federal courts located in Delaware, and you consent to personal jurisdiction in those courts.</p>
+
+        <h3 class="legal-h3">8. Changes to These Terms</h3>
+        <p class="legal-p">We reserve the right to modify these Terms at any time. We will indicate the date of the most recent revision above. Your continued use of the Site following any modification constitutes your acceptance of the updated Terms. We encourage you to review these Terms periodically.</p>
+
+        <h3 class="legal-h3">9. Contact</h3>
+        <div class="legal-contact-box">
+          <p>Questions about these Terms should be addressed to <a href="mailto:legal@riskhelm.com">legal@riskhelm.com</a> or in writing to: RiskHelm MGA, Inc., Attn: Legal, [Address on file].</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-simple">
+        <div class="footer-logo">
+          <a href="index.html"><img src="brand_assets/Logo.PNG" alt="RiskHelm" /></a>
+        </div>
+        <nav class="footer-nav-links">
+          <a href="index.html">Home</a>
+          <a href="index.html#framework">Framework</a>
+          <a href="index.html#collaborate">Collaborate</a>
+          <a href="resources.html">Resources</a>
+          <a href="contact.html">Request Discussion</a>
+        </nav>
+        <div class="footer-legal-links">
+          <a href="legal.html#privacy">Privacy Policy</a>
+          <a href="legal.html#terms">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 RiskHelm MGA, Inc.  All rights reserved.  </span>
+        <div class="footer-tag">Authorized Agent Liability · Shadow Mode Pilot</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Highlight active tab based on scroll position
+    const sections = document.querySelectorAll('#privacy, #terms');
+    const tabLinks = document.querySelectorAll('.tab-link');
+    window.addEventListener('scroll', () => {
+      let current = 'privacy';
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop <= 200) current = section.id;
+      });
+      tabLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    });
+  </script>
+
+</body>
+</html>

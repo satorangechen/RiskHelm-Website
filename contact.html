@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request a Discussion — RiskHelm</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:    #201f50;
+      --teal:    #008992;
+      --orange:  #E07B35;
+      --cream:   #ebebeb;
+      --white:   #ffffff;
+      --text-body: #3a3a5c;
+      --text-muted: #7a7a9a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.75;
+      color: var(--navy);
+      background: #fff;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── NOISE TEXTURE ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 0.4;
+    }
+
+    /* ─── NAV ─── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 128px;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(32,31,80,0.08);
+    }
+    .nav-logo img { height: 112px; display: block; mix-blend-mode: multiply; }
+    .nav-links {
+      display: flex; align-items: center; gap: 28px;
+      font-size: 14px; font-weight: 700; color: var(--navy);
+    }
+    .nav-links a { transition: color 0.2s; letter-spacing: 0.01em; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta { display: flex; align-items: center; gap: 10px; }
+    .btn-outline-nav {
+      padding: 9px 18px; border-radius: 7px;
+      font-size: 14px; font-weight: 700;
+      color: var(--navy); background: transparent;
+      border: 1.5px solid rgba(32,31,80,0.25);
+      cursor: pointer; font-family: 'Manrope', sans-serif;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline-nav:hover { border-color: var(--navy); }
+    .btn-navy {
+      padding: 9px 20px; border-radius: 7px;
+      font-size: 14px; font-weight: 700;
+      color: #fff; background: var(--navy);
+      border: none; cursor: pointer;
+      font-family: 'Manrope', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 2px 12px rgba(32,31,80,0.25);
+    }
+    .btn-navy:hover { background: #2d2c6b; transform: translateY(-1px); }
+
+    /* ─── CONTACT PAGE ─── */
+    .contact-page {
+      min-height: calc(100vh - 128px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Left panel — dark navy */
+    .contact-left {
+      background: var(--navy);
+      background-image:
+        radial-gradient(ellipse at 10% 80%, rgba(0,137,146,0.3) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 10%, rgba(224,123,53,0.2) 0%, transparent 50%);
+      padding: 80px 7%;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .contact-left::after {
+      content: '';
+      position: absolute; bottom: -60px; right: -60px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(224,123,53,0.12) 0%, transparent 70%);
+    }
+    .contact-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.08);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; font-weight: 500; color: var(--orange);
+      padding: 5px 12px; border-radius: 100px;
+      margin-bottom: 24px; letter-spacing: 0.07em; text-transform: uppercase;
+      width: fit-content;
+    }
+    .contact-left h1 {
+      font-size: 40px; font-weight: 800;
+      letter-spacing: -0.03em; line-height: 1.12;
+      color: #fff; margin-bottom: 18px;
+    }
+    .contact-left h1 em { font-style: normal; color: var(--orange); }
+    .contact-left p {
+      font-size: 15px; line-height: 1.75;
+      color: rgba(255,255,255,0.65); margin-bottom: 40px;
+      max-width: 400px;
+    }
+
+    /* What happens next */
+    .next-steps { display: flex; flex-direction: column; gap: 16px; }
+    .next-step {
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .next-step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; font-weight: 500;
+      color: var(--orange); flex-shrink: 0; margin-top: 2px;
+    }
+    .next-step-text {
+      font-size: 14px; line-height: 1.6;
+      color: rgba(255,255,255,0.72);
+    }
+    .next-step-text strong {
+      display: block; color: #fff; font-size: 13px;
+      font-weight: 700; margin-bottom: 2px;
+    }
+
+    /* Email direct */
+    .contact-direct {
+      margin-top: 40px; padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .contact-direct-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; font-weight: 500;
+      color: rgba(255,255,255,0.4); letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .contact-direct-email {
+      font-size: 15px; font-weight: 700; color: var(--orange);
+      letter-spacing: -0.01em;
+    }
+    .contact-direct-email:hover { color: var(--orange-light); }
+
+    /* Right panel — form */
+    .contact-right {
+      background: #fff;
+      padding: 80px 7%;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .form-header { margin-bottom: 32px; }
+    .form-header h2 {
+      font-size: 28px; font-weight: 800;
+      color: var(--navy); letter-spacing: -0.025em;
+      margin-bottom: 6px;
+    }
+    .form-header p {
+      font-size: 14px; color: var(--text-muted); line-height: 1.6;
+    }
+
+    .form-group { margin-bottom: 18px; }
+    .form-label {
+      display: block; font-size: 11px; font-weight: 700;
+      color: var(--navy); margin-bottom: 6px;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 12px 14px;
+      border-radius: 8px; font-size: 14px; font-weight: 500;
+      font-family: 'Manrope', sans-serif;
+      color: var(--navy); background: #f7f7f7;
+      border: 1.5px solid rgba(32,31,80,0.1);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none; -webkit-appearance: none;
+    }
+    .form-textarea {
+      resize: vertical; min-height: 110px; line-height: 1.6;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(32,31,80,0.07);
+      background: #fff;
+    }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+
+    .btn-submit {
+      width: 100%; padding: 15px;
+      border-radius: 9px; font-size: 15px; font-weight: 800;
+      color: #fff; background: var(--navy);
+      border: none; cursor: pointer;
+      font-family: 'Manrope', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.01em; margin-top: 6px;
+    }
+    .btn-submit:hover { background: #2d2c6b; transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+
+    .form-note {
+      font-size: 11px; color: var(--text-muted);
+      text-align: center; margin-top: 12px; line-height: 1.5;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center; padding: 40px 20px;
+    }
+    .form-success-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(22,163,74,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; font-size: 28px;
+    }
+    .form-success h3 {
+      font-size: 24px; font-weight: 800; color: var(--navy);
+      margin-bottom: 10px; letter-spacing: -0.02em;
+    }
+    .form-success p {
+      font-size: 14px; color: var(--text-muted); line-height: 1.7;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy); padding: 32px 5%;
+    }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; color: rgba(255,255,255,0.3);
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.6); }
+    .footer-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; font-weight: 500;
+      color: var(--orange); background: rgba(224,123,53,0.1);
+      padding: 4px 10px; border-radius: 100px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .contact-page { grid-template-columns: 1fr; }
+      .contact-left { padding: 60px 6%; }
+      .contact-right { padding: 60px 6%; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <a href="index.html"><img src="brand_assets/Logo.PNG" alt="RiskHelm" /></a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#framework">Framework</a>
+      <a href="index.html#collaborate">Collaborate</a>
+      <a href="resources.html">Resources</a>
+    </div>
+    <div class="nav-cta">
+      <a href="contact.html"><button class="btn-navy">Request Discussion</button></a>
+    </div>
+  </nav>
+
+  <!-- ─── CONTACT PAGE ─── -->
+  <main class="contact-page">
+
+    <!-- Left: Context -->
+    <div class="contact-left">
+      <div class="contact-eyebrow">Shadow Mode · Join our Pilot Program</div>
+      <h1>Let's discuss your <em>agent deployment</em></h1>
+      <p>Start in Shadow Mode — observe your agents' authority posture and build your indemnity framework before going fully live.  We are enrolling pilot participants now.  No binding commitment required.  </p>
+
+      <div class="next-steps">
+        <div class="next-step">
+          <div class="next-step-num">1</div>
+          <div class="next-step-text">
+            <strong>Submit your details</strong>
+            We review your deployment context and agent authority scope.
+          </div>
+        </div>
+        <div class="next-step">
+          <div class="next-step-num">2</div>
+          <div class="next-step-text">
+            <strong>Qualification call (30 min)</strong>
+            We determine whether Authorized Agent Liability is the right fit for your use case.
+          </div>
+        </div>
+        <div class="next-step">
+          <div class="next-step-num">3</div>
+          <div class="next-step-text">
+            <strong>Shadow Mode onboarding</strong>
+            If there's fit, we outline a coverage structure and begin Shadow Mode monitoring.
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-direct">
+        <div class="contact-direct-label">Or reach us directly</div>
+        <a href="mailto:contact@riskhelm.com" class="contact-direct-email">contact@riskhelm.com</a>
+      </div>
+    </div>
+
+    <!-- Right: Form -->
+    <div class="contact-right">
+      <div id="contactForm">
+        <div class="form-header">
+          <h2>Start in Shadow Mode</h2>
+          <p>Join our pilot program — deploy, observe, and establish your indemnity baseline before going live.  </p>
+        </div>
+
+        <form id="rfpForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="firstName">First Name</label>
+              <input type="text" id="firstName" class="form-input" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lastName">Last Name</label>
+              <input type="text" id="lastName" class="form-input" placeholder="Smith" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="workEmail">Work Email</label>
+            <input type="email" id="workEmail" class="form-input" placeholder="you@organization.com" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="orgName">Organization</label>
+            <input type="text" id="orgName" class="form-input" placeholder="Your company name" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="orgType">Organization Type</label>
+            <select id="orgType" class="form-select" required>
+              <option value="">Select your organization type</option>
+              <option value="enterprise">Enterprise (AI Agent Deployer)</option>
+              <option value="platform">Workflow Platform</option>
+              <option value="capacity">Capacity Provider / Carrier</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="authTier">Target Implementation Tier</label>
+            <select id="authTier" class="form-select">
+              <option value="">Select authority tier</option>
+              <option value="readonly">Read-Only — No write actions</option>
+              <option value="limited">Limited — Bounded transactional actions</option>
+              <option value="transactional">Transactional — Full execution authority</option>
+              <option value="unsure">Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Deployment Context <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted);">(optional)</span></label>
+            <textarea id="message" class="form-textarea" placeholder="Briefly describe your agent deployment context, the types of decisions agents are making, or what you're trying to solve.  "></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Send Request →</button>
+          <p class="form-note">Shadow Mode pilot — observe your agents' authority posture with no binding commitment.  </p>
+        </form>
+      </div>
+
+      <!-- Success state (shown after submit) -->
+      <div id="formSuccess" class="form-success">
+        <div class="form-success-icon">✓</div>
+        <h3>Request received</h3>
+        <p>Thank you — we'll review your context and be in touch within 2 business days at the email address you provided.  </p>
+        <p style="margin-top:12px;">Questions in the meantime? Email us directly at<br><a href="mailto:contact@riskhelm.com" style="color:var(--orange);font-weight:700;">contact@riskhelm.com</a></p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-bottom">
+      <span>© 2026 RiskHelm MGA, Inc.  All rights reserved.  </span>
+      <div style="display:flex;gap:18px;align-items:center;">
+        <a href="legal.html#privacy">Privacy Policy</a>
+        <a href="legal.html#terms">Terms of Service</a>
+        <div class="footer-tag">Authorized Agent Liability · Shadow Mode Pilot</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── FORMSPREE SETUP ──────────────────────────────────────────────────────────
+    // To use Formspree:
+    //   1. Create a free account at https://formspree.io/
+    //   2. Create a new form and copy your form ID (e.g., 'xwpevyzk')
+    //   3. Replace 'YOUR_FORMSPREE_ID' below with your actual form ID
+    // ──────────────────────────────────────────────────────────────────────────────
+    const FORMSPREE_ID = 'mqedjwrz';
+
+    document.getElementById('rfpForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName  = document.getElementById('lastName').value.trim();
+      const email     = document.getElementById('workEmail').value.trim();
+      const org       = document.getElementById('orgName').value.trim();
+      const orgType   = document.getElementById('orgType').value;
+      const authTier  = document.getElementById('authTier').value;
+      const message   = document.getElementById('message').value.trim();
+
+      if (!firstName || !lastName || !email || !org || !orgType) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      // Disable button to prevent double-submit
+      const btn = this.querySelector('.btn-submit');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      // Prepare form data for Formspree
+      const formData = {
+        name: `${firstName} ${lastName}`,
+        email: email,
+        organization: org,
+        organization_type: orgType,
+        authority_tier: authTier || 'Not specified',
+        deployment_context: message || 'Not provided',
+        _subject: `RiskHelm Discussion Request — ${org}`
+      };
+
+      // Send to Formspree using Fetch API
+      fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        if (response.ok) {
+          // Success — show success message
+          document.getElementById('contactForm').style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        } else {
+          // Error — re-enable button and show error
+          btn.disabled = false;
+          btn.textContent = 'Send Request →';
+          alert('There was an error submitting your request.  Please try again or email us directly at contact@riskhelm.com');
+        }
+      })
+      .catch(error => {
+        // Network error — re-enable button and show error
+        btn.disabled = false;
+        btn.textContent = 'Send Request →';
+        console.error('Form submission error:', error);
+        alert('There was a network error.  Please try again or email us directly at contact@riskhelm.com');
+      });
+    });
+  </script>
+
+</body>
+</html>
