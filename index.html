@@ -23,7 +23,8 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { overflow-x: hidden; }
 
     body {
       font-family: 'Manrope', sans-serif;
@@ -41,12 +42,13 @@
 
     /* ─── NAV ─── */
     .nav {
-      position: sticky; top: 0; z-index: 200;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 5%; height: 128px;
       background: #ffffff;
       border-bottom: 1px solid rgba(32,31,80,0.08);
     }
+    body { padding-top: 128px; }
     .nav-logo img { height: 112px; display: block; mix-blend-mode: multiply; }
     .nav-links {
       display: flex; align-items: center; gap: 28px;
@@ -135,7 +137,7 @@
     .panel-sub { font-size: 15px; line-height: 1.65; color: var(--text-body); margin-bottom: 28px; }
 
     /* Org Chart */
-    .org-chart-wrap { position: relative; width: 440px; height: 370px; max-width: 100%; }
+    .org-chart-wrap { position: relative; width: 100%; max-width: 440px; height: 370px; overflow: hidden; }
     .org-svg-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
     .org-node { position: absolute; width: 86px; min-height: 92px; padding: 10px 8px 8px; background: #fff; border: 1px solid rgba(32,31,80,0.12); border-radius: 10px; text-align: center; box-shadow: 0 2px 10px rgba(32,31,80,0.07); }
     .org-node.agent-node { background: #e8f7f7; border-color: rgba(0,137,146,0.28); box-shadow: 0 2px 10px rgba(0,137,146,0.1); }
@@ -353,7 +355,7 @@
       right: 0;
       bottom: 0;
       background: #fff;
-      z-index: 199;
+      z-index: 9998;
       padding: 32px 5%;
       flex-direction: column;
       gap: 0;
@@ -381,6 +383,7 @@
       .nav { height: 100px; }
       .nav-logo img { height: 80px; }
       .mobile-menu { top: 100px; }
+      body { padding-top: 100px; }
     }
     @media (max-width: 960px) {
       .hero-h1 { font-size: 36px; }
@@ -444,6 +447,9 @@
       .sol-cell { padding: 16px 20px; }
       .sol-cell-title { font-size: 13px; }
       .sol-cell-desc { font-size: 12px; }
+      .cta-inner h2 { font-size: 28px; }
+      .fw-step { padding: 0 5px; }
+      .fw-num { width: 60px; height: 60px; }
     }
     /* Hide mobile headers on desktop */
     .sol-mobile-header { display: none; }
