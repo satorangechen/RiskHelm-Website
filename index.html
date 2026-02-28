@@ -137,7 +137,7 @@
     .panel-sub { font-size: 15px; line-height: 1.65; color: var(--text-body); margin-bottom: 28px; }
 
     /* Org Chart */
-    .org-chart-wrap { position: relative; width: 100%; max-width: 440px; height: 370px; overflow: hidden; }
+    .org-chart-wrap { position: relative; width: 354px; height: 370px; overflow: visible; margin: 0 auto; }
     .org-svg-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
     .org-node { position: absolute; width: 86px; min-height: 92px; padding: 10px 8px 8px; background: #fff; border: 1px solid rgba(32,31,80,0.12); border-radius: 10px; text-align: center; box-shadow: 0 2px 10px rgba(32,31,80,0.07); }
     .org-node.agent-node { background: #e8f7f7; border-color: rgba(0,137,146,0.28); box-shadow: 0 2px 10px rgba(0,137,146,0.1); }
@@ -178,8 +178,10 @@
     .solution-inner .section-h2 { color: #fff; max-width: 700px; }
     .solution-inner .section-sub { color: rgba(255,255,255,0.65); margin-bottom: 12px; }
     .gs-badge { display: inline-flex; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; color: var(--orange); letter-spacing: 0.06em; text-transform: uppercase; background: rgba(224,123,53,0.15); padding: 4px 12px; border-radius: 100px; margin-bottom: 20px; }
-    .sol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; margin-top: 0; }
+    .sol-grid { display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: dense; gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; margin-top: 0; }
     .sol-cell { padding: 28px 32px; }
+    .sol-cell.sol-covered { grid-column: 1; }
+    .sol-cell.sol-excluded { grid-column: 2; }
     .sol-cell.sol-covered { background: rgba(255,255,255,0.04); }
     .sol-cell.sol-excluded { background: rgba(0,0,0,0.15); }
     .sol-cell-title { font-size: 16px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.015em; line-height: 1.2; display: flex; align-items: center; gap: 10px; }
@@ -400,13 +402,14 @@
     }
     @media (min-width: 769px) { .nav-links { display: flex; } }
     @media (max-width: 640px) {
-      .org-chart-wrap { transform: scale(0.85); transform-origin: center center; margin: 0 auto; }
-      .org-panel { display: flex; flex-direction: column; align-items: center; }
+      .org-chart-wrap { transform: scale(0.85); transform-origin: top center; margin: 0 auto; overflow: visible; }
+      .org-panel { display: flex; flex-direction: column; align-items: stretch; }
       .section-h2 { font-size: 28px; }
       /* Coverage Vacuum mobile fixes */
       .org-panel, .pillars-panel { max-width: 100%; }
-      .panel-title { font-size: 22px; text-align: center; }
-      .panel-sub { font-size: 14px; text-align: center; }
+      .panel-title { font-size: 22px; text-align: left; }
+      .panel-sub { font-size: 14px; text-align: left; }
+      .org-legend { justify-content: flex-start; }
       .pillar-row { padding: 12px 14px; }
       .pillar-name { font-size: 12px; }
       .pillar-summary { font-size: 11px; }
@@ -433,9 +436,9 @@
       .hero-h1 { font-size: 28px; }
       .section-h2 { font-size: 24px; }
       .section-sub { font-size: 15px; }
-      .panel-title { font-size: 20px; }
-      .panel-sub { font-size: 13px; }
-      .org-chart-wrap { transform: scale(0.75); transform-origin: center center; }
+      .panel-title { font-size: 20px; text-align: left; }
+      .panel-sub { font-size: 13px; text-align: left; }
+      .org-chart-wrap { transform: scale(0.75); transform-origin: top center; margin: 0 auto; overflow: visible; }
       .pillar-row { flex-wrap: wrap; gap: 10px; }
       .pillar-status { margin-left: auto; }
       .gs-badge { font-size: 9px; }
@@ -538,42 +541,47 @@
           <p class="panel-sub">AI Agents are now digital employees—integrated into your Identity and Access system with defined roles, reporting lines, and delegated authority.</p>
 
           <div class="org-chart-wrap">
-            <!-- viewBox 440×348, 3 levels of hierarchy -->
-            <svg class="org-svg-lines" viewBox="0 0 440 348" xmlns="http://www.w3.org/2000/svg">
-              <!-- CEO bottom → horizontal junction -->
-              <line x1="220" y1="92" x2="220" y2="110" stroke="rgba(32,31,80,0.2)" stroke-width="1.5"/>
+            <!--
+              Chart layout: 3 columns x 3 rows
+              Node width: 86px, Node height: ~92px
+              Column centers: 43px, 177px, 311px (spacing: 134px between centers)
+              Total width: 354px (43 + 134 + 134 + 43)
+            -->
+            <svg class="org-svg-lines" viewBox="0 0 354 344" xmlns="http://www.w3.org/2000/svg">
+              <!-- CEO bottom → horizontal junction at y=92 -->
+              <line x1="177" y1="92" x2="177" y2="110" stroke="rgba(32,31,80,0.2)" stroke-width="1.5"/>
               <!-- Horizontal bar across L2 -->
-              <line x1="84" y1="110" x2="356" y2="110" stroke="rgba(32,31,80,0.2)" stroke-width="1.5"/>
+              <line x1="43" y1="110" x2="311" y2="110" stroke="rgba(32,31,80,0.2)" stroke-width="1.5"/>
               <!-- ↓ VP Ops — solid navy (human manager) -->
-              <line x1="84" y1="110" x2="84" y2="127" stroke="rgba(32,31,80,0.2)" stroke-width="1.5"/>
+              <line x1="43" y1="110" x2="43" y2="127" stroke="rgba(32,31,80,0.2)" stroke-width="1.5"/>
               <!-- ↓ Agent-001 — dashed teal (AI at manager level) -->
-              <line x1="220" y1="110" x2="220" y2="127" stroke="rgba(0,137,146,0.5)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <line x1="177" y1="110" x2="177" y2="127" stroke="rgba(0,137,146,0.5)" stroke-width="1.5" stroke-dasharray="4,3"/>
               <!-- ↓ Head IT — solid navy (human manager) -->
-              <line x1="356" y1="110" x2="356" y2="127" stroke="rgba(32,31,80,0.2)" stroke-width="1.5"/>
+              <line x1="311" y1="110" x2="311" y2="127" stroke="rgba(32,31,80,0.2)" stroke-width="1.5"/>
               <!-- VP Ops bottom → Agent-003 top: human manages AI — dashed teal -->
-              <line x1="84" y1="219" x2="84" y2="252" stroke="rgba(0,137,146,0.45)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <line x1="43" y1="219" x2="43" y2="252" stroke="rgba(0,137,146,0.45)" stroke-width="1.5" stroke-dasharray="4,3"/>
               <!-- Agent-001 bottom → Agent-002 top: AI manages AI — solid teal -->
-              <line x1="220" y1="219" x2="220" y2="252" stroke="rgba(0,137,146,0.55)" stroke-width="1.5"/>
+              <line x1="177" y1="219" x2="177" y2="252" stroke="rgba(0,137,146,0.55)" stroke-width="1.5"/>
               <!-- Head IT bottom → Chen L. top: human manages human — solid navy -->
-              <line x1="356" y1="219" x2="356" y2="252" stroke="rgba(32,31,80,0.2)" stroke-width="1.5"/>
+              <line x1="311" y1="219" x2="311" y2="252" stroke="rgba(32,31,80,0.2)" stroke-width="1.5"/>
             </svg>
 
-            <!-- L1: CEO -->
-            <div class="org-node" style="left:177px; top:0;">
+            <!-- L1: CEO (center = 177, so left = 177 - 43 = 134) -->
+            <div class="org-node" style="left:134px; top:0;">
               <div class="org-avatar" style="background:var(--navy);">SM</div>
               <div class="org-node-name">Sarah M.</div>
               <div class="org-node-role">Chief Executive</div>
             </div>
 
-            <!-- L2: VP Ops (human) -->
-            <div class="org-node" style="left:41px; top:127px;">
+            <!-- L2: VP Ops (center = 43, so left = 0) -->
+            <div class="org-node" style="left:0; top:127px;">
               <div class="org-avatar" style="background:#2a6fb0;">JT</div>
               <div class="org-node-name">James T.</div>
               <div class="org-node-role">VP Operations</div>
             </div>
 
-            <!-- L2: Agent-001 — AI Manager (same tier as human VPs) -->
-            <div class="org-node agent-node" style="left:177px; top:127px;">
+            <!-- L2: Agent-001 (center = 177, so left = 134) -->
+            <div class="org-node agent-node" style="left:134px; top:127px;">
               <div class="org-avatar" style="background:var(--teal);">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
               </div>
@@ -581,15 +589,15 @@
               <div class="org-node-role">Marketing Director</div>
             </div>
 
-            <!-- L2: Head IT (human) -->
-            <div class="org-node" style="left:313px; top:127px;">
+            <!-- L2: Head IT (center = 311, so left = 268) -->
+            <div class="org-node" style="left:268px; top:127px;">
               <div class="org-avatar" style="background:#2a6fb0;">DL</div>
               <div class="org-node-name">David L.</div>
               <div class="org-node-role">Head of IT</div>
             </div>
 
-            <!-- L3: Agent-003 — AI reporting to VP Ops (human manages AI) -->
-            <div class="org-node agent-node" style="left:41px; top:252px;">
+            <!-- L3: Agent-003 (center = 43, so left = 0) -->
+            <div class="org-node agent-node" style="left:0; top:252px;">
               <div class="org-avatar" style="background:var(--teal);">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
               </div>
@@ -597,8 +605,8 @@
               <div class="org-node-role">Workflow AI</div>
             </div>
 
-            <!-- L3: Agent-002 — AI reporting to Agent-001 (AI manages AI) -->
-            <div class="org-node agent-node" style="left:177px; top:252px;">
+            <!-- L3: Agent-002 (center = 177, so left = 134) -->
+            <div class="org-node agent-node" style="left:134px; top:252px;">
               <div class="org-avatar" style="background:var(--teal);">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
               </div>
@@ -606,8 +614,8 @@
               <div class="org-node-role">Content AI</div>
             </div>
 
-            <!-- L3: Chen L. — Human reporting to Head IT (human manages human) -->
-            <div class="org-node" style="left:313px; top:252px;">
+            <!-- L3: Chen L. (center = 311, so left = 268) -->
+            <div class="org-node" style="left:268px; top:252px;">
               <div class="org-avatar" style="background:#4a7c59;">CL</div>
               <div class="org-node-name">Chen L.</div>
               <div class="org-node-role">IT Analyst</div>
