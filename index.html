@@ -391,10 +391,6 @@
       .cov-two-col { grid-template-columns: 1fr; gap: 48px; }
       .pillars-grid { grid-template-columns: 1fr; }
       .pillar-row.pillar-missing { grid-column: auto; }
-      .sol-grid { grid-template-columns: 1fr; }
-      .sol-col-heads { grid-template-columns: 1fr; }
-      .sol-col-head { border-radius: 14px 14px 0 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
-      .sol-col-head.excluded-head { border-radius: 0; }
       .framework-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
       .framework-grid::before { display: none; }
       .partners-grid { grid-template-columns: 1fr; }
@@ -404,12 +400,13 @@
     }
     @media (min-width: 769px) { .nav-links { display: flex; } }
     @media (max-width: 640px) {
-      .org-chart-wrap { transform: scale(0.7); transform-origin: left center; }
+      .org-chart-wrap { transform: scale(0.85); transform-origin: center center; margin: 0 auto; }
+      .org-panel { display: flex; flex-direction: column; align-items: center; }
       .section-h2 { font-size: 28px; }
       /* Coverage Vacuum mobile fixes */
       .org-panel, .pillars-panel { max-width: 100%; }
-      .panel-title { font-size: 22px; }
-      .panel-sub { font-size: 14px; }
+      .panel-title { font-size: 22px; text-align: center; }
+      .panel-sub { font-size: 14px; text-align: center; }
       .pillar-row { padding: 12px 14px; }
       .pillar-name { font-size: 12px; }
       .pillar-summary { font-size: 11px; }
@@ -438,7 +435,7 @@
       .section-sub { font-size: 15px; }
       .panel-title { font-size: 20px; }
       .panel-sub { font-size: 13px; }
-      .org-chart-wrap { transform: scale(0.55); transform-origin: left center; }
+      .org-chart-wrap { transform: scale(0.75); transform-origin: center center; }
       .pillar-row { flex-wrap: wrap; gap: 10px; }
       .pillar-status { margin-left: auto; }
       .gs-badge { font-size: 9px; }
