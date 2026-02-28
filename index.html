@@ -401,9 +401,52 @@
     }
     @media (min-width: 769px) { .nav-links { display: flex; } }
     @media (max-width: 640px) {
-      .org-chart-wrap { transform: scale(0.8); transform-origin: left center; }
+      .org-chart-wrap { transform: scale(0.7); transform-origin: left center; }
       .section-h2 { font-size: 28px; }
+      /* Coverage Vacuum mobile fixes */
+      .org-panel, .pillars-panel { max-width: 100%; }
+      .panel-title { font-size: 22px; }
+      .panel-sub { font-size: 14px; }
+      .pillar-row { padding: 12px 14px; }
+      .pillar-name { font-size: 12px; }
+      .pillar-summary { font-size: 11px; }
+      .pillar-status { font-size: 9px; padding: 2px 7px; }
+      .pillar-icon-box { width: 36px; height: 36px; }
+      /* Solution section - stack covered then excluded */
+      .sol-col-heads { display: none; }
+      .sol-grid { display: flex; flex-direction: column; gap: 0; }
+      .sol-cell-title { font-size: 14px; }
+      .sol-cell-desc { font-size: 13px; }
+      .sol-cell { padding: 20px 24px; }
+      /* Mobile section headers */
+      .sol-mobile-header { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 16px 24px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .sol-mobile-header.covered-header { color: #86efac; background: rgba(255,255,255,0.04); order: 0 !important; }
+      .sol-mobile-header.excluded-header { color: #fca5a5; background: rgba(0,0,0,0.15); order: 10 !important; }
+      .sol-cell.sol-covered[style*="order: 1"] { order: 1 !important; }
+      .sol-cell.sol-covered[style*="order: 2"] { order: 2 !important; }
+      .sol-cell.sol-covered[style*="order: 3"] { order: 3 !important; }
+      .sol-cell.sol-excluded[style*="order: 4"] { order: 11 !important; }
+      .sol-cell.sol-excluded[style*="order: 5"] { order: 12 !important; }
+      .sol-cell.sol-excluded[style*="order: 6"] { order: 13 !important; }
     }
+    @media (max-width: 480px) {
+      .hero-h1 { font-size: 28px; }
+      .section-h2 { font-size: 24px; }
+      .section-sub { font-size: 15px; }
+      .panel-title { font-size: 20px; }
+      .panel-sub { font-size: 13px; }
+      .org-chart-wrap { transform: scale(0.55); transform-origin: left center; }
+      .pillar-row { flex-wrap: wrap; gap: 10px; }
+      .pillar-status { margin-left: auto; }
+      .gs-badge { font-size: 9px; }
+      .solution-inner .section-h2 { font-size: 24px; }
+      .solution-inner .section-sub { font-size: 14px; }
+      .sol-cell { padding: 16px 20px; }
+      .sol-cell-title { font-size: 13px; }
+      .sol-cell-desc { font-size: 12px; }
+    }
+    /* Hide mobile headers on desktop */
+    .sol-mobile-header { display: none; }
   </style>
 </head>
 <body>
@@ -659,15 +702,18 @@
       </div>
 
       <div class="sol-grid">
+        <!-- Mobile headers (hidden on desktop) -->
+        <div class="sol-mobile-header covered-header">What We Cover</div>
+        <div class="sol-mobile-header excluded-header">What We Don't Cover</div>
         <!-- Row 1 -->
-        <div class="sol-cell sol-covered">
+        <div class="sol-cell sol-covered" style="order: 1;">
           <div class="sol-cell-title">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="7 13 10 16 17 9"/></svg>
             Financial Overreach
           </div>
           <p class="sol-cell-desc">We reimburse direct losses if an agent exceeds its authorized spending or transaction limits.  </p>
         </div>
-        <div class="sol-cell sol-excluded">
+        <div class="sol-cell sol-excluded" style="order: 4;">
           <div class="sol-cell-title">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
             AI Errors
@@ -676,14 +722,14 @@
         </div>
 
         <!-- Row 2 -->
-        <div class="sol-cell sol-covered">
+        <div class="sol-cell sol-covered" style="order: 2;">
           <div class="sol-cell-title">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="7 13 10 16 17 9"/></svg>
             Operational Trespass
           </div>
           <p class="sol-cell-desc">We protect your assets if an agent breaks containment to access or disrupt restricted data.  </p>
         </div>
-        <div class="sol-cell sol-excluded">
+        <div class="sol-cell sol-excluded" style="order: 5;">
           <div class="sol-cell-title">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
             Systemic Vendor Outage
@@ -692,14 +738,14 @@
         </div>
 
         <!-- Row 3 -->
-        <div class="sol-cell sol-covered">
+        <div class="sol-cell sol-covered" style="order: 3;">
           <div class="sol-cell-title">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="7 13 10 16 17 9"/></svg>
             Dynamic Pricing
           </div>
           <p class="sol-cell-desc">Your coverage scales automatically in real-time to match the expanding footprint of your AI workforce.  </p>
         </div>
-        <div class="sol-cell sol-excluded">
+        <div class="sol-cell sol-excluded" style="order: 6;">
           <div class="sol-cell-title">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
             "Shadow" AI
