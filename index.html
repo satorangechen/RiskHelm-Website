@@ -192,6 +192,7 @@
     .sol-col-head { padding: 14px 32px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 14px 14px 0 0; }
     .sol-col-head.covered-head { background: rgba(255,255,255,0.08); color: #86efac; border: 1px solid rgba(255,255,255,0.1); border-bottom: none; }
     .sol-col-head.excluded-head { background: rgba(0,0,0,0.15); color: #fca5a5; border: 1px solid rgba(255,255,255,0.1); border-bottom: none; }
+    .sol-mobile-header { display: none; }
 
     /* ─── FRAMEWORK SECTION — circle flowchart ─── */
     .framework-outer { min-height: 100vh; display: flex; align-items: center; background: #fff; }
@@ -423,8 +424,8 @@
       .sol-cell { padding: 20px 24px; }
       /* Mobile section headers */
       .sol-mobile-header { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 16px 24px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-      .sol-mobile-header.covered-header { color: #86efac; background: rgba(255,255,255,0.04); order: 0 !important; }
-      .sol-mobile-header.excluded-header { color: #fca5a5; background: rgba(0,0,0,0.15); order: 10 !important; }
+      .sol-mobile-header.covered-header { color: #86efac; background: rgba(255,255,255,0.04); order: 0 !important; margin-top: 32px; border-radius: 14px 14px 0 0; }
+      .sol-mobile-header.excluded-header { color: #fca5a5; background: rgba(0,0,0,0.15); order: 10 !important; margin-top: 24px; border-radius: 14px 14px 0 0; }
       .sol-cell.sol-covered[style*="order: 1"] { order: 1 !important; }
       .sol-cell.sol-covered[style*="order: 2"] { order: 2 !important; }
       .sol-cell.sol-covered[style*="order: 3"] { order: 3 !important; }
@@ -451,8 +452,6 @@
       .fw-step { padding: 0 5px; }
       .fw-num { width: 60px; height: 60px; }
     }
-    /* Hide mobile headers on desktop */
-    .sol-mobile-header { display: none; }
   </style>
 </head>
 <body>
