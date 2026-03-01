@@ -246,7 +246,7 @@
     .partner-card:nth-child(2) .partner-icon { background: rgba(0,137,146,0.12); }
     .partner-card:nth-child(3) .partner-icon { background: rgba(224,123,53,0.12); }
     .partner-card h4 { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 10px; letter-spacing: -0.02em; }
-    .partner-card p { font-size: 14px; line-height: 1.68; color: var(--text-body); margin-bottom: 18px; }
+    .partner-card p { font-size: 14px; line-height: 1.68; color: var(--text-body); margin-bottom: 18px; white-space: nowrap; }
     .partner-benefit { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text-body); margin-bottom: 8px; }
     .partner-benefit .tick { color: var(--teal); font-size: 12px; margin-top: 2px; flex-shrink: 0; }
 
@@ -397,6 +397,7 @@
       .framework-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
       .framework-grid::before { display: none; }
       .partners-grid { grid-template-columns: 1fr; }
+      .partner-card p { white-space: normal; }
       .resources-grid { grid-template-columns: 1fr; }
       .footer-simple { flex-direction: column; align-items: flex-start; gap: 20px; }
       .footer-legal-links { margin-left: 0; }
@@ -843,7 +844,7 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#008992" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><circle cx="4.5" cy="18.5" r="2.5"/><circle cx="19.5" cy="18.5" r="2.5"/><line x1="12" y1="7.5" x2="12" y2="11"/><line x1="12" y1="11" x2="4.5" y2="16"/><line x1="12" y1="11" x2="19.5" y2="16"/></svg>
             </div>
             <h4>For Workflow Platforms</h4>
-            <p>Remove the biggest hurdle to enterprise sales.  </p>
+            <p>Clear the path for rapid enterprise sales.  </p>
             <div class="partner-benefit"><span class="tick">✓</span><span><strong>Fast-Track Legal Review:</strong> Pre-solve the liability question for your customers' risk teams.</span></div>
             <div class="partner-benefit"><span class="tick">✓</span><span><strong>The Standard for Safety:</strong> Position your platform as the most secure standard for AI Agent execution.</span></div>
           </div>
