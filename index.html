@@ -735,6 +735,15 @@
   </div>
 
   <script>
+    // Ensure page loads at top when accessing without hash
+    if (window.location.hash === '' || window.location.hash === '#') {
+      window.scrollTo(0, 0);
+      // Also handle page refresh with no hash
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    }
+
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
 

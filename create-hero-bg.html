@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate Hero Background</title>
+</head>
+<body>
+  <canvas id="canvas" width="1920" height="1080"></canvas>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Base gradient background
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, '#fafafa');
+    gradient.addColorStop(0.5, '#f5f5f5');
+    gradient.addColorStop(1, '#fafafa');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Add subtle grid pattern
+    ctx.strokeStyle = 'rgba(32, 31, 80, 0.02)';
+    ctx.lineWidth = 1;
+
+    // Vertical lines
+    for (let x = 0; x < canvas.width; x += 40) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, canvas.height);
+      ctx.stroke();
+    }
+
+    // Horizontal lines
+    for (let y = 0; y < canvas.height; y += 40) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(canvas.width, y);
+      ctx.stroke();
+    }
+
+    // Add abstract nodes/connections (AI network visualization)
+    const nodes = [];
+    for (let i = 0; i < 30; i++) {
+      nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 3 + 1
+      });
+    }
+
+    // Draw connections
+    ctx.strokeStyle = 'rgba(255, 111, 51, 0.08)';
+    ctx.lineWidth = 1;
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 200) {
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw nodes
+    nodes.forEach(node => {
+      ctx.fillStyle = 'rgba(32, 31, 80, 0.15)';
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Glow effect
+      ctx.fillStyle = 'rgba(255, 111, 51, 0.1)';
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius * 2, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Add radial gradients for depth
+    const radialGrad1 = ctx.createRadialGradient(200, 200, 0, 200, 200, 400);
+    radialGrad1.addColorStop(0, 'rgba(255, 111, 51, 0.05)');
+    radialGrad1.addColorStop(1, 'rgba(255, 111, 51, 0)');
+    ctx.fillStyle = radialGrad1;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const radialGrad2 = ctx.createRadialGradient(canvas.width - 200, canvas.height - 200, 0, canvas.width - 200, canvas.height - 200, 400);
+    radialGrad2.addColorStop(0, 'rgba(32, 31, 80, 0.04)');
+    radialGrad2.addColorStop(1, 'rgba(32, 31, 80, 0)');
+    ctx.fillStyle = radialGrad2;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Download image
+    setTimeout(() => {
+      const link = document.createElement('a');
+      link.download = 'hero-background.png';
+      link.href = canvas.toDataURL();
+      link.click();
+      document.body.innerHTML = '<h1>Background generated! Check your downloads.</h1>';
+    }, 100);
+  </script>
+</body>
+</html>
