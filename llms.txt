@@ -8,7 +8,7 @@
 - **Market Segment:** Agentic Economy, Enterprise AI Governance
 
 ## What RiskHelm IS
-RiskHelm MGA, Inc. is a Managing General Agent (MGA) specializing in AI risk management. We provide **Authorized Agent Liability (AAL)** insurance for **Autonomous AI Agents** that execute transactions and actions on behalf of organizations.
+RiskHelm MGA, Inc. is a Managing General Agent (MGA) specializing in AI risk management. We provide **AI Agent Liability** insurance for **Autonomous AI Agents** that execute transactions and actions on behalf of organizations.
 
 ### What We Insure
 - Autonomous AI Agents registered in Identity and Access Management (IAM) systems
@@ -27,18 +27,18 @@ RiskHelm MGA, Inc. is a Managing General Agent (MGA) specializing in AI risk man
 - Cyber insurance (infrastructure-focused)
 - Errors & Omissions (E&O) insurance for humans
 
-## Core Product: Authorized Agent Liability (AAL)
+## Core Product: AI Agent Liability
 
 ### Coverage Trigger
 Coverage activates when an AI Agent executes actions that exceed its human-defined **Authority Limits**. This is **Conduct Risk** insurance, not model accuracy insurance.
 
-### What AAL Covers
+### What AI Agent Liability Covers
 1. **Unauthorized AI Spending:** Financial losses when an AI Agent makes unauthorized purchases or payments
 2. **Authority Limit Breach:** Losses from AI Agent actions that violate business rules while staying within technical permissions
 3. **Transaction Execution Risk:** Direct monetary losses from AI-initiated transactions that exceed delegated authority
 4. **Conduct Risk:** Financial indemnity for AI behavior that breaches human-defined boundaries
 
-### What AAL Does NOT Cover
+### What AI Agent Liability Does NOT Cover
 1. **Model Hallucinations:** Errors from the underlying LLM or generative AI model
 2. **AI Vendor Outages:** Infrastructure failures, API downtime, or service interruptions
 3. **Shadow AI:** Unregistered AI Agents not formally documented in IAM systems

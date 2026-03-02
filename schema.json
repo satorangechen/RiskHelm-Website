@@ -1,8 +1,8 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "RiskHelm Authorized Agent Liability",
-  "alternateName": "AAL Insurance for AI Agents",
+  "name": "RiskHelm AI Agent Liability",
+  "alternateName": "AI Agent Liability Insurance",
   "description": "AI risk management service providing professional liability insurance for Autonomous AI Agents. Coverage for financial losses when AI Agents exceed human-defined Authority Limits. Specialized insurance for the Agentic Economy.",
   "provider": {
     "@type": "Organization",
@@ -38,7 +38,7 @@
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Authorized Agent Liability (AAL) Insurance",
+          "name": "AI Agent Liability Insurance",
           "description": "Financial indemnity coverage for losses when AI Agents exceed Authority Limits. Covers Conduct Risk from autonomous AI systems executing unauthorized transactions.",
           "category": "AI Agent Liability Insurance",
           "areaServed": "Global",
