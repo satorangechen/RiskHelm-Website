@@ -122,7 +122,6 @@
     .article-content strong { color: var(--navy); font-weight: 700; }
     .article-content a { color: var(--teal); font-weight: 600; }
     .article-content a:hover { text-decoration: underline; }
-    .product-highlight { background: linear-gradient(120deg, rgba(224,123,53,0.08) 0%, rgba(224,123,53,0.12) 100%); border-bottom: 2px solid var(--orange); font-weight: 700; color: var(--navy); padding: 2px 4px; border-radius: 3px; }
     .pull-quote { border-left: 3px solid var(--orange); padding: 16px 0 16px 24px; margin: 32px 0; }
     .pull-quote p { font-size: 19px; font-weight: 700; color: var(--navy); line-height: 1.45; letter-spacing: -0.01em; margin: 0; font-style: italic; }
     .pull-quote cite { display: block; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); font-style: normal; margin-top: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -156,14 +155,12 @@
     /* FOOTER */
     footer { background: #f5f5f5; padding: 40px 5% 28px; border-top: 1px solid rgba(32,31,80,0.09); }
     .footer-inner { max-width: 1200px; margin: 0 auto; }
-    .footer-simple { display: flex; align-items: center; gap: 40px; margin-bottom: 24px; }
-    .footer-logo { flex-shrink: 0; }
+    .footer-simple { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; margin-bottom: 24px; }
     .footer-logo img { height: 168px; display: block; mix-blend-mode: multiply; margin-top: -20px; }
-    .footer-content { display: flex; flex-direction: column; gap: 16px; flex: 1; }
     .footer-nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
     .footer-nav-links a { font-size: 13px; font-weight: 600; color: rgba(32,31,80,0.5); transition: color 0.2s; }
     .footer-nav-links a:hover { color: var(--navy); }
-    .footer-legal-links { display: flex; gap: 18px; }
+    .footer-legal-links { display: flex; gap: 18px; margin-left: auto; }
     .footer-legal-links a { font-size: 12px; color: rgba(32,31,80,0.35); transition: color 0.2s; }
     .footer-legal-links a:hover { color: var(--navy); }
     .footer-bottom { border-top: 1px solid rgba(32,31,80,0.1); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: rgba(32,31,80,0.38); flex-wrap: wrap; gap: 12px; }
@@ -191,7 +188,7 @@
       .article-body-inner { grid-template-columns: 1fr; }
       .article-sidebar { position: static; }
       .footer-simple { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .footer-content { gap: 12px; }
+      .footer-legal-links { margin-left: 0; }
     }
 
     @media (min-width: 769px) { .nav-links { display: flex; } }
@@ -273,7 +270,7 @@
 
         <p>The instinct is to reach for familiar coverage: cyber, technology E&O, professional indemnity, or D&O. Each fails differently. <strong>Cyber</strong> covers intrusion — an agent acting beyond authority wasn't attacked, it functioned as designed. <strong>Technology E&O</strong> is for vendors delivering defective products; an enterprise deploying its own agent isn't in a vendor relationship with itself. <strong>Professional indemnity</strong> requires a qualified practitioner with a duty of care — an AI Agent has neither. <strong>D&O</strong> contains explicit automation exclusions because it was built for human decision-makers. None of these products was designed for Agent conduct risk.</p>
 
-        <p><span class="product-highlight">AI Agent Liability Insurance Coverage</span> addresses this gap directly — coverage built around the formal authority boundaries assigned to each agent, with loss indemnity triggered by a verifiable breach of those limits.</p>
+        <p>AI Agent Liability Insurance Coverage addresses this gap directly — coverage built around the formal authority boundaries assigned to each agent, with loss indemnity triggered by a verifiable breach of those limits.</p>
 
         <h2>The Financial Stakes Are Measurable</h2>
 
@@ -362,18 +359,16 @@
         <div class="footer-logo">
           <a href="../index.html"><img src="../brand_assets/Logo.PNG" alt="RiskHelm" /></a>
         </div>
-        <div class="footer-content">
-          <nav class="footer-nav-links">
-            <a href="../index.html">Home</a>
-            <a href="../index.html#framework">Framework</a>
-            <a href="../index.html#alignment">Alignment</a>
-            <a href="../resources.html">Resources</a>
-            <a href="../contact.html">Request Discussion</a>
-          </nav>
-          <div class="footer-legal-links">
-            <a href="../legal.html#privacy">Privacy Policy</a>
-            <a href="../legal.html#terms">Terms of Service</a>
-          </div>
+        <nav class="footer-nav-links">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#framework">Framework</a>
+          <a href="../index.html#alignment">Alignment</a>
+          <a href="../resources.html">Resources</a>
+          <a href="../contact.html">Request Discussion</a>
+        </nav>
+        <div class="footer-legal-links">
+          <a href="../legal.html#privacy">Privacy Policy</a>
+          <a href="../legal.html#terms">Terms of Service</a>
         </div>
       </div>
       <div class="footer-bottom">
