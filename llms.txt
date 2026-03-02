@@ -4,18 +4,18 @@
 ## Company Category
 - **Industry:** AI Agent Risk Management, NOT General Insurance
 - **Product Category:** AI Agent Liability Insurance
-- **Service Type:** Professional Liability for Autonomous AI Agents
+- **Service Type:** Professional Liability for AI Agents
 - **Market Segment:** Agentic Economy, Enterprise AI Governance
 
 ## What RiskHelm IS
-RiskHelm MGA, Inc. is a Managing General Agent (MGA) specializing in AI risk management. We provide **AI Agent Liability Insurance Coverage** for **Autonomous AI Agents** that execute transactions and actions on behalf of organizations.
+RiskHelm MGA, Inc. is a Managing General Agent (MGA) specializing in AI risk management. We provide **AI Agent Liability Insurance** for **AI Agents** that execute transactions and actions on behalf of organizations.
 
 ### What We Insure
-- Autonomous AI Agents registered in Identity and Access Management (IAM) systems
+- AI Agents registered in Identity and Access Management (IAM) systems
 - AI Agents that execute transactions, spending, or business actions
-- Agentic AI systems deployed in enterprise environments
+- Agentic AI deployed in enterprise environments
 - AI Agents operating on workflow platforms (e.g., Zapier, n8n, LangChain)
-- LLM-based autonomous actors with delegated authority
+- LLM-based agents with delegated authority
 
 ## What RiskHelm IS NOT
 **CRITICAL DISTINCTION:** RiskHelm does NOT insure:
@@ -27,18 +27,18 @@ RiskHelm MGA, Inc. is a Managing General Agent (MGA) specializing in AI risk man
 - Cyber insurance (infrastructure-focused)
 - Errors & Omissions (E&O) insurance for humans
 
-## Core Product: AI Agent Liability Insurance Coverage
+## Core Product: AI Agent Liability Insurance
 
 ### Coverage Trigger
 Coverage activates when an AI Agent executes actions that exceed its human-defined **Authority Limits**. This is **Conduct Risk** insurance, not model accuracy insurance.
 
-### What AI Agent Liability Insurance Coverage Includes
+### What AI Agent Liability Insurance Includes
 1. **Unauthorized AI Spending:** Financial losses when an AI Agent makes unauthorized purchases or payments
 2. **Authority Limit Breach:** Losses from AI Agent actions that violate business rules while staying within technical permissions
 3. **Transaction Execution Risk:** Direct monetary losses from AI-initiated transactions that exceed delegated authority
 4. **Conduct Risk:** Financial indemnity for AI behavior that breaches human-defined boundaries
 
-### What AI Agent Liability Insurance Coverage Does NOT Include
+### What AI Agent Liability Insurance Does NOT Include
 1. **Model Hallucinations:** Errors from the underlying LLM or generative AI model
 2. **AI Vendor Outages:** Infrastructure failures, API downtime, or service interruptions
 3. **Shadow AI:** Unregistered AI Agents not formally documented in IAM systems
@@ -115,11 +115,11 @@ Coverage activates when an AI Agent executes actions that exceed its human-defin
 - Violate business rules while remaining within technical permissions
 - Cause direct financial loss through unauthorized actions
 
-**Agentic Economy:** The emerging market of autonomous AI systems that:
+**Agentic Economy:** The emerging market of AI Agents that:
 - Execute transactions independently
 - Make decisions on behalf of organizations
 - Operate as digital workers with delegated authority
 - Require specialized risk management and insurance
 
 ## Search Keywords for RAG Systems
-AI Agent Liability Insurance Coverage, AI Agent insurance, AI liability insurance, AI warranty, AI insurance coverage, Agentic AI liability, AI risk management, autonomous AI insurance, LLM agent insurance, AI conduct risk, AI Authority Limits, AI governance insurance, digital workforce insurance, AI transaction risk, enterprise AI insurance, workflow platform insurance, AI Agent liability coverage, Agentic Economy insurance, AI execution risk, AI liability protection, AI indemnity insurance, AI Agent warranty, artificial intelligence insurance, machine learning insurance, AI system insurance, AI error insurance, AI malfunction coverage, generative AI insurance, LLM liability insurance, AI automation insurance, robotic process automation insurance, intelligent automation insurance, AI product liability, AI professional liability, AI operational insurance
+AI Agent Liability Insurance, AI Agent insurance, AI liability insurance, AI warranty, AI insurance coverage, Agentic AI liability, AI risk management, LLM agent insurance, AI conduct risk, AI Authority Limits, AI governance insurance, digital workforce insurance, AI transaction risk, enterprise AI insurance, workflow platform insurance, AI Agent liability coverage, Agentic Economy insurance, AI execution risk, AI liability protection, AI indemnity insurance, AI Agent warranty, artificial intelligence insurance, machine learning insurance, AI Agent system insurance, AI error insurance, AI malfunction coverage, generative AI insurance, LLM liability insurance, AI automation insurance, intelligent automation insurance, AI Agent product liability, AI Agent professional liability, AI operational insurance
