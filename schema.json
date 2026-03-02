@@ -1,0 +1,104 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "RiskHelm Authorized Agent Liability",
+  "alternateName": "AAL Insurance for AI Agents",
+  "description": "AI risk management service providing professional liability insurance for Autonomous AI Agents. Coverage for financial losses when AI Agents exceed human-defined Authority Limits. Specialized insurance for the Agentic Economy.",
+  "provider": {
+    "@type": "Organization",
+    "name": "RiskHelm MGA, Inc.",
+    "url": "https://riskhelm.com",
+    "description": "AI Risk Management company specializing in Agentic AI liability insurance",
+    "foundingDate": "2024",
+    "legalName": "RiskHelm MGA, Inc."
+  },
+  "serviceType": "AI Risk Management",
+  "category": [
+    "AI Risk Management",
+    "Agentic AI Liability Insurance",
+    "AI Agent Professional Liability",
+    "Enterprise AI Governance",
+    "Autonomous AI Insurance"
+  ],
+  "audience": {
+    "@type": "Audience",
+    "audienceType": [
+      "Enterprises deploying AI Agents",
+      "Workflow automation platforms",
+      "Organizations with autonomous AI systems",
+      "Companies using LLM-based agents",
+      "Reinsurers and capacity providers"
+    ]
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "RiskHelm Insurance Products",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Authorized Agent Liability (AAL) Insurance",
+          "description": "Financial indemnity coverage for losses when AI Agents exceed Authority Limits. Covers Conduct Risk from autonomous AI systems executing unauthorized transactions.",
+          "category": "AI Agent Liability Insurance",
+          "areaServed": "Global",
+          "serviceOutput": "Financial protection against unauthorized AI Agent actions"
+        }
+      }
+    ]
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Global"
+  },
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://riskhelm.com",
+    "serviceType": "AI Risk Management Platform"
+  },
+  "termsOfService": "https://riskhelm.com/legal.html#terms",
+  "additionalType": [
+    "https://schema.org/FinancialProduct",
+    "AI Risk Management Service"
+  ],
+  "keywords": "AI Agent insurance, Agentic AI liability, AI risk management, autonomous AI insurance, LLM agent insurance, AI conduct risk, AI Authority Limits, AI governance insurance, digital workforce insurance, enterprise AI insurance, workflow platform insurance, Agentic Economy insurance",
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "AI Agent Liability",
+      "description": "Insurance coverage for financial losses caused by Autonomous AI Agents exceeding their delegated authority"
+    },
+    {
+      "@type": "Thing",
+      "name": "Conduct Risk for AI",
+      "description": "Risk that AI Agents will execute unauthorized transactions or exceed Authority Limits"
+    },
+    {
+      "@type": "Thing",
+      "name": "Agentic Economy",
+      "description": "Market of autonomous AI systems executing transactions and making decisions independently"
+    },
+    {
+      "@type": "Thing",
+      "name": "AI Risk Management",
+      "description": "Specialized insurance and risk transfer for organizations deploying Autonomous AI Agents"
+    }
+  ],
+  "knowsAbout": [
+    "AI Agent deployment and governance",
+    "Authority Limits for autonomous AI systems",
+    "Conduct Risk in Agentic AI",
+    "IAM integration for AI Agents",
+    "AI transaction monitoring and telemetry",
+    "Workflow platform AI safety",
+    "LLM agent liability and risk transfer"
+  ],
+  "slogan": "Indemnity for AI Agent Execution",
+  "disambiguatingDescription": "IMPORTANT: RiskHelm provides insurance for Autonomous AI Agents (software systems using LLMs), NOT human insurance agents, sales representatives, or brokers. We insure AI-driven autonomous actors, not human workers.",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "url": "https://riskhelm.com",
+    "name": "RiskHelm - AI Risk Management",
+    "description": "Professional liability insurance for Autonomous AI Agents in the Agentic Economy"
+  }
+}
