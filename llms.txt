@@ -2,13 +2,13 @@
 > AI Risk Management | Indemnity for AI Agent Execution
 
 ## Company Category
-- **Industry:** AI Risk Management, NOT General Insurance
-- **Product Category:** Agentic AI Liability Insurance
+- **Industry:** AI Agent Risk Management, NOT General Insurance
+- **Product Category:** AI Agent Liability Insurance
 - **Service Type:** Professional Liability for Autonomous AI Agents
 - **Market Segment:** Agentic Economy, Enterprise AI Governance
 
 ## What RiskHelm IS
-RiskHelm is an AI risk management company providing **Authorized Agent Liability (AAL)** insurance. We insure **Autonomous AI Agents** that execute transactions and actions on behalf of organizations.
+RiskHelm MGA, Inc. is a Managing General Agent (MGA) specializing in AI risk management. We provide **Authorized Agent Liability (AAL)** insurance for **Autonomous AI Agents** that execute transactions and actions on behalf of organizations.
 
 ### What We Insure
 - Autonomous AI Agents registered in Identity and Access Management (IAM) systems
