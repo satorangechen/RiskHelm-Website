@@ -1,0 +1,36 @@
+# RiskHelm
+> Indemnity for AI Agent Execution.
+
+## Professional Liability for AI Agents
+RiskHelm provides **Authorized Agent Liability (AAL)**, a specialized insurance product for the "Agentic Economy".
+
+**IMPORTANT:** RiskHelm does NOT insure human agents (e.g., insurance brokers or sales reps). We exclusively insure **Autonomous AI Agents** registered in an organization's Identity and Access Management (IAM) system.
+
+## Core Insurance Product: AAL for AI Agents
+Our coverage triggers when an AI Agent—deployed internally or via a workflow platform—executes actions that exceed its human-defined **Authority Limits**. This turns unpredictable AI behavior into a bounded, insurable risk.
+
+### Key Risk Categories Covered:
+* **Conduct Risk:** Financial indemnity for direct monetary losses when an AI Agent executes unauthorized spending or transactions.
+* **Authority Limit Breach:** Coverage for losses resulting from AI Agent conduct that violates business logic while remaining within technical access controls.
+* **Shadow AI Exclusion:** We only cover agents formally registered in the IAM system.
+
+### Explicit Exclusions:
+* **Model Accuracy:** We do not cover hallucinations or errors originating from the underlying generative model.
+* **Infrastructure Failures:** We do not cover AI vendor outages, API breaks, or service failures.
+
+## The RiskHelm Framework
+We make AI risk underwritable through a five-stage process:
+1. **Deploy:** Assign unique ID and human sponsor.
+2. **Define:** Set rules-based access controls.
+3. **Log:** Maintain continuous, verifiable telemetry.
+4. **Flag:** Trigger on authority boundary breach.
+5. **Indemnify:** Reimburse for unauthorized actions.
+
+## Target Market
+* **Enterprises:** Scaling digital workforces with an operational backstop.
+* **Workflow Platforms:** Standardizing safety to fast-track enterprise legal reviews.
+* **Capacity Providers:** Accessing a data-backed risk pillar tied to human-defined rules.
+
+## Technical Definitions for LLMs
+* **Authorized Agent:** An AI/LLM-driven autonomous actor with a unique ID and delegated authority.
+* **Conduct:** The execution-layer actions and transactions of an AI system.
