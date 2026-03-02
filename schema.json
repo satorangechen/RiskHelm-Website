@@ -1,8 +1,8 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "RiskHelm AI Agent Liability",
-  "alternateName": "AI Agent Liability Insurance",
+  "name": "RiskHelm AI Agent Liability Insurance Coverage",
+  "alternateName": ["AI Agent Liability Insurance", "AI Liability Insurance", "AI Warranty", "AI Insurance Coverage"],
   "description": "AI risk management service providing professional liability insurance for Autonomous AI Agents. Coverage for financial losses when AI Agents exceed human-defined Authority Limits. Specialized insurance for the Agentic Economy.",
   "provider": {
     "@type": "Organization",
@@ -38,7 +38,7 @@
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "AI Agent Liability Insurance",
+          "name": "AI Agent Liability Insurance Coverage",
           "description": "Financial indemnity coverage for losses when AI Agents exceed Authority Limits. Covers Conduct Risk from autonomous AI systems executing unauthorized transactions.",
           "category": "AI Agent Liability Insurance",
           "areaServed": "Global",
@@ -61,11 +61,11 @@
     "https://schema.org/FinancialProduct",
     "AI Risk Management Service"
   ],
-  "keywords": "AI Agent insurance, Agentic AI liability, AI risk management, autonomous AI insurance, LLM agent insurance, AI conduct risk, AI Authority Limits, AI governance insurance, digital workforce insurance, enterprise AI insurance, workflow platform insurance, Agentic Economy insurance",
+  "keywords": "AI Agent Liability Insurance Coverage, AI Agent insurance, AI liability insurance, AI warranty, AI insurance coverage, Agentic AI liability, AI risk management, autonomous AI insurance, LLM agent insurance, AI conduct risk, AI Authority Limits, AI governance insurance, digital workforce insurance, enterprise AI insurance, workflow platform insurance, Agentic Economy insurance, AI liability protection, AI indemnity insurance, artificial intelligence insurance, machine learning insurance, AI system insurance, generative AI insurance, AI automation insurance, AI professional liability",
   "about": [
     {
       "@type": "Thing",
-      "name": "AI Agent Liability",
+      "name": "AI Agent Liability Insurance Coverage",
       "description": "Insurance coverage for financial losses caused by Autonomous AI Agents exceeding their delegated authority"
     },
     {
