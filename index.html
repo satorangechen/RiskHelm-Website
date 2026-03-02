@@ -197,9 +197,9 @@
     .sol-mobile-header { display: none; }
 
     /* ─── FRAMEWORK SECTION — circle flowchart ─── */
-    .framework-outer { display: flex; align-items: flex-start; background: #fff; scroll-margin-top: 192px; }
-    .framework-section { max-width: 1200px; margin: 0 auto; padding: 72px 5%; width: 100%; }
-    .fw-section-header { margin-bottom: 48px; }
+    .framework-outer { display: flex; align-items: flex-start; background: #fff; scroll-margin-top: 192px; min-height: 100vh; }
+    .framework-section { max-width: 1200px; margin: 0 auto; padding: 48px 5% 40px; width: 100%; }
+    .fw-section-header { margin-bottom: 32px; }
 
     .framework-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
     .framework-grid::before {
@@ -234,12 +234,12 @@
 
     /* ─── PARTNERS SECTION ─── */
     .partners-section {
-      background: #f5f5f5; padding: 72px 5%;
+      background: #f5f5f5; padding: 48px 5% 40px;
       min-height: 100vh; display: flex; align-items: center;
       scroll-margin-top: 192px;
     }
     .partners-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
-    .partners-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .partners-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
     .partner-card { background: #fff; border-radius: 18px; overflow: hidden; border: 1px solid rgba(32,31,80,0.07); transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
     .partner-card:hover { border-color: rgba(32,31,80,0.15); box-shadow: 0 8px 40px rgba(32,31,80,0.08); transform: translateY(-3px); }
     .partner-card-photo { width: 100%; height: 240px; object-fit: cover; display: block; background: var(--cream); }
@@ -312,7 +312,7 @@
     footer { background: #f5f5f5; padding: 40px 5% 28px; border-top: 1px solid rgba(32,31,80,0.09); }
     .footer-inner { max-width: 1200px; margin: 0 auto; }
     .footer-simple { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; margin-bottom: 24px; }
-    .footer-logo img { height: 168px; display: block; mix-blend-mode: multiply; }
+    .footer-logo img { height: 168px; display: block; mix-blend-mode: multiply; margin-top: -20px; }
     .footer-nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
     .footer-nav-links a { font-size: 13px; font-weight: 600; color: rgba(32,31,80,0.5); transition: color 0.2s; }
     .footer-nav-links a:hover { color: var(--navy); }
