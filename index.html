@@ -389,21 +389,7 @@
     }
 
     .cov-two-col {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
-    }
-    .cov-left-images {
-      display: flex; flex-direction: column; gap: 24px;
-    }
-    .cov-image-box {
-      width: 100%; border-radius: 16px; overflow: hidden;
-      border: 1px solid rgba(32,31,80,0.1);
-      box-shadow: 0 4px 20px rgba(32,31,80,0.08);
-    }
-    .cov-image-box img {
-      width: 100%; height: auto; display: block;
-    }
-    .cov-right-panels {
-      display: flex; flex-direction: column; gap: 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
     }
     .panel-title { font-size: clamp(22px, 1.8vw, 30px); font-weight: 800; color: var(--navy); letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 10px; }
     .panel-sub { font-size: 15px; line-height: 1.65; color: var(--text-body); margin-bottom: 28px; }
@@ -826,21 +812,8 @@
 
       <div class="cov-two-col">
 
-        <!-- LEFT: Images showing AI workflow -->
-        <div class="cov-left-images">
-          <div class="cov-image-box">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop&q=80" alt="AI Agents in organizational workflow - data analytics and automation">
-          </div>
-          <div class="cov-image-box">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop&q=80" alt="AI Agent transaction execution - digital business automation">
-          </div>
-        </div>
-
-        <!-- RIGHT: Panels stacked vertically -->
-        <div class="cov-right-panels">
-
-          <!-- TOP: Org Chart -->
-          <div class="org-panel">
+        <!-- LEFT: Org Chart -->
+        <div class="org-panel">
           <div class="panel-title">New Agentic Org Chart</div>
           <p class="panel-sub">AI Agents have become digital employees—registered in your system with defined roles and delegated authority.</p>
 
@@ -930,10 +903,10 @@
             <div class="org-legend-item"><span class="legend-dot human-dot"></span><span>Human Employee</span></div>
             <div class="org-legend-item"><span class="legend-dot agent-dot"></span><span>AI Agent</span></div>
           </div>
-          </div>
+        </div>
 
-          <!-- BOTTOM: 2×2 pillars grid -->
-          <div class="pillars-panel">
+        <!-- RIGHT: 2×2 pillars grid -->
+        <div class="pillars-panel">
           <div class="panel-title">Four Categories.  One Gap.</div>
           <p class="panel-sub">Every traditional risk pillar has a dedicated insurance product.  The conduct risk of AI Agents does not — yet.</p>
 
@@ -998,11 +971,9 @@
               <span class="pillar-status missing">✗ Not Covered</span>
             </div>
           </div>
-          </div>
+        </div>
 
-        </div> <!-- end cov-right-panels -->
-
-      </div> <!-- end cov-two-col -->
+      </div>
     </div>
   </section>
 
