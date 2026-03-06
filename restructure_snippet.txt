@@ -1,0 +1,14 @@
+      <div class="cov-two-col">
+
+        <!-- LEFT: Images showing AI workflow -->
+        <div class="cov-left-images">
+          <div class="cov-image-box">
+            <img src="https://placehold.co/600x400/edf1f8/2a6fb0?text=AI+Agents+at+Work" alt="AI Agents in organizational workflow">
+          </div>
+          <div class="cov-image-box">
+            <img src="https://placehold.co/600x350/f0f4f9/008992?text=Automated+Transactions" alt="AI Agent transaction execution">
+          </div>
+        </div>
+
+        <!-- RIGHT: Panels stacked vertically -->
+        <div class="cov-right-panels">
