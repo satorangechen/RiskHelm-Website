@@ -151,7 +151,7 @@
   },
   "potentialAction": {
     "@type": "ContactAction",
-    "name": "Request Discussion",
+    "name": "Contact",
     "target": {
       "@type": "EntryPoint",
       "urlTemplate": "https://riskhelm.com/contact.html",
