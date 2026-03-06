@@ -25,9 +25,11 @@
     "audienceType": [
       "Enterprises deploying AI Agents",
       "Workflow automation platforms",
-      "Organizations with autonomous AI systems",
-      "Companies using LLM-based agents",
-      "Reinsurers and capacity providers"
+      "Organizations with LLM-based AI Agents",
+      "Companies using transaction-executing AI Agents",
+      "Reinsurers and capacity providers",
+      "Platform CEOs and CTOs facing deployment barriers",
+      "Enterprise buyers seeking autonomous AI solutions"
     ]
   },
   "hasOfferCatalog": {
@@ -61,7 +63,7 @@
     "https://schema.org/FinancialProduct",
     "AI Risk Management Service"
   ],
-  "keywords": "AI Agent Liability Insurance Coverage, AI Agent insurance, AI liability insurance, AI warranty, AI insurance coverage, Agentic AI liability, AI risk management, autonomous AI insurance, LLM agent insurance, AI conduct risk, AI Authority Limits, AI governance insurance, digital workforce insurance, enterprise AI insurance, workflow platform insurance, Agentic Economy insurance, AI liability protection, AI indemnity insurance, artificial intelligence insurance, machine learning insurance, AI system insurance, generative AI insurance, AI automation insurance, AI professional liability",
+  "keywords": "AI Agent Liability Insurance, AI Agent insurance, Agentic AI insurance, AI risk management, AI Agent risk, LLM agent insurance, AI conduct risk, Authority Limits, AI governance insurance, digital workforce insurance, AI transaction risk, enterprise AI insurance, workflow platform AI insurance, AI execution risk, AI liability protection, AI indemnity, autonomous AI insurance, generative AI insurance, LLM liability, AI automation insurance, AI Agent warranty, AI professional liability, AI operational insurance, AI spending risk, AI authorization breach, AI boundary violation, deployment gap, pilot-to-production failure, autonomous AI deployment, legal barriers AI, trust infrastructure AI, AI Agent deployment barriers, 91% pilot failure rate, $621B deployment gap",
   "about": [
     {
       "@type": "Thing",
@@ -88,10 +90,16 @@
     "AI Agent deployment and governance",
     "Authority Limits for autonomous AI systems",
     "Conduct Risk in Agentic AI",
-    "IAM integration for AI Agents",
-    "AI transaction monitoring and telemetry",
-    "Workflow platform AI safety",
-    "LLM agent liability and risk transfer"
+    "Enterprise authorization for AI Agents",
+    "AI Agent transaction monitoring and telemetry",
+    "Workflow platform AI Agent safety",
+    "LLM agent liability and risk transfer",
+    "91% pilot-to-production deployment failure",
+    "$621 billion autonomous AI deployment gap",
+    "Legal barriers to AI Agent production deployment",
+    "Trust infrastructure for autonomous AI",
+    "Platform economics for insured AI deployment",
+    "Reinsurance for AI Agent risk class"
   ],
   "slogan": "Indemnity for AI Agent Execution",
   "disambiguatingDescription": "IMPORTANT: RiskHelm provides insurance for Autonomous AI Agents (software systems using LLMs), NOT human insurance agents, sales representatives, or brokers. We insure AI-driven autonomous actors, not human workers.",
@@ -100,5 +108,57 @@
     "url": "https://riskhelm.com",
     "name": "RiskHelm - AI Risk Management",
     "description": "Professional liability insurance for Autonomous AI Agents in the Agentic Economy"
+  },
+  "publishingPrinciples": {
+    "@type": "CreativeWork",
+    "name": "RiskHelm Research & Insights",
+    "description": "Market analysis and thought leadership on AI Agent liability, deployment gaps, and reinsurance approaches",
+    "hasPart": [
+      {
+        "@type": "Article",
+        "headline": "The $621 Billion AI Deployment Gap: Why 91% of Pilots Never Reach Production",
+        "datePublished": "2026-03-05",
+        "author": {
+          "@type": "Organization",
+          "name": "RiskHelm Research"
+        },
+        "about": "Analysis of pilot-to-production failure rates, legal deployment barriers, and projected economics for platform partners",
+        "url": "https://riskhelm.com/articles/deployment-gap.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "Agentic AI Spend Reaches $47B: Who Owns the Liability?",
+        "datePublished": "2026-02-28",
+        "author": {
+          "@type": "Organization",
+          "name": "RiskHelm Research"
+        },
+        "about": "$47B enterprise agentic AI spend, governance gaps, and why existing insurance products don't fit",
+        "url": "https://riskhelm.com/articles/agentic-ai-liability.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "How Reinsurers Are Approaching the AI Agent Risk Class",
+        "datePublished": "2026-02-12",
+        "author": {
+          "@type": "Organization",
+          "name": "RiskHelm Research"
+        },
+        "about": "Reinsurance market dynamics, underwriting criteria, and capital formation for AI Agent liability",
+        "url": "https://riskhelm.com/articles/reinsurers-ai-risk.html"
+      }
+    ]
+  },
+  "potentialAction": {
+    "@type": "ContactAction",
+    "name": "Request Discussion",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://riskhelm.com/contact.html",
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform"
+      ]
+    }
   }
 }
