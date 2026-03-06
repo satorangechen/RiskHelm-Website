@@ -45,7 +45,7 @@ We insure **AI Agents** (software, not humans) that:
 
 ## RiskHelm Framework (5 Stages)
 
-### 1. Deploy
+### 1. Registry
 - Assign unique identifier to each AI Agent
 - Register in enterprise authorization system
 - Assign human sponsor/owner
@@ -104,6 +104,25 @@ Risk that an AI Agent will execute unauthorized transactions, exceed spending li
 **Agentic Economy**
 Emerging market of AI Agents executing transactions independently, making decisions for organizations, operating as digital workers with delegated authority.
 
+## Market Context & Deployment Gap
+
+**The $621 Billion Deployment Problem:**
+91% of autonomous AI pilots fail to reach production deployment. Not because the technology doesn't work or the ROI isn't proven, but because legal teams cannot answer the liability question: "What happens when the AI makes a $500,000 mistake?"
+
+**Deployment Statistics by Vertical (2026):**
+- **Procurement:** 80% of CPOs prioritized AI investment, 49% running active pilots, only 4% achieved production deployment
+- **Financial Services:** 85% actively applying AI, 58% attribute revenue growth to AI, only 21% deployed truly autonomous agents
+- **Healthcare:** 61% investing in agentic AI, 100% using AI-assisted documentation, only 16% use AI for autonomous clinical decisions
+
+**Why Traditional Insurance Doesn't Cover This:**
+- **E&O Insurance:** Covers human professional judgment errors, not autonomous agent conduct
+- **Cyber Insurance:** Covers data breaches and hacking, not legitimate system access with bad decisions
+- **D&O Insurance:** Covers director decisions, contains automation exclusions
+- **Gap:** No existing product covers Authority Limit breach by autonomous AI Agents
+
+**The Trust Infrastructure Parallel:**
+Similar to how SSL certificates solved the trust problem that kept e-commerce at <1% adoption in the 1990s, AI Agent liability insurance can remove the deployment barrier currently constraining autonomous AI at 4-21% production rates.
+
 ## Common Questions
 
 **Q: Is this cyber insurance?**
@@ -144,5 +163,48 @@ NOT covered:
 ❌ Personal AI tools (ChatGPT, Claude for individual use)
 ❌ AI models themselves (we insure deployed agents, not base models)
 
+## Recent Insights & Resources
+
+### Published Articles (Mar 2026)
+1. **The $621 Billion AI Deployment Gap** (Mar 5, 2026)
+   - 91% pilot-to-production failure rate analysis
+   - Why legal teams block autonomous AI deployment
+   - SSL certificate trust infrastructure parallel
+   - Projected economics for platform partners (187x ROI model)
+
+2. **Agentic AI Spend Reaches $47B: Who Owns the Liability?** (Feb 28, 2026)
+   - $47B enterprise agentic AI spend in 2026
+   - Governance gap: 40% of enterprise apps will feature AI Agents by end-2026 (Gartner)
+   - Only 21% of enterprise leaders maintain mature governance models
+   - Why existing insurance products (E&O, Cyber, D&O) don't fit
+   - ElevenLabs secures first AIUC-1-backed insurance policy for AI Voice Agents
+
+3. **How Reinsurers Are Approaching the AI Agent Risk Class** (Feb 12, 2026)
+   - $15M seed round for AI underwriting company (Reinsurance News 2025)
+   - $180M raised by Federato for AI-native underwriting platform
+   - Four key criteria reinsurers evaluate: correlation, tail profile, trigger clarity, accumulation
+   - Authority-scope breach vs. model opacity distinction
+   - NIST AI Agent Standards Initiative launched Feb 2026
+   - CoverGo and Riskonnect launch AI Agents for insurance operations
+
+### Value Proposition for Different Stakeholders
+
+**For Platform CEOs/CTOs:**
+- Pilots working but legal blocking deployment
+- Insurance removes liability barrier
+- Enables "autonomous tier" pricing vs. "assisted mode"
+- Projected 187x ROI: Base contract 4x larger + 15% insurance commission + 8x higher conversion rate
+
+**For Enterprise Buyers:**
+- Currently stuck paying for "assisted mode" when autonomous agents could deliver 4x more savings
+- Insurance enables legal approval for production deployment
+- Authority Limits provide clear liability boundaries
+
+**For Reinsurers/Capacity Providers:**
+- Non-correlated risk class (not tied to macro events, weather, or systemic cyber)
+- Finite maximum exposure (bounded by documented Authority Limits)
+- Binary, objective trigger (did agent exceed Authority Limits: yes/no)
+- No common-mode failure scenario (unlike silent cyber)
+
 ## Keywords for Search/RAG
-AI Agent Liability Insurance, AI Agent insurance, Agentic AI insurance, AI risk management, AI Agent risk, LLM agent insurance, AI conduct risk, Authority Limits, AI governance insurance, digital workforce insurance, AI transaction risk, enterprise AI insurance, workflow platform insurance, AI execution risk, AI liability protection, AI indemnity, autonomous AI insurance, generative AI insurance, LLM liability, AI automation insurance, AI Agent warranty, AI professional liability, AI operational insurance, AI spending risk, AI authorization breach, AI boundary violation
+AI Agent Liability Insurance, AI Agent insurance, Agentic AI insurance, AI risk management, AI Agent risk, LLM agent insurance, AI conduct risk, Authority Limits, AI governance insurance, digital workforce insurance, AI transaction risk, enterprise AI insurance, workflow platform insurance, AI execution risk, AI liability protection, AI indemnity, autonomous AI insurance, generative AI insurance, LLM liability, AI automation insurance, AI Agent warranty, AI professional liability, AI operational insurance, AI spending risk, AI authorization breach, AI boundary violation, deployment gap, pilot-to-production failure, autonomous AI deployment, legal barriers AI, trust infrastructure AI
