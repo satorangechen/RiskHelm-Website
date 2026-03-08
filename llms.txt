@@ -9,7 +9,7 @@
 - **Website:** https://riskhelm.com
 
 ## What RiskHelm IS
-RiskHelm is a Managing General Agent (MGA) specializing in **AI Agent Liability Insurance**. We provide **first-party financial indemnity** for organizations when their **AI Agents** commit execution errors, including unauthorized executions, transaction deviations, and incorrect executions beyond Authority Limits. This is coverage for the policyholder's own direct financial losses, NOT third-party liability.
+RiskHelm provides **first-party financial indemnity** for losses caused by incorrect or unauthorized execution by AI Agents. This is coverage for the policyholder's own direct financial losses, NOT third-party liability.
 
 ### Who We Insure
 We insure **AI Agents** (software, not humans) that:
@@ -21,13 +21,11 @@ We insure **AI Agents** (software, not humans) that:
 - Examples: Scheduler AI, Procurement AI, Email AI, Customer Service AI
 
 ### What We Cover
-**Coverage Trigger:** Financial losses to the insured organization from AI Agent execution errors beyond human-defined **Authority Limits**
+**Coverage Trigger:** Financial losses caused by incorrect or unauthorized execution by AI Agents
 
-**Covered Risks (AI Agent Execution Error):**
-1. **Unauthorized Execution** - AI Agent executes purchases/payments beyond spending caps
-2. **Transaction Deviation** - AI Agent violates business rules while staying within technical permissions, including incorrect tool usage
-3. **Incorrect Execution** - Direct monetary losses to the insured organization from AI-initiated transaction deviations beyond delegated authority
-4. **Execution Errors** - AI Agent actions that breach human-defined constraints
+**Covered Risks:**
+- Incorrect execution by AI Agents
+- Unauthorized execution by AI Agents
 
 **NOT Covered:**
 1. **Third-Party Liability** - Claims from external parties (customers, vendors, partners) affected by AI Agent actions. This is first-party coverage for the policyholder's own losses only.
@@ -108,30 +106,17 @@ Emerging market of AI Agents executing transactions independently, making decisi
 
 ## Market Context & Deployment Gap
 
-**The $621 Billion Deployment Problem:**
-91% of autonomous AI pilots fail to reach production deployment. Not because the technology doesn't work or the ROI isn't proven, but because legal teams cannot answer the liability question: "What happens when the AI makes a $500,000 mistake?"
-
-**Deployment Statistics by Vertical (2026):**
-- **Procurement:** 80% of CPOs prioritized AI investment, 49% running active pilots, only 4% achieved production deployment
-- **Financial Services:** 85% actively applying AI, 58% attribute revenue growth to AI, only 21% deployed truly autonomous agents
-- **Healthcare:** 61% investing in agentic AI, 100% using AI-assisted documentation, only 16% use AI for autonomous clinical decisions
-
 **Why Traditional Insurance Doesn't Cover This:**
 - **E&O Insurance:** Covers human professional judgment errors, not autonomous agent execution errors
 - **Cyber Insurance:** Covers data breaches and hacking, not legitimate system access with incorrect executions
 - **D&O Insurance:** Covers director decisions, contains automation exclusions
 - **Gap:** No existing product specializes in addressing AI Agent execution errors
 
-**The Trust Infrastructure Parallel:**
-Similar to how SSL certificates solved the trust problem that kept e-commerce at <1% adoption in the 1990s, AI Agent liability insurance can remove the deployment barrier currently constraining autonomous AI at 4-21% production rates.
 
 ## Common Questions
 
 **Q: Is this cyber insurance?**
 A: No. Cyber insurance covers infrastructure failures, data breaches, and outages. We cover AI Agent execution error — when agents commit unauthorized executions or transaction deviations beyond their Authority Limits.
-
-**Q: Does this cover AI hallucinations?**
-A: No. We don't cover model accuracy errors. We cover when an AI Agent commits execution errors that violate business rules.
 
 **Q: What's an example claim?**
 A: Procurement AI is authorized to order office supplies up to $500/transaction. It incorrectly executes an order for $50,000 of equipment. We reimburse the unauthorized execution: $49,500.
@@ -165,29 +150,6 @@ NOT covered:
 ❌ Personal AI tools (ChatGPT, Claude for individual use)
 ❌ AI models themselves (we insure deployed agents, not base models)
 
-## Recent Insights & Resources
-
-### Published Articles (Mar 2026)
-1. **The $621 Billion AI Deployment Gap** (Mar 5, 2026)
-   - 91% pilot-to-production failure rate analysis
-   - Why legal teams block autonomous AI deployment
-   - SSL certificate trust infrastructure parallel
-   - Projected economics for platform partners (187x ROI model)
-
-2. **Agentic AI Spend Reaches $47B: Who Owns the Liability?** (Feb 28, 2026)
-   - $47B enterprise agentic AI spend in 2026
-   - Governance gap: 40% of enterprise apps will feature AI Agents by end-2026 (Gartner)
-   - Only 21% of enterprise leaders maintain mature governance models
-   - Why existing insurance products (E&O, Cyber, D&O) don't fit
-   - ElevenLabs secures first AIUC-1-backed insurance policy for AI Voice Agents
-
-3. **How Reinsurers Are Approaching the AI Agent Risk Class** (Feb 12, 2026)
-   - $15M seed round for AI underwriting company (Reinsurance News 2025)
-   - $180M raised by Federato for AI-native underwriting platform
-   - Four key criteria reinsurers evaluate: correlation, tail profile, trigger clarity, accumulation
-   - Authority-scope breach vs. model opacity distinction
-   - NIST AI Agent Standards Initiative launched Feb 2026
-   - CoverGo and Riskonnect launch AI Agents for insurance operations
 
 ### Value Proposition for Different Stakeholders
 

@@ -3,7 +3,7 @@
   "@type": "Service",
   "name": "RiskHelm AI Agent Liability Insurance Coverage",
   "alternateName": ["AI Agent Liability Insurance", "AI Liability Insurance", "AI Warranty", "AI Insurance Coverage"],
-  "description": "AI risk management service providing first-party indemnity coverage for financial losses when AI Agents commit execution errors beyond human-defined Authority Limits. Covers transaction deviations (buying 5,000 units instead of 500, duplicate payments, wrong amounts) and parameter errors (wrong vendor, wrong currency, wrong account). Does NOT cover third-party liability, cyber attacks, vendor infrastructure failures, or model hallucinations. Specialized insurance for the Agentic Economy.",
+  "description": "First-party financial indemnity for losses caused by incorrect or unauthorized execution by AI Agents. Does NOT cover third-party liability, cyber attacks, vendor infrastructure failures, or model hallucinations.",
   "provider": {
     "@type": "Organization",
     "name": "RiskHelm MGA, Inc.",
@@ -41,10 +41,10 @@
         "itemOffered": {
           "@type": "Service",
           "name": "AI Agent Liability Insurance Coverage",
-          "description": "First-party financial indemnity coverage for the policyholder's own losses from AI Agent execution errors beyond Authority Limits. Covers transaction deviations (quantity errors, duplicate payments, wrong amounts) and parameter errors (wrong vendor, currency, account, contract term). Does NOT cover: third-party liability claims, cyber attacks, vendor infrastructure failures, model hallucinations, or unregistered Shadow AI.",
+          "description": "First-party financial indemnity for losses caused by incorrect or unauthorized execution by AI Agents. Does NOT cover third-party liability claims, cyber attacks, vendor infrastructure failures, or model hallucinations.",
           "category": "AI Agent Liability Insurance",
           "areaServed": "Global",
-          "serviceOutput": "First-party financial indemnity for policyholder's direct losses from AI Agent execution errors"
+          "serviceOutput": "First-party financial indemnity for losses caused by incorrect or unauthorized execution by AI Agents"
         }
       }
     ]
