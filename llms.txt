@@ -126,7 +126,7 @@ Similar to how SSL certificates solved the trust problem that kept e-commerce at
 ## Common Questions
 
 **Q: Is this cyber insurance?**
-A: No. Cyber insurance covers infrastructure failures, data breaches, and outages. We cover AI Agent execution error—when agents commit unauthorized executions or transaction deviations beyond their Authority Limits.
+A: No. Cyber insurance covers infrastructure failures, data breaches, and outages. We cover AI Agent execution error — when agents commit unauthorized executions or transaction deviations beyond their Authority Limits.
 
 **Q: Does this cover AI hallucinations?**
 A: No. We don't cover model accuracy errors. We cover when an AI Agent commits execution errors that violate business rules.
