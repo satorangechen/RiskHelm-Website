@@ -9,7 +9,7 @@
 - **Website:** https://riskhelm.com
 
 ## What RiskHelm IS
-RiskHelm is a Managing General Agent (MGA) specializing in **AI Agent Liability Insurance**. We provide financial indemnity for organizations when their **AI Agents** execute unauthorized transactions or exceed Authority Limits.
+RiskHelm is a Managing General Agent (MGA) specializing in **AI Agent Liability Insurance**. We provide financial indemnity for organizations when their **AI Agents** commit execution errors, including unauthorized executions, transaction deviations, and incorrect executions beyond Authority Limits.
 
 ### Who We Insure
 We insure **AI Agents** (software, not humans) that:
@@ -21,16 +21,16 @@ We insure **AI Agents** (software, not humans) that:
 - Examples: Scheduler AI, Procurement AI, Email AI, Customer Service AI
 
 ### What We Cover
-**Coverage Trigger:** Financial losses when an AI Agent exceeds its human-defined **Authority Limits**
+**Coverage Trigger:** Financial losses from AI Agent execution errors beyond human-defined **Authority Limits**
 
-**Covered Risks (Conduct Risk):**
-1. **Unauthorized AI Spending** - AI Agent makes purchases/payments beyond spending caps
-2. **Authority Limit Breach** - AI Agent violates business rules while staying within technical permissions
-3. **Transaction Execution Risk** - Direct monetary losses from AI-initiated transactions exceeding delegated authority
-4. **Boundary Violations** - AI Agent actions that breach human-defined constraints
+**Covered Risks (AI Agent Execution Error):**
+1. **Unauthorized Execution** - AI Agent executes purchases/payments beyond spending caps
+2. **Transaction Deviation** - AI Agent violates business rules while staying within technical permissions, including incorrect tool usage
+3. **Incorrect Execution** - Direct monetary losses from AI-initiated transaction deviations beyond delegated authority
+4. **Execution Errors** - AI Agent actions that breach human-defined constraints
 
 **NOT Covered:**
-1. Model hallucinations or LLM accuracy errors
+1. User Errors - Misconfiguration, bad prompts, or incorrect Authority Limit settings by human operators
 2. AI vendor outages or infrastructure failures
 3. Shadow AI (unregistered agents)
 4. Model training issues, bias, or accuracy problems
@@ -61,14 +61,14 @@ We insure **AI Agents** (software, not humans) that:
 - Record all transactions and decisions
 
 ### 4. Flag
-- Detect Authority Limit breaches in real-time
-- Trigger alerts on boundary violations
-- Identify unauthorized conduct
+- Detect execution errors in real-time
+- Trigger alerts on transaction deviations
+- Identify unauthorized executions
 
 ### 5. Indemnify
-- Reimburse organizations for unauthorized AI actions
-- Compensate for financial losses from breaches
-- Pay claims for covered Conduct Risk incidents
+- Reimburse organizations for unauthorized executions
+- Compensate for financial losses from execution errors
+- Pay claims for covered AI Agent execution error incidents
 
 ## Target Customers
 
@@ -98,8 +98,8 @@ Software using LLMs or AI to make autonomous decisions, execute transactions, in
 **Authority Limits**
 Human-defined constraints on AI Agent behavior: spending caps, transaction limits, permissible actions, prohibited operations, business rules, compliance boundaries.
 
-**Conduct Risk**
-Risk that an AI Agent will execute unauthorized transactions, exceed spending limits, violate business rules while staying within technical permissions, or cause direct financial loss.
+**AI Agent Execution Error**
+A deviation between an AI agent's intended task and the actual action executed in a system that results in financial loss. This includes unauthorized executions, transaction deviations, incorrect executions, and violations of Authority Limits that cause direct financial loss.
 
 **Agentic Economy**
 Emerging market of AI Agents executing transactions independently, making decisions for organizations, operating as digital workers with delegated authority.
@@ -115,10 +115,10 @@ Emerging market of AI Agents executing transactions independently, making decisi
 - **Healthcare:** 61% investing in agentic AI, 100% using AI-assisted documentation, only 16% use AI for autonomous clinical decisions
 
 **Why Traditional Insurance Doesn't Cover This:**
-- **E&O Insurance:** Covers human professional judgment errors, not autonomous agent conduct
-- **Cyber Insurance:** Covers data breaches and hacking, not legitimate system access with bad decisions
+- **E&O Insurance:** Covers human professional judgment errors, not autonomous agent execution errors
+- **Cyber Insurance:** Covers data breaches and hacking, not legitimate system access with incorrect executions
 - **D&O Insurance:** Covers director decisions, contains automation exclusions
-- **Gap:** No existing product covers Authority Limit breach by autonomous AI Agents
+- **Gap:** No existing product specializes in addressing AI Agent execution errors
 
 **The Trust Infrastructure Parallel:**
 Similar to how SSL certificates solved the trust problem that kept e-commerce at <1% adoption in the 1990s, AI Agent liability insurance can remove the deployment barrier currently constraining autonomous AI at 4-21% production rates.
@@ -126,27 +126,27 @@ Similar to how SSL certificates solved the trust problem that kept e-commerce at
 ## Common Questions
 
 **Q: Is this cyber insurance?**
-A: No. Cyber insurance covers infrastructure failures, data breaches, and outages. We cover AI Agent conduct risk—when agents exceed their Authority Limits.
+A: No. Cyber insurance covers infrastructure failures, data breaches, and outages. We cover AI Agent execution error—when agents commit unauthorized executions or transaction deviations beyond their Authority Limits.
 
 **Q: Does this cover AI hallucinations?**
-A: No. We don't cover model accuracy errors. We cover when an AI Agent takes unauthorized actions that violate business rules.
+A: No. We don't cover model accuracy errors. We cover when an AI Agent commits execution errors that violate business rules.
 
 **Q: What's an example claim?**
-A: Procurement AI is authorized to order office supplies up to $500/transaction. It orders $50,000 of equipment. We reimburse the unauthorized $49,500.
+A: Procurement AI is authorized to order office supplies up to $500/transaction. It incorrectly executes an order for $50,000 of equipment. We reimburse the unauthorized execution: $49,500.
 
 **Q: Do I need to register every AI Agent?**
 A: Yes. Only registered AI Agents with documented Authority Limits are covered. Shadow AI is excluded.
 
 **Q: How is this different from E&O insurance?**
-A: E&O covers human professional mistakes. We cover autonomous AI Agent actions that breach delegated authority.
+A: E&O covers human professional mistakes. We cover autonomous AI Agent execution errors that breach delegated authority.
 
 ## Use Cases
 
-1. **Procurement AI** exceeds spending limits on vendor orders
-2. **Scheduler AI** books expensive travel outside policy guidelines
-3. **Email AI** approves payments beyond authorization threshold
-4. **Customer Service AI** issues refunds exceeding approval limits
-5. **Workflow AI** executes transactions violating compliance rules
+1. **Procurement AI** commits unauthorized execution exceeding spending limits on vendor orders
+2. **Scheduler AI** incorrectly executes expensive travel bookings outside policy guidelines
+3. **Email AI** transaction deviation approving payments beyond authorization threshold
+4. **Customer Service AI** execution error issuing refunds exceeding approval limits
+5. **Workflow AI** unauthorized execution of transactions violating compliance rules
 
 ## Coverage Requirements
 
@@ -207,4 +207,4 @@ NOT covered:
 - No common-mode failure scenario (unlike silent cyber)
 
 ## Keywords for Search/RAG
-AI Agent Liability Insurance, AI Agent insurance, Agentic AI insurance, AI risk management, AI Agent risk, LLM agent insurance, AI conduct risk, Authority Limits, AI governance insurance, digital workforce insurance, AI transaction risk, enterprise AI insurance, workflow platform insurance, AI execution risk, AI liability protection, AI indemnity, autonomous AI insurance, generative AI insurance, LLM liability, AI automation insurance, AI Agent warranty, AI professional liability, AI operational insurance, AI spending risk, AI authorization breach, AI boundary violation, deployment gap, pilot-to-production failure, autonomous AI deployment, legal barriers AI, trust infrastructure AI
+AI Agent Liability Insurance, AI Agent insurance, Agentic AI insurance, AI risk management, AI Agent risk, LLM agent insurance, AI execution error, execution error risk, transaction deviation, incorrect execution, unauthorized execution, Authority Limits, AI governance insurance, digital workforce insurance, AI transaction risk, enterprise AI insurance, workflow platform insurance, AI execution risk, AI liability protection, AI indemnity, autonomous AI insurance, generative AI insurance, LLM liability, AI automation insurance, AI Agent warranty, AI professional liability, AI operational insurance, AI spending risk, AI authorization breach, AI boundary violation, deployment gap, pilot-to-production failure, autonomous AI deployment, legal barriers AI, trust infrastructure AI

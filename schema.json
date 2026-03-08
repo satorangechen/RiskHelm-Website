@@ -41,7 +41,7 @@
         "itemOffered": {
           "@type": "Service",
           "name": "AI Agent Liability Insurance Coverage",
-          "description": "Financial indemnity coverage for losses when AI Agents exceed Authority Limits. Covers Conduct Risk from autonomous AI systems executing unauthorized transactions.",
+          "description": "Financial indemnity coverage for losses from AI Agent execution errors beyond Authority Limits. Covers unauthorized executions, transaction deviations, and incorrect executions from autonomous AI systems, including incorrect tool usage.",
           "category": "AI Agent Liability Insurance",
           "areaServed": "Global",
           "serviceOutput": "Financial protection against unauthorized AI Agent actions"
@@ -63,7 +63,7 @@
     "https://schema.org/FinancialProduct",
     "AI Risk Management Service"
   ],
-  "keywords": "AI Agent Liability Insurance, AI Agent insurance, Agentic AI insurance, AI risk management, AI Agent risk, LLM agent insurance, AI conduct risk, Authority Limits, AI governance insurance, digital workforce insurance, AI transaction risk, enterprise AI insurance, workflow platform AI insurance, AI execution risk, AI liability protection, AI indemnity, autonomous AI insurance, generative AI insurance, LLM liability, AI automation insurance, AI Agent warranty, AI professional liability, AI operational insurance, AI spending risk, AI authorization breach, AI boundary violation, deployment gap, pilot-to-production failure, autonomous AI deployment, legal barriers AI, trust infrastructure AI, AI Agent deployment barriers, 91% pilot failure rate, $621B deployment gap",
+  "keywords": "AI Agent Liability Insurance, AI Agent insurance, Agentic AI insurance, AI risk management, AI Agent risk, LLM agent insurance, AI execution error, execution error risk, transaction deviation, incorrect execution, unauthorized execution, Authority Limits, AI governance insurance, digital workforce insurance, AI transaction risk, enterprise AI insurance, workflow platform AI insurance, AI execution risk, AI liability protection, AI indemnity, autonomous AI insurance, generative AI insurance, LLM liability, AI automation insurance, AI Agent warranty, AI professional liability, AI operational insurance, AI spending risk, AI authorization breach, AI boundary violation, deployment gap, pilot-to-production failure, autonomous AI deployment, legal barriers AI, trust infrastructure AI, AI Agent deployment barriers, 91% pilot failure rate, $621B deployment gap",
   "about": [
     {
       "@type": "Thing",
@@ -72,8 +72,8 @@
     },
     {
       "@type": "Thing",
-      "name": "Conduct Risk for AI",
-      "description": "Risk that AI Agents will execute unauthorized transactions or exceed Authority Limits"
+      "name": "AI Agent Execution Error",
+      "description": "A deviation between an AI agent's intended task and the actual action executed that results in financial loss, including unauthorized executions and transaction deviations"
     },
     {
       "@type": "Thing",
@@ -89,7 +89,7 @@
   "knowsAbout": [
     "AI Agent deployment and governance",
     "Authority Limits for autonomous AI systems",
-    "Conduct Risk in Agentic AI",
+    "AI Agent execution error and transaction deviation risk",
     "Enterprise authorization for AI Agents",
     "AI Agent transaction monitoring and telemetry",
     "Workflow platform AI Agent safety",
