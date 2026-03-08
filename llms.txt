@@ -32,7 +32,7 @@ We insure **AI Agents** (software, not humans) that:
 **NOT Covered:**
 1. User Errors - Losses caused by human misconfiguration, incorrect prompts, or improperly defined authority limits
 2. AI Vendor Failures - Losses caused by third-party infrastructure failures, API outages, or AI vendor service disruptions
-3. Shadow AI - Losses from any AI Agent not formally registered in the system, including self-escalating privileges
+3. Shadow AI - Losses from any AI Agent not formally registered in the system, including agents that escalate their privileges without authorization
 4. Model training issues, bias, or accuracy problems
 5. Cybersecurity breaches, hacking, data breaches
 
