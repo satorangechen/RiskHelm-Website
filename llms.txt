@@ -34,7 +34,7 @@ We insure **AI Agents** (software, not humans) that:
 2. **Regulatory Fines & Penalties** - Fines, penalties, regulatory sanctions, or compliance violations. This is first-party coverage for your own direct financial losses from execution errors (overpayments, duplicate payments, wrong amounts), not regulatory consequences or penalties imposed by external parties.
 3. **User Errors** - Losses caused by human misconfiguration, incorrect prompts, or improperly defined authority limits
 4. **AI Vendor Failures** - Losses caused by third-party infrastructure failures, API outages, or AI vendor service disruptions
-5. **Shadow AI** - Losses from any AI Agent not formally registered in the system, including agents that escalate their privileges without authorization
+5. **Shadow AI** - Losses caused by any AI Agent not formally registered in the system, including AI Agents that self-escalate privileges without authorization
 6. **Model Accuracy** - Model training issues, bias, hallucinations, or accuracy problems
 7. **Cyber Attacks** - Cybersecurity breaches, hacking, data breaches, or external attacks
 
@@ -54,11 +54,11 @@ We insure **AI Agents** (software, not humans) that:
 
 ### 2. Define
 - Set Authority Limits (spending caps, action boundaries)
-- Establish rules-based access controls
+- Establish rule-based access controls
 - Document business logic constraints
 
 ### 3. Log
-- Maintain continuous telemetry of AI Agent actions
+- Maintain continuous, auditable telemetry of AI Agent actions
 - Create verifiable audit trail
 - Record all transactions and decisions
 
@@ -68,7 +68,7 @@ We insure **AI Agents** (software, not humans) that:
 - Identify unauthorized executions
 
 ### 5. Indemnify
-- Reimburse for incorrect or unauthorized executions
+- Reimburse the insured organization for incorrect or unauthorized executions
 - Compensate for financial losses from execution errors
 - Pay claims for covered AI Agent execution error incidents
 
