@@ -21,12 +21,12 @@ We insure **AI Agents** (software, not humans) that:
 - Examples: Scheduler AI, Procurement AI, Email AI, Customer Service AI
 
 ### What We Cover
-**Coverage Trigger:** Financial losses from AI Agent execution errors beyond human-defined **Authority Limits**
+**Coverage Trigger:** Financial losses to the insured organization from AI Agent execution errors beyond human-defined **Authority Limits**
 
 **Covered Risks (AI Agent Execution Error):**
 1. **Unauthorized Execution** - AI Agent executes purchases/payments beyond spending caps
 2. **Transaction Deviation** - AI Agent violates business rules while staying within technical permissions, including incorrect tool usage
-3. **Incorrect Execution** - Direct monetary losses from AI-initiated transaction deviations beyond delegated authority
+3. **Incorrect Execution** - Direct monetary losses to the insured organization from AI-initiated transaction deviations beyond delegated authority
 4. **Execution Errors** - AI Agent actions that breach human-defined constraints
 
 **NOT Covered:**
