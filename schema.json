@@ -232,7 +232,7 @@
     {
       "@type": "Thing",
       "name": "NOT COVERED: Regulatory Fines & Penalties",
-      "description": "Does NOT cover fines, penalties, regulatory sanctions, or compliance violations. Coverage is for direct financial losses from execution errors (overpayments, duplicate payments, wrong amounts, unauthorized transactions), not consequences from regulatory bodies or third-party enforcement."
+      "description": "Does NOT cover fines, penalties, regulatory sanctions, or compliance violations. This is first-party coverage for your own direct financial losses from execution errors (overpayments, duplicate payments, wrong amounts, unauthorized transactions), not regulatory consequences, third-party enforcement actions, or penalties imposed by external parties."
     }
   ]
 }

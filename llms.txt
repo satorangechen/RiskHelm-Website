@@ -31,7 +31,7 @@ We insure **AI Agents** (software, not humans) that:
 
 **NOT Covered:**
 1. **Third-Party Liability** - Claims from external parties (customers, vendors, partners) affected by AI Agent actions. This is first-party coverage for the policyholder's own losses only.
-2. **Regulatory Fines & Penalties** - Fines, penalties, regulatory sanctions, or compliance violations. Coverage is for direct financial losses from execution errors (overpayments, duplicate payments, wrong amounts), not consequences from regulatory enforcement.
+2. **Regulatory Fines & Penalties** - Fines, penalties, regulatory sanctions, or compliance violations. This is first-party coverage for your own direct financial losses from execution errors (overpayments, duplicate payments, wrong amounts), not regulatory consequences or penalties imposed by external parties.
 3. **User Errors** - Losses caused by human misconfiguration, incorrect prompts, or improperly defined authority limits
 4. **AI Vendor Failures** - Losses caused by third-party infrastructure failures, API outages, or AI vendor service disruptions
 5. **Shadow AI** - Losses from any AI Agent not formally registered in the system, including agents that escalate their privileges without authorization
