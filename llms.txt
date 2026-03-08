@@ -127,13 +127,27 @@ A: Yes. Only registered AI Agents with documented Authority Limits are covered. 
 **Q: How is this different from E&O insurance?**
 A: E&O covers human professional mistakes. We cover autonomous AI Agent execution errors that breach delegated authority.
 
-## Use Cases
+## Classic Claims Examples
 
-1. **Procurement AI** commits unauthorized execution exceeding spending limits on vendor orders
-2. **Scheduler AI** incorrectly executes expensive travel bookings outside policy guidelines
-3. **Email AI** transaction deviation approving payments beyond authorization threshold
-4. **Customer Service AI** execution error issuing refunds exceeding approval limits
-5. **Workflow AI** unauthorized execution of transactions violating compliance rules
+### Incorrect Execution (Transaction Deviations)
+
+1. **Quantity Error** - Procurement AI authorized to buy 500 units orders 5,000 units instead. Claim: $45,000 for 4,500 excess units.
+
+2. **Duplicate Payment** - Payment AI executes duplicate vendor payment. AI pays vendor $50,000 twice instead of once. Claim: $50,000 duplicate payment.
+
+3. **Volume Multiplier** - Email AI authorized to buy 1 software license purchases 100 licenses instead. Claim: $99,000 for 100x intended quantity.
+
+### Incorrect Execution (Parameter Errors)
+
+4. **Wrong Vendor** - Procurement AI executes correct purchase order but sends to wrong vendor outside approved list. Claim: $30,000 unauthorized vendor transaction.
+
+5. **Wrong Currency** - Trading AI executes currency exchange with incorrect currency parameter (EUR instead of GBP). Claim: $75,000 foreign exchange loss.
+
+6. **Wrong Account** - Payment AI routes $100,000 payment to wrong bank account. Claim: $100,000 for wrong account execution.
+
+7. **Wrong Amount** - Invoice AI processes payment with wrong amount ($500,000 instead of $50,000). Claim: $450,000 overpayment.
+
+8. **Wrong Contract Term** - Contract AI signs 5-year vendor agreement instead of authorized 1-year term. Claim: $400,000 in unauthorized multi-year obligations.
 
 ## Coverage Requirements
 
