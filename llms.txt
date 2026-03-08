@@ -30,9 +30,9 @@ We insure **AI Agents** (software, not humans) that:
 4. **Execution Errors** - AI Agent actions that breach human-defined constraints
 
 **NOT Covered:**
-1. User Errors - Misconfiguration, bad prompts, or incorrect Authority Limit settings by human operators
-2. AI vendor outages or infrastructure failures
-3. Shadow AI (unregistered agents)
+1. User Errors - Losses caused by human misconfiguration, incorrect prompts, or improperly defined authority limits
+2. AI Vendor Failures - Losses caused by third-party infrastructure failures, API outages, or AI vendor service disruptions
+3. Shadow AI - Losses from any AI Agent not formally registered in the system, including self-escalating privileges
 4. Model training issues, bias, or accuracy problems
 5. Cybersecurity breaches, hacking, data breaches
 
@@ -61,12 +61,12 @@ We insure **AI Agents** (software, not humans) that:
 - Record all transactions and decisions
 
 ### 4. Flag
-- Detect execution errors in real-time
+- Detect deviations from defined authority limits or execution parameters
 - Trigger alerts on transaction deviations
 - Identify unauthorized executions
 
 ### 5. Indemnify
-- Reimburse organizations for unauthorized executions
+- Reimburse for incorrect or unauthorized executions
 - Compensate for financial losses from execution errors
 - Pay claims for covered AI Agent execution error incidents
 
