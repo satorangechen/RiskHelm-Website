@@ -228,6 +228,11 @@
       "@type": "Thing",
       "name": "NOT COVERED: Unregistered Shadow AI",
       "description": "Does NOT cover any AI Agent not formally registered in the enterprise system with documented Authority Limits and human sponsor. Only registered AI Agents with defined authority boundaries are covered."
+    },
+    {
+      "@type": "Thing",
+      "name": "NOT COVERED: Regulatory Fines & Penalties",
+      "description": "Does NOT cover fines, penalties, regulatory sanctions, or compliance violations. Coverage is for direct financial losses from execution errors (overpayments, duplicate payments, wrong amounts, unauthorized transactions), not consequences from regulatory bodies or third-party enforcement."
     }
   ]
 }
