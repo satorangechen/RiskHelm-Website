@@ -164,28 +164,43 @@
   "example": [
     {
       "@type": "Thing",
-      "name": "Procurement AI Overspending Claim",
-      "description": "Procurement AI authorized to order office supplies up to $500 per transaction incorrectly executes an order for $50,000 of equipment. Coverage pays the unauthorized execution amount of $49,500."
+      "name": "Transaction Deviation - Quantity Error",
+      "description": "Procurement AI authorized to buy 500 units orders 5,000 units instead. Transaction deviation claim: $45,000 for 4,500 excess units purchased."
     },
     {
       "@type": "Thing",
-      "name": "Scheduler AI Unauthorized Booking",
-      "description": "Travel booking AI with $2,000 per-trip authority limit executes $15,000 first-class international flight bookings outside policy guidelines. Coverage reimburses the $13,000 execution error."
+      "name": "Transaction Deviation - Duplicate Payment",
+      "description": "Payment AI executes duplicate vendor payment due to incorrect execution. AI pays vendor $50,000 twice instead of once. Claim: $50,000 duplicate payment."
     },
     {
       "@type": "Thing",
-      "name": "Email AI Unauthorized Payment Approval",
-      "description": "Customer service AI with $1,000 refund authorization approves $25,000 in refunds due to transaction deviation. Coverage pays the $24,000 unauthorized execution."
+      "name": "Parameter Error - Wrong Vendor",
+      "description": "Procurement AI executes correct purchase order but sends to wrong vendor outside approved list. Parameter error results in $30,000 unauthorized vendor transaction."
     },
     {
       "@type": "Thing",
-      "name": "Workflow AI Compliance Violation",
-      "description": "Payment processing AI executes transactions violating regulatory compliance rules, resulting in $100,000 in fines. Coverage responds to the execution error that breached Authority Limits."
+      "name": "Parameter Error - Wrong Currency",
+      "description": "Trading AI executes currency exchange with incorrect currency parameter (EUR instead of GBP). Wrong currency parameter causes $75,000 foreign exchange loss."
     },
     {
       "@type": "Thing",
-      "name": "Trading AI Exceeds Position Limits",
-      "description": "Financial AI Agent authorized for $50,000 position limits executes $500,000 in trades due to incorrect execution. Coverage pays the $450,000 unauthorized execution amount."
+      "name": "Parameter Error - Wrong Account",
+      "description": "Payment AI routes $100,000 payment to wrong bank account due to incorrect account parameter. Claim covers financial loss from wrong account execution."
+    },
+    {
+      "@type": "Thing",
+      "name": "Transaction Deviation - Volume Multiplier",
+      "description": "Email AI authorized to buy 1 software license purchases 100 licenses instead. Transaction deviation: AI buys 100x intended quantity, $99,000 unauthorized execution."
+    },
+    {
+      "@type": "Thing",
+      "name": "Parameter Error - Wrong Amount",
+      "description": "Invoice AI processes payment with wrong transaction amount ($500,000 instead of $50,000). Parameter error in amount field causes $450,000 overpayment."
+    },
+    {
+      "@type": "Thing",
+      "name": "Parameter Error - Wrong Contract Term",
+      "description": "Contract AI signs 5-year vendor agreement instead of authorized 1-year term. Wrong parameter commits organization to $400,000 in unauthorized multi-year obligations."
     }
   ]
 }
