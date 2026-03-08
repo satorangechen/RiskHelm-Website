@@ -9,7 +9,7 @@
 - **Website:** https://riskhelm.com
 
 ## What RiskHelm IS
-RiskHelm is a Managing General Agent (MGA) specializing in **AI Agent Liability Insurance**. We provide financial indemnity for organizations when their **AI Agents** commit execution errors, including unauthorized executions, transaction deviations, and incorrect executions beyond Authority Limits.
+RiskHelm is a Managing General Agent (MGA) specializing in **AI Agent Liability Insurance**. We provide **first-party financial indemnity** for organizations when their **AI Agents** commit execution errors, including unauthorized executions, transaction deviations, and incorrect executions beyond Authority Limits. This is coverage for the policyholder's own direct financial losses, NOT third-party liability.
 
 ### Who We Insure
 We insure **AI Agents** (software, not humans) that:
@@ -30,11 +30,12 @@ We insure **AI Agents** (software, not humans) that:
 4. **Execution Errors** - AI Agent actions that breach human-defined constraints
 
 **NOT Covered:**
-1. User Errors - Losses caused by human misconfiguration, incorrect prompts, or improperly defined authority limits
-2. AI Vendor Failures - Losses caused by third-party infrastructure failures, API outages, or AI vendor service disruptions
-3. Shadow AI - Losses from any AI Agent not formally registered in the system, including agents that escalate their privileges without authorization
-4. Model training issues, bias, or accuracy problems
-5. Cybersecurity breaches, hacking, data breaches
+1. **Third-Party Liability** - Claims from external parties (customers, vendors, partners) affected by AI Agent actions. This is first-party coverage for the policyholder's own losses only.
+2. **User Errors** - Losses caused by human misconfiguration, incorrect prompts, or improperly defined authority limits
+3. **AI Vendor Failures** - Losses caused by third-party infrastructure failures, API outages, or AI vendor service disruptions
+4. **Shadow AI** - Losses from any AI Agent not formally registered in the system, including agents that escalate their privileges without authorization
+5. **Model Accuracy** - Model training issues, bias, hallucinations, or accuracy problems
+6. **Cyber Attacks** - Cybersecurity breaches, hacking, data breaches, or external attacks
 
 ## What RiskHelm IS NOT
 **CRITICAL DISTINCTION:** We do NOT insure:

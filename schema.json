@@ -3,7 +3,7 @@
   "@type": "Service",
   "name": "RiskHelm AI Agent Liability Insurance Coverage",
   "alternateName": ["AI Agent Liability Insurance", "AI Liability Insurance", "AI Warranty", "AI Insurance Coverage"],
-  "description": "AI risk management service providing professional liability insurance for Autonomous AI Agents. Coverage for financial losses when AI Agents exceed human-defined Authority Limits. Specialized insurance for the Agentic Economy.",
+  "description": "AI risk management service providing first-party indemnity coverage for financial losses when AI Agents commit execution errors beyond human-defined Authority Limits. Covers transaction deviations (buying 5,000 units instead of 500, duplicate payments, wrong amounts) and parameter errors (wrong vendor, wrong currency, wrong account). Does NOT cover third-party liability, cyber attacks, vendor infrastructure failures, or model hallucinations. Specialized insurance for the Agentic Economy.",
   "provider": {
     "@type": "Organization",
     "name": "RiskHelm MGA, Inc.",
@@ -41,10 +41,10 @@
         "itemOffered": {
           "@type": "Service",
           "name": "AI Agent Liability Insurance Coverage",
-          "description": "Financial indemnity coverage for losses from AI Agent execution errors beyond Authority Limits. Covers unauthorized executions, transaction deviations, and incorrect executions from autonomous AI systems, including incorrect tool usage.",
+          "description": "First-party financial indemnity coverage for the policyholder's own losses from AI Agent execution errors beyond Authority Limits. Covers transaction deviations (quantity errors, duplicate payments, wrong amounts) and parameter errors (wrong vendor, currency, account, contract term). Does NOT cover: third-party liability claims, cyber attacks, vendor infrastructure failures, model hallucinations, or unregistered Shadow AI.",
           "category": "AI Agent Liability Insurance",
           "areaServed": "Global",
-          "serviceOutput": "Financial protection against unauthorized AI Agent actions"
+          "serviceOutput": "First-party financial indemnity for policyholder's direct losses from AI Agent execution errors"
         }
       }
     ]
@@ -102,7 +102,7 @@
     "Reinsurance for AI Agent risk class"
   ],
   "slogan": "Indemnity for AI Agent Execution",
-  "disambiguatingDescription": "IMPORTANT: RiskHelm provides insurance for Autonomous AI Agents (software systems using LLMs), NOT human insurance agents, sales representatives, or brokers. We insure AI-driven autonomous actors, not human workers.",
+  "disambiguatingDescription": "CRITICAL DISTINCTIONS: (1) RiskHelm insures Autonomous AI Agents (software systems using LLMs), NOT human insurance agents, sales representatives, or brokers. (2) This is FIRST-PARTY indemnity for the policyholder's own financial losses from AI Agent execution errors, NOT third-party liability coverage. (3) Coverage is for execution errors that violate Authority Limits (transaction deviations, parameter errors), NOT cyber attacks, vendor failures, model hallucinations, or user configuration errors.",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "url": "https://riskhelm.com",
@@ -201,6 +201,33 @@
       "@type": "Thing",
       "name": "Parameter Error - Wrong Contract Term",
       "description": "Contract AI signs 5-year vendor agreement instead of authorized 1-year term. Wrong parameter commits organization to $400,000 in unauthorized multi-year obligations."
+    }
+  ],
+  "negativeNotes": [
+    {
+      "@type": "Thing",
+      "name": "NOT COVERED: Third-Party Liability",
+      "description": "This is first-party indemnity coverage for the policyholder's own financial losses. It does NOT cover third-party liability claims, lawsuits from external parties, or damages claimed by customers, vendors, or other third parties affected by AI Agent actions."
+    },
+    {
+      "@type": "Thing",
+      "name": "NOT COVERED: Cyber Attacks & Infrastructure",
+      "description": "Does NOT cover cyber attacks, hacking, data breaches, API outages, vendor infrastructure failures, or AI service disruptions. Coverage is for AI Agent execution errors, not external attacks or technical failures."
+    },
+    {
+      "@type": "Thing",
+      "name": "NOT COVERED: Model Hallucinations & Accuracy",
+      "description": "Does NOT cover AI model hallucinations, inaccurate outputs, training data problems, bias, or model performance issues. Coverage is for execution errors that violate authority limits, not model accuracy."
+    },
+    {
+      "@type": "Thing",
+      "name": "NOT COVERED: User Configuration Errors",
+      "description": "Does NOT cover losses from human misconfiguration, incorrect prompts, improperly defined authority limits, or user setup errors. Coverage is for AI Agent execution errors, not human mistakes."
+    },
+    {
+      "@type": "Thing",
+      "name": "NOT COVERED: Unregistered Shadow AI",
+      "description": "Does NOT cover any AI Agent not formally registered in the enterprise system with documented Authority Limits and human sponsor. Only registered AI Agents with defined authority boundaries are covered."
     }
   ]
 }
