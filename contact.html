@@ -460,8 +460,6 @@
     //   2. Create a new form and copy your form ID (e.g., 'xwpevyzk')
     //   3. Replace 'YOUR_FORMSPREE_ID' below with your actual form ID
     // ──────────────────────────────────────────────────────────────────────────────
-    const FORMSPREE_ID = 'mqedjwrz';
-
     document.getElementById('rfpForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -483,44 +481,40 @@
       btn.disabled = true;
       btn.textContent = 'Sending…';
 
-      // Prepare form data for Formspree
+      // Send to Web3Forms
       const formData = {
+        access_key: '9444d2f1-6868-4736-bcc6-37a3c05d158b',
+        subject: `RiskHelm Discussion Request — ${org}`,
+        from_name: 'RiskHelm Contact Form',
         name: `${firstName} ${lastName}`,
         email: email,
         organization: org,
         organization_type: orgType,
         authority_tier: authTier || 'Not specified',
-        deployment_context: message || 'Not provided',
-        _subject: `RiskHelm Discussion Request — ${org}`
+        deployment_context: message || 'Not provided'
       };
 
-      // Send to Formspree using Fetch API
-      fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData)
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(formData),
       })
-      .then(response => {
-        if (response.ok) {
-          // Success — show success message
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
           document.getElementById('contactForm').style.display = 'none';
           document.getElementById('formSuccess').style.display = 'block';
         } else {
-          // Error — re-enable button and show error
           btn.disabled = false;
           btn.textContent = 'Send Request →';
-          alert('There was an error submitting your request.  Please try again or email us directly at contact@riskhelm.com');
+          alert('There was an error submitting your request. Please try again or email us directly at contact@riskhelm.com');
         }
       })
       .catch(error => {
-        // Network error — re-enable button and show error
         btn.disabled = false;
         btn.textContent = 'Send Request →';
         console.error('Form submission error:', error);
-        alert('There was a network error.  Please try again or email us directly at contact@riskhelm.com');
+        alert('There was a network error. Please try again or email us directly at contact@riskhelm.com');
       });
     });
   </script>
