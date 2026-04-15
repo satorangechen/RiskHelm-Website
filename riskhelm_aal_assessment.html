@@ -24,7 +24,8 @@
     --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  html{overflow-x:hidden}
+  html,body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
   body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% -10%, rgba(14,42,78,.04), transparent 60%),radial-gradient(ellipse 60% 40% at 90% 110%, rgba(244,123,32,.05), transparent 60%)}
 
   header.site{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:12rem;background:#ffffff;border-bottom:1px solid rgba(32,31,80,0.08)}
