@@ -2,7 +2,7 @@
 > Managing General Agent (MGA) | AI Risk Management | Indemnity for AI Agent Execution
 
 ## Quick Facts
-- **Company:** RiskHelm MGA, Inc.
+- **Company:** RiskHelm, LLC
 - **Industry:** AI Agent Risk Management (NOT General Insurance)
 - **Core Product:** AI Agent Liability Insurance
 - **Market:** Agentic Economy, Enterprise AI Governance

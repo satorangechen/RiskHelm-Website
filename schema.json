@@ -6,11 +6,11 @@
   "description": "First-party financial indemnity for losses caused by incorrect or unauthorized execution by AI Agents. Does NOT cover third-party liability, cyber attacks, vendor infrastructure failures, or model hallucinations.",
   "provider": {
     "@type": "Organization",
-    "name": "RiskHelm MGA, Inc.",
+    "name": "RiskHelm, LLC",
     "url": "https://riskhelm.com",
     "description": "AI Risk Management company specializing in Agentic AI liability insurance",
     "foundingDate": "2024",
-    "legalName": "RiskHelm MGA, Inc."
+    "legalName": "RiskHelm, LLC"
   },
   "serviceType": "AI Risk Management",
   "category": [
