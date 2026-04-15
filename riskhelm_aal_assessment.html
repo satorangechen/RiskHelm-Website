@@ -40,6 +40,29 @@
   header.site .nav-cta{display:flex;align-items:center;gap:10px;align-self:flex-end;padding-bottom:58px}
   header.site .pill{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);background:rgba(244,123,32,.08);padding:5px 10px;border-radius:999px;border:1px solid rgba(244,123,32,.2)}
 
+  .hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:transparent;border:none;cursor:pointer;padding:0;z-index:300}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:transform .3s ease,opacity .3s ease}
+  .hamburger span:nth-child(1){margin-bottom:6px}
+  .hamburger span:nth-child(3){margin-top:6px}
+  .hamburger:hover span{background:var(--orange)}
+  .hamburger:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:4px}
+  .hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .hamburger.active span:nth-child(2){opacity:0}
+  .hamburger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+  .mobile-menu{display:none;position:fixed;top:12rem;left:0;right:0;bottom:0;background:#fff;z-index:9998;padding:32px 5%;flex-direction:column;gap:0;overflow-y:auto}
+  .mobile-menu.active{display:flex}
+  .mobile-menu a{display:block;padding:18px 0;font-size:18px;font-weight:700;color:var(--navy);border-bottom:1px solid rgba(32,31,80,.08);text-decoration:none;transition:color .2s}
+  .mobile-menu a:hover,.mobile-menu a:focus{color:var(--orange)}
+  .mobile-menu .mobile-cta{margin-top:24px;padding-top:0;border-bottom:none}
+  .mobile-menu .mobile-cta button{width:100%;padding:16px 24px;font-size:16px;text-align:center;display:block;background:var(--navy);color:#fff;border:none;border-radius:9px;font-family:var(--sans);font-weight:800;cursor:pointer}
+
+  @media (max-width:768px){
+    .hamburger{display:flex}
+    header.site nav{display:none!important}
+    header.site .nav-cta{display:none}
+  }
+
   main{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:40px 28px 72px}
 
   #intro .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
@@ -265,7 +288,40 @@
   <div class="nav-cta">
     <span class="pill">AAL Risk Assessment</span>
   </div>
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="index.html#framework">Framework</a>
+  <a href="index.html#alignment">Alignment</a>
+  <a href="resources.html">Resources</a>
+  <a href="contact.html">Contact</a>
+  <div class="mobile-cta">
+    <a href="riskhelm_aal_assessment.html"><button>Risk Assessment</button></a>
+  </div>
+</div>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', function(){
+    this.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    this.setAttribute('aria-expanded', this.classList.contains('active'));
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+  });
+  function closeMobileMenu(){
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    hamburger.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  }
+</script>
 
 <main>
 <section id="intro">
