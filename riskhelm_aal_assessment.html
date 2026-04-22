@@ -3,19 +3,23 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>RiskHelm — AI Agent Liability Risk Assessment</title>
+<title>RiskHelm — AI Agent Liability Risk Assessment (v3, AGT-aligned)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#0E2A4E; --navy-deep:#081A31;
-    --orange:#F47B20; --orange-2:#ff9344;
+    --orange:#E46F2C; --orange-2:#F4853D;
     --bg:#FFFFFF; --soft:#F7F9FC; --card:#FFFFFF;
     --line:#E4E9F0; --line-strong:#CDD6E3;
     --mute:#6B7A92; --text:#1a2942;
     --crit:#B32418; --high:#C25A00; --med:#8A6A00; --low:#3A5578;
     --crit-bg:#FBEDEA; --high-bg:#FBF1E6; --med-bg:#FBF6E1; --low-bg:#ECF1F8;
+    --prefer:#1D7D4D; --prefer-bg:#E6F2EC;
+    --standard:#2B5B96; --standard-bg:#E8EEF7;
+    --substd:#9A6100; --substd-bg:#FBF1E0;
+    --refer:#B32418; --refer-bg:#FBEDEA;
     --shadow-sm:0 1px 2px rgba(14,42,78,.06);
     --shadow-md:0 8px 24px -8px rgba(14,42,78,.14);
     --shadow-lg:0 24px 48px -16px rgba(14,42,78,.22);
@@ -25,9 +29,9 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{overflow-x:hidden}
-  html,body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% -10%, rgba(14,42,78,.04), transparent 60%),radial-gradient(ellipse 60% 40% at 90% 110%, rgba(244,123,32,.05), transparent 60%)}
+  html,body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
+  /* ─── SITE HEADER ─── */
   header.site{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:12rem;background:#ffffff;border-bottom:1px solid rgba(32,31,80,0.08)}
   body{padding-top:12rem}
   header.site .logo{display:flex;align-items:center;text-decoration:none;color:var(--navy)}
@@ -38,8 +42,9 @@
   header.site nav a{color:var(--navy);font-size:16px;font-weight:700;text-decoration:none;letter-spacing:0.01em;transition:color 0.2s}
   header.site nav a:hover{color:var(--orange)}
   header.site .nav-cta{display:flex;align-items:center;gap:10px;align-self:flex-end;padding-bottom:58px}
-  header.site .pill{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);background:rgba(244,123,32,.08);padding:5px 10px;border-radius:999px;border:1px solid rgba(244,123,32,.2)}
+  header.site .pill{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);background:rgba(228,111,44,.08);padding:5px 10px;border-radius:999px;border:1px solid rgba(228,111,44,.2)}
 
+  /* ─── HAMBURGER ─── */
   .hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:transparent;border:none;cursor:pointer;padding:0;z-index:300}
   .hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:transform .3s ease,opacity .3s ease}
   .hamburger span:nth-child(1){margin-bottom:6px}
@@ -63,211 +68,156 @@
     header.site .nav-cta{display:none}
   }
 
-  main{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:40px 28px 72px}
+  /* ─── V3 ASSESSMENT STYLES (exact match) ─── */
+  main{max-width:780px;margin:0 auto;padding:40px 28px 72px}
 
+  /* Intro */
   #intro .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
-  #intro h1{font-family:var(--sans);font-weight:800;font-size:clamp(24px,3.2vw,52px);line-height:1.07;letter-spacing:-.035em;color:var(--navy);margin-bottom:18px}
-  #intro h1 em{font-style:normal;font-weight:700;color:var(--orange)}
+  #intro h1{font-family:var(--sans);font-weight:800;font-size:clamp(26px,3.2vw,48px);line-height:1.07;letter-spacing:-.035em;color:var(--navy);margin-bottom:18px}
+  #intro h1 em{font-style:italic;font-weight:700;color:var(--orange)}
   #intro .subhead{font-size:17px;color:var(--mute);max-width:62ch;margin-bottom:24px;line-height:1.55}
-  #intro .meta{display:grid;grid-template-columns:1fr;gap:0;margin-bottom:32px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  #intro .meta{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:32px}
   #intro .meta div{padding:12px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:space-between;align-items:baseline;gap:20px}
   #intro .meta div:last-child{border-bottom:none}
-  #intro .meta div strong{font-family:var(--sans);font-weight:600;font-size:13px;color:var(--navy);letter-spacing:0;text-transform:none}
+  #intro .meta div strong{font-family:var(--sans);font-weight:600;font-size:13px;color:var(--navy);letter-spacing:0;text-transform:none;text-align:right}
 
-  .cta-primary{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;border:none;cursor:pointer;font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:-.005em;padding:14px 26px;border-radius:4px;transition:all .18s ease;box-shadow:var(--shadow-md)}
+  .cta-primary{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;border:none;cursor:pointer;font-family:var(--sans);font-weight:600;font-size:14px;padding:14px 26px;border-radius:4px;transition:background .18s ease, transform .18s ease, box-shadow .18s ease;box-shadow:var(--shadow-md)}
   .cta-primary:hover{background:var(--navy-deep);transform:translateY(-1px);box-shadow:var(--shadow-lg)}
-  .cta-primary .arrow{transition:transform .18s ease}
-  .cta-primary:hover .arrow{transform:translateX(3px)}
+  .cta-primary:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+  .cta-primary:active{transform:translateY(0)}
   .cta-primary.lg{padding:18px 34px;font-size:16px}
-  .cta-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--navy);border:1px solid var(--line-strong);cursor:pointer;font-family:var(--sans);font-weight:500;font-size:13px;padding:13px 20px;border-radius:4px;transition:all .15s ease}
+  .cta-primary:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:var(--shadow-sm)}
+  .cta-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--navy);border:1px solid var(--line-strong);cursor:pointer;font-family:var(--sans);font-weight:500;font-size:13px;padding:13px 20px;border-radius:4px;transition:border-color .15s ease, background .15s ease}
   .cta-secondary:hover{border-color:var(--navy);background:var(--soft)}
+  .cta-secondary:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+  .cta-secondary:active{transform:scale(.99)}
 
-  .progress{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:28px}
-  .progress .seg{height:3px;background:var(--line);border-radius:2px;position:relative;overflow:hidden}
+  /* Progress */
+  .progress{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:28px}
+  .progress .seg{height:3px;background:var(--line);border-radius:2px}
   .progress .seg.done{background:var(--navy)}
-  .progress .seg.active::after{content:"";position:absolute;inset:0;background:var(--orange);animation:fill 400ms ease-out forwards}
-  .progress .labels{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
-  .progress .labels span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  .progress .seg.active{background:var(--orange)}
+  .progress .labels{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:8px}
+  .progress .labels span{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
   .progress .labels span.active{color:var(--navy)}
-  @keyframes fill{from{transform:translateX(-100%)}to{transform:translateX(0)}}
 
+  /* Step */
   .step{animation:fadeUp .3s ease-out}
   @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
   .step-header{margin-bottom:28px}
   .step-header .step-num{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
   .step-header h2{font-family:var(--serif);font-weight:700;font-size:30px;line-height:1.1;letter-spacing:-.02em;color:var(--navy)}
+  .step-header p{font-size:14px;color:var(--mute);margin-top:8px;max-width:60ch}
 
   .field{margin-bottom:22px}
-  .field .qnum{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-bottom:4px;display:block}
-  .field > label{display:block;font-family:var(--serif);font-size:18px;line-height:1.3;color:var(--navy);margin-bottom:6px;font-weight:600;letter-spacing:-.01em}
-  .field > label .req{color:var(--orange);margin-left:3px}
-  .field .hint{font-size:13px;color:var(--mute);margin-bottom:12px;line-height:1.5}
+  .field .q-num{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+  .field label.q{display:block;font-family:var(--serif);font-weight:600;font-size:20px;line-height:1.3;color:var(--navy);margin-bottom:12px}
+  .field .hint{font-size:13px;color:var(--mute);margin-top:-6px;margin-bottom:12px;font-style:italic}
+  .field .agt-note{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--mute);margin-top:-4px;margin-bottom:12px}
 
-  .options{display:flex;flex-direction:column;gap:8px}
-  .opt{position:relative;display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:6px;cursor:pointer;transition:border-color .15s ease, background .15s ease, box-shadow .15s ease, transform .08s ease;user-select:none;will-change:transform}
+  input[type="text"],input[type="email"],input[type="number"],select,textarea{width:100%;padding:13px 14px;border:1px solid var(--line-strong);border-radius:4px;font-family:var(--sans);font-size:14px;color:var(--text);background:var(--card);transition:border-color .15s ease, box-shadow .15s ease}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(14,42,78,.08)}
+
+  /* Option card pattern */
+  .opts{display:grid;grid-template-columns:1fr;gap:8px}
+  .opt{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--card);transition:border-color .15s ease, background .15s ease, box-shadow .15s ease}
   .opt:hover{border-color:var(--line-strong);background:var(--soft)}
-  .opt:active{transform:scale(0.995)}
-  .opt input{position:absolute;opacity:0;pointer-events:none}
-  .opt .bullet{flex-shrink:0;width:16px;height:16px;border-radius:50%;border:2px solid var(--line-strong);background:#fff;margin-top:2px;transition:border-color .18s ease;display:flex;align-items:center;justify-content:center}
-  .opt input[type="checkbox"] ~ .bullet{border-radius:4px}
-  .opt .bullet::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange);transform:scale(0);transition:transform .18s cubic-bezier(0.34, 1.56, 0.64, 1)}
-  .opt input[type="checkbox"] ~ .bullet::after{border-radius:1px}
-  .opt input:checked ~ .bullet{border-color:var(--orange)}
-  .opt input:checked ~ .bullet::after{transform:scale(1)}
-  .opt.selected{border-color:var(--navy);background:rgba(14,42,78,.02);box-shadow:inset 0 0 0 1px var(--navy)}
+  .opt input{margin-top:3px;accent-color:var(--navy)}
+  .opt.active{border-color:var(--navy);background:var(--soft);box-shadow:inset 0 0 0 1px var(--navy)}
   .opt .opt-body{flex:1;min-width:0}
-  .opt .opt-label{font-weight:600;font-size:14px;color:var(--navy);line-height:1.4;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-  .opt .opt-sub{font-size:12.5px;color:var(--mute);margin-top:2px;line-height:1.5}
-  .opt .opt-chip{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border-radius:3px;line-height:1.3;flex-shrink:0}
-  .opt .opt-chip.lowest{background:var(--low-bg);color:var(--low)}
-  .opt .opt-chip.mid{background:var(--med-bg);color:var(--med)}
-  .opt .opt-chip.highest{background:var(--crit-bg);color:var(--crit)}
-  .autonomy .opt{padding:16px 18px}
-  .autonomy .opt .opt-label{font-family:var(--serif);font-weight:700;font-size:18px;letter-spacing:-.01em}
+  .opt .opt-label{font-weight:600;font-size:14px;color:var(--navy);margin-bottom:2px}
+  .opt .opt-sub{font-size:13px;color:var(--mute);line-height:1.45}
+  .opt .opt-chip{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px;margin-left:8px;vertical-align:middle}
+  .chip-l0{background:var(--crit-bg);color:var(--crit)}
+  .chip-l1{background:var(--low-bg);color:var(--low)}
+  .chip-l2{background:var(--med-bg);color:var(--med)}
+  .chip-l3{background:var(--standard-bg);color:var(--standard)}
+  .chip-l4{background:var(--prefer-bg);color:var(--prefer)}
+  .opt .opt-score{font-family:var(--mono);font-size:10px;color:var(--mute);background:var(--soft);padding:2px 6px;border-radius:3px;white-space:nowrap}
 
-  input[type="text"], input[type="number"], input[type="email"], select, textarea{width:100%;padding:11px 14px;font-family:var(--sans);font-size:14px;color:var(--text);background:#fff;border:1px solid var(--line-strong);border-radius:6px;transition:all .15s ease;font-weight:500}
-  input:focus, select:focus, textarea:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(14,42,78,.08)}
-  input.error{border-color:var(--crit);box-shadow:0 0 0 3px rgba(179,36,24,.1)}
-  textarea{resize:vertical;min-height:64px;font-family:var(--sans)}
+  .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
 
-  .stack-inputs{display:flex;flex-direction:column;gap:8px}
+  /* Results */
+  .results-head{text-align:left;margin-bottom:32px}
+  .results-head .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+  .results-head h2{font-family:var(--sans);font-weight:800;font-size:clamp(24px,3vw,38px);line-height:1.1;letter-spacing:-.03em;color:var(--navy);margin-bottom:10px}
+  .results-head .sub{font-size:15px;color:var(--mute);max-width:60ch}
 
-  .step-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:20px;border-top:1px solid var(--line);gap:14px;flex-wrap:wrap}
-  .step-nav .gate-error{color:var(--crit);font-size:12.5px;font-weight:500;flex:1;min-width:180px}
+  .tier-banner{display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:8px;margin-bottom:24px;border:1px solid var(--line)}
+  .tier-banner.prefer{background:var(--prefer-bg);border-color:var(--prefer)}
+  .tier-banner.standard{background:var(--standard-bg);border-color:var(--standard)}
+  .tier-banner.substd{background:var(--substd-bg);border-color:var(--substd)}
+  .tier-banner.refer{background:var(--refer-bg);border-color:var(--refer)}
+  .tier-banner .tier-label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:3px}
+  .tier-banner .tier-name{font-family:var(--serif);font-weight:700;font-size:22px;color:var(--navy);line-height:1.1}
+  .tier-banner .tier-score{font-family:var(--mono);font-size:13px;color:var(--mute);margin-top:2px}
 
-  .max-note{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-left:8px;font-weight:500}
-  .max-note.warn{color:var(--high)}
-  #concernsOtherWrap{
-    margin-top:10px;padding-left:16px;border-left:2px solid var(--orange);
-    max-height:0;opacity:0;overflow:hidden;
-    transition:max-height .25s ease-out, opacity .2s ease-out, margin-top .25s ease-out;
-  }
-  #concernsOtherWrap.show{max-height:200px;opacity:1}
-  #concernsOtherWrap label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;display:block;font-weight:500}
+  .metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:28px}
+  .metric{padding:18px 20px;background:var(--soft);border-radius:6px;border:1px solid var(--line)}
+  .metric .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+  .metric .v{font-family:var(--sans);font-weight:700;font-size:22px;color:var(--navy);line-height:1.1}
+  .metric .v-sub{font-size:12px;color:var(--mute);margin-top:4px}
 
-  /* Conditional-box (vertical_other) — same reveal treatment */
-  .conditional-box{
-    margin-top:10px;padding-left:16px;border-left:2px solid var(--orange);
-    animation:revealDown .25s ease-out;
-  }
-  .conditional-box label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;display:block;font-weight:500}
-  @keyframes revealDown{
-    from{opacity:0;max-height:0;transform:translateY(-4px)}
-    to{opacity:1;max-height:200px;transform:translateY(0)}
-  }
+  .domain-grid{display:grid;grid-template-columns:1fr;gap:8px;margin:22px 0 28px;padding:18px;background:var(--soft);border-radius:6px;border:1px solid var(--line)}
+  .domain-grid .dg-title{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+  .domain-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .domain-row:last-child{border-bottom:none}
+  .domain-row .dr-name{color:var(--navy);font-weight:500}
+  .domain-row .dr-score{font-family:var(--mono);color:var(--mute)}
+  .domain-row .dr-bar{width:90px;height:4px;background:var(--line);border-radius:2px;margin:0 10px;overflow:hidden}
+  .domain-row .dr-bar-fill{height:100%;background:var(--navy);transition:width .3s}
 
-  /* Standard results */
-  #results .verdict{margin-bottom:36px;padding:28px 0 0}
-  #results .verdict .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
-  #results .verdict h2{font-family:var(--sans);font-weight:800;font-size:clamp(28px,4.5vw,46px);line-height:1.05;letter-spacing:-.03em;color:var(--navy);margin-bottom:10px}
-  #results .verdict h2 em{font-style:normal;color:var(--orange);font-weight:800}
-  #results .verdict .risk-label{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:4px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;font-weight:500;margin-top:14px}
-  .risk-label.low{background:var(--low-bg);color:var(--low)}
-  .risk-label.mod{background:var(--med-bg);color:var(--med)}
-  .risk-label.high{background:var(--high-bg);color:var(--high)}
-  .risk-label.crit{background:var(--crit-bg);color:var(--crit)}
-  .risk-label .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+  .gaps h3{font-family:var(--serif);font-weight:700;font-size:20px;color:var(--navy);margin-bottom:14px}
+  .gap{padding:16px 18px;border-radius:6px;margin-bottom:10px;border-left:4px solid var(--line)}
+  .gap.crit{background:var(--crit-bg);border-left-color:var(--crit)}
+  .gap.high{background:var(--high-bg);border-left-color:var(--high)}
+  .gap.med{background:var(--med-bg);border-left-color:var(--med)}
+  .gap.low{background:var(--low-bg);border-left-color:var(--low)}
+  .gap .pri{display:none}
+  .gap .gap-title{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:4px}
+  .gap .gap-body{font-size:13px;color:var(--text);line-height:1.55}
 
-  .metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card);margin-bottom:32px}
-  .metric{padding:20px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .metrics .metric:nth-child(2n){border-right:none}
-  .metrics .metric:nth-last-child(-n+2){border-bottom:none}
-  @media (max-width:540px){.metrics{grid-template-columns:1fr}.metrics .metric{border-right:none!important;border-bottom:1px solid var(--line)!important}.metrics .metric:last-child{border-bottom:none!important}}
-  .metric .key{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
-  .metric .val{font-family:var(--serif);font-weight:700;font-size:24px;line-height:1;letter-spacing:-.02em;color:var(--navy)}
-  .metric .sub{font-size:11.5px;color:var(--mute);margin-top:4px;font-family:var(--mono);letter-spacing:.04em}
+  .cta-card{background:var(--navy);color:#fff;padding:28px 28px;border-radius:8px;margin-top:32px}
+  .cta-card h3{font-family:var(--serif);font-weight:700;font-size:24px;margin-bottom:8px;color:#fff}
+  .cta-card p{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:18px;line-height:1.55}
+  .cta-card .cta-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .cta-card .cta-primary{background:var(--orange);color:#fff}
+  .cta-card .cta-primary:hover{background:var(--orange-2)}
+  .cta-card .cta-secondary{color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2);background:transparent}
+  .cta-card .cta-secondary:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.05);color:#fff}
 
-  .premium-block{background:var(--navy);color:#fff;padding:28px 32px;border-radius:8px;margin-bottom:32px;position:relative;overflow:hidden}
-  .premium-block::before{content:"";position:absolute;top:-50%;right:-10%;width:60%;height:200%;background:radial-gradient(circle,rgba(244,123,32,.18),transparent 60%);pointer-events:none}
-  .premium-block .key{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;position:relative}
-  .premium-block .range{font-family:var(--serif);font-weight:700;font-size:clamp(32px,5.5vw,54px);line-height:1;letter-spacing:-.02em;position:relative;margin-bottom:10px}
-  .premium-block .range em{font-style:italic;font-weight:600;color:var(--orange-2)}
-  .premium-block .disclaimer{font-size:12.5px;color:rgba(255,255,255,.7);max-width:62ch;position:relative;line-height:1.55}
+  .refer-block{text-align:center;padding:48px 28px;background:var(--soft);border-radius:8px;border:1px solid var(--line)}
+  .refer-block .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--refer);margin-bottom:12px}
+  .refer-block h3{font-family:var(--serif);font-weight:700;font-size:26px;color:var(--navy);margin-bottom:10px}
+  .refer-block p{font-size:15px;color:var(--mute);max-width:52ch;margin:0 auto 22px;line-height:1.55}
 
-  .gaps-title{font-family:var(--serif);font-weight:700;font-size:24px;letter-spacing:-.015em;color:var(--navy);margin-bottom:6px}
-  .gaps-sub{color:var(--mute);margin-bottom:18px;font-size:14px}
-  .gap{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:18px 0;border-top:1px solid var(--line)}
-  .gap:last-child{border-bottom:1px solid var(--line)}
-  @media (max-width:640px){.gap{grid-template-columns:1fr;gap:8px;padding:14px 0}}
-  .gap .prio{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;display:inline-flex;align-items:flex-start;gap:7px;padding-top:2px}
-  .gap .prio .bar{width:3px;height:14px;background:currentColor;margin-top:1px;border-radius:1px}
-  .gap.crit .prio{color:var(--crit)}
-  .gap.high .prio{color:var(--high)}
-  .gap.medi .prio{color:var(--med)}
-  .gap.low .prio{color:var(--low)}
-  .gap .body .title{font-family:var(--serif);font-weight:700;font-size:18px;color:var(--navy);margin-bottom:5px;letter-spacing:-.01em;line-height:1.3}
-  .gap .body .copy{color:var(--text);font-size:14px;line-height:1.55}
-
-  .cta-block{margin-top:36px;padding:28px 32px;background:var(--soft);border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-  .cta-block h3{font-family:var(--sans);font-weight:800;font-size:22px;color:var(--navy);letter-spacing:-.02em;margin-bottom:4px}
-  .cta-block h3 em{font-style:normal;color:var(--orange);font-weight:800}
-  .cta-block p{color:var(--mute);max-width:52ch;font-size:14px}
-  .cta-block .actions{display:flex;gap:10px;flex-wrap:wrap}
-
-  /* Referral short-circuit */
-  .referral-block{padding:56px 44px;background:linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);color:#fff;border-radius:12px;position:relative;overflow:hidden;margin-top:8px}
-  .referral-block::before{content:"";position:absolute;top:-40%;right:-20%;width:80%;height:200%;background:radial-gradient(circle,rgba(244,123,32,.22),transparent 55%);pointer-events:none}
-  .referral-block .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;position:relative;display:inline-flex;align-items:center;gap:10px}
-  .referral-block .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(244,123,32,.2);animation:pulse 2s ease-in-out infinite}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(244,123,32,.2)}50%{box-shadow:0 0 0 8px rgba(244,123,32,.1)}}
-  .referral-block h2{font-family:var(--serif);font-weight:700;font-size:clamp(36px,6vw,58px);line-height:1.04;letter-spacing:-.025em;margin-bottom:18px;position:relative;max-width:16ch}
-  .referral-block h2 em{font-style:italic;color:var(--orange-2);font-weight:600}
-  .referral-block .lede{font-size:17px;color:rgba(255,255,255,.88);max-width:54ch;margin-bottom:36px;line-height:1.6;position:relative}
-  .referral-block .cta-row{position:relative;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .referral-block .cta-primary.lg{background:var(--orange);color:var(--navy)}
-  .referral-block .cta-primary.lg:hover{background:var(--orange-2)}
-  .referral-block .cta-secondary{color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2);background:transparent}
-  .referral-block .cta-secondary:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.05);color:#fff}
-
+  /* Footer */
   footer{max-width:1180px;margin:48px auto 0;padding:24px 32px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
   footer a{color:var(--mute);text-decoration:none;margin-left:18px}
   footer a:hover{color:var(--navy)}
 
-  .hidden{display:none !important}
+  .hidden{display:none!important}
 
-  /* Calendly inline embed wrapper — mounts on the results page once the prospect clicks the CTA */
+  /* Calendly inline embed wrapper */
   .calendly-wrap{margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;animation:fadeUp .3s ease-out}
   .calendly-wrap .calendly-inline-widget{width:100%}
-  .referral-block + .calendly-wrap{background:#fff}
-  @media print{
-    header.site, .step-nav, .cta-row, .cta-block, footer, .progress, .calendly-wrap, .cta-secondary{display:none!important}
-    body::before{display:none}
-    body{padding-top:0!important}
-    main{padding:0!important;max-width:100%!important}
-    #results .verdict{margin-bottom:12px!important;padding:8px 0 0!important}
-    #results .verdict h2{font-size:22px!important;margin-bottom:4px!important}
-    #results .verdict .eyebrow{margin-bottom:4px!important;font-size:9px!important}
-    .risk-label{margin-top:6px!important;padding:4px 10px!important;font-size:9px!important}
-    .metrics{margin-bottom:12px!important}
-    .metric{padding:10px 12px!important}
-    .metric .key{font-size:8px!important;margin-bottom:4px!important}
-    .metric .val{font-size:18px!important}
-    .metric .sub{font-size:9px!important;margin-top:2px!important}
-    .premium-block{padding:14px 20px!important;margin-bottom:12px!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .premium-block .key{font-size:8px!important;margin-bottom:6px!important}
-    .premium-block .range{font-size:28px!important;margin-bottom:4px!important}
-    .premium-block .disclaimer{font-size:10px!important}
-    .gaps-title{font-size:16px!important;margin-bottom:2px!important}
-    .gaps-sub{margin-bottom:8px!important;font-size:11px!important}
-    .gap{padding:8px 0!important;grid-template-columns:80px 1fr!important;gap:10px!important;page-break-inside:avoid}
-    .gap .prio{font-size:8px!important}
-    .gap .body .title{font-size:13px!important;margin-bottom:2px!important}
-    .gap .body .copy{font-size:10px!important;line-height:1.4!important}
-    .referral-block{padding:24px 28px!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .referral-block h2{font-size:28px!important;margin-bottom:8px!important}
-    .referral-block .lede{font-size:12px!important;margin-bottom:12px!important}
-    .referral-block .eyebrow{margin-bottom:8px!important}
-    @page{margin:0.5in}
+
+  @media (max-width:620px){
+    main{padding:28px 18px 60px}
+    #intro h1{font-size:28px}
+    .step-header h2{font-size:24px}
+    .metrics{grid-template-columns:1fr}
+    .progress .labels span{font-size:8.5px}
   }
   @media (max-width:480px){
-    .referral-block{padding:32px 20px}
-    .referral-block .lede{font-size:15px}
-    .cta-primary.lg{padding:14px 22px;font-size:14px}
-    .cta-row{flex-direction:column;align-items:stretch}
-    .cta-row .cta-primary, .cta-row .cta-secondary{width:100%;justify-content:center;text-align:center}
-    .cta-block{flex-direction:column;padding:22px 18px}
-    .cta-block .actions{flex-direction:column;width:100%}
-    .cta-block .actions .cta-primary, .cta-block .actions .cta-secondary{width:100%;justify-content:center;text-align:center}
+    .cta-card .cta-actions{flex-direction:column}
+    .cta-card .cta-actions .cta-primary, .cta-card .cta-actions .cta-secondary{width:100%;justify-content:center;text-align:center}
+    .nav-row{flex-wrap:wrap;gap:10px}
+  }
+  @media print{
+    header.site, footer, .hamburger, .mobile-menu, .calendly-wrap{display:none!important}
+    body{padding-top:0!important}
+    main{padding:0!important;max-width:100%!important}
   }
 </style>
 </head>
@@ -324,792 +274,786 @@
 </script>
 
 <main>
-<section id="intro">
-  <div class="eyebrow">AI Agent Execution Risk — First-Party Indemnity</div>
-  <h1>Risk Assessment for <em>AI Agent Execution</em></h1>
-  <p class="subhead">Audit your autonomous risk profile. Identify critical coverage gaps as carriers introduce mandatory AI exclusions in 2026.</p>
-  <div class="meta">
-    <div>Duration<strong>~3 minutes</strong></div>
-    <div>Questions<strong>13–14 across 4 steps</strong></div>
-    <div>Output<strong>Tier · limit · premium range · gap analysis</strong></div>
-  </div>
-  <button class="cta-primary" onclick="start()">Begin Assessment
-    <svg class="arrow" width="15" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
-</section>
-
-<section id="assessment" class="hidden">
-  <div class="progress">
-    <div class="seg" id="seg1"></div><div class="seg" id="seg2"></div><div class="seg" id="seg3"></div><div class="seg" id="seg4"></div>
-    <div class="labels">
-      <span id="lbl1">01 · Entity</span><span id="lbl2">02 · Autonomy</span><span id="lbl3">03 · Exposure</span><span id="lbl4">04 · Coverage</span>
+  <!-- INTRO -->
+  <section id="intro">
+    <h1>Risk Assessment for <span style="color:var(--orange)">AI Agent Execution</span></h1>
+    <p class="subhead">Evaluate your autonomous risk profile. As traditional carriers move toward affirmative AI exclusions, identify your coverage gaps in minutes.</p>
+    <div class="meta">
+      <div><span>Output</span><strong>Governance Tier + Indicative Premium Range</strong></div>
+      <div><span>Time</span><strong>~5 Minutes &middot; 5 Steps</strong></div>
     </div>
-  </div>
-  <div id="stepContainer"></div>
-  <div class="step-nav">
-    <button class="cta-secondary" id="backBtn" onclick="back()">
-      <svg width="13" height="9" viewBox="0 0 14 10"><path d="M13 5H1M5 1L1 5l4 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Back
-    </button>
-    <div class="gate-error" id="gateError"></div>
-    <button class="cta-primary" id="nextBtn" onclick="next()">
-      <span id="nextLabel">Continue</span>
-      <svg class="arrow" width="15" height="11" viewBox="0 0 16 12"><path d="M1 6h13M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-  </div>
-</section>
+    <button class="cta-primary lg" onclick="startAssessment()">Begin Assessment <span class="arrow">&rarr;</span></button>
+  </section>
 
-<section id="results" class="hidden"></section>
+  <!-- ASSESSMENT -->
+  <section id="assessment" class="hidden">
+    <div class="progress" id="progress">
+      <div class="seg" data-step="1"></div>
+      <div class="seg" data-step="2"></div>
+      <div class="seg" data-step="3"></div>
+      <div class="seg" data-step="4"></div>
+      <div class="seg" data-step="5"></div>
+      <div class="labels">
+        <span data-step="1">Entity</span>
+        <span data-step="2">Exposure</span>
+        <span data-step="3">Governance</span>
+        <span data-step="4">Coverage</span>
+        <span data-step="5">Submit</span>
+      </div>
+    </div>
+
+    <!-- STEP 1: ENTITY & ECOSYSTEM -->
+    <div class="step" id="step-1">
+      <div class="step-header">
+        <div class="step-num">Step 1 of 5</div>
+        <h2>Entity &amp; Ecosystem</h2>
+        <p>Defining your organizational profile to calibrate coverage for autonomous execution and ecosystem liability.</p>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q01</div>
+        <label class="q">Which Best Describes Your Organization?</label>
+        <div class="opts" data-field="entity">
+          <label class="opt"><input type="radio" name="entity" value="deployer"><div class="opt-body"><div class="opt-label">Enterprise End-User (Deployer)</div><div class="opt-sub">You run autonomous agents to execute business workflows or customer-facing services. You own the financial consequences of their decisions.</div></div></label>
+          <label class="opt"><input type="radio" name="entity" value="platform"><div class="opt-body"><div class="opt-label">Infrastructure Provider (Platform)</div><div class="opt-sub">You build, host, or orchestrate the environments where agents operate. Your risk is tied to the reliability and security of the framework you provide.</div></div></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q02</div>
+        <label class="q">Company Size</label>
+        <div class="opts" data-field="size">
+          <label class="opt"><input type="radio" name="size" value="startup"><div class="opt-body"><div class="opt-label">Startup</div><div class="opt-sub">Under 50 Employees</div></div></label>
+          <label class="opt"><input type="radio" name="size" value="small"><div class="opt-body"><div class="opt-label">Small</div><div class="opt-sub">50&ndash;150 Employees</div></div></label>
+          <label class="opt"><input type="radio" name="size" value="mid"><div class="opt-body"><div class="opt-label">Mid-Market</div><div class="opt-sub">150&ndash;500 Employees</div></div></label>
+          <label class="opt"><input type="radio" name="size" value="ent"><div class="opt-body"><div class="opt-label">Enterprise</div><div class="opt-sub">500+ Employees</div></div></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q03</div>
+        <label class="q">Vertical</label>
+        <select name="vertical" id="f-vertical">
+          <option value="">Select a Vertical&hellip;</option>
+          <option value="fintech">Fintech &amp; Banking</option>
+          <option value="healthtech">Healthcare &amp; HealthTech</option>
+          <option value="saas">Enterprise SaaS &amp; IT</option>
+          <option value="procurement">Procurement &amp; Strategic Sourcing</option>
+          <option value="custops">Customer Operations &amp; Support</option>
+          <option value="retail">Retail &amp; E-commerce</option>
+          <option value="logistics">Logistics &amp; Supply Chain</option>
+          <option value="legaltech">Legal &amp; Compliance Tech</option>
+          <option value="hrtech">HR &amp; Recruitment</option>
+          <option value="martech">Digital Marketing &amp; Media</option>
+          <option value="other">Other</option>
+        </select>
+        <div class="field hidden" id="vertical-other-wrap" style="margin-top:12px;margin-bottom:0">
+          <input type="text" name="vertical_other" maxlength="60" placeholder="Describe Your Vertical">
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <div></div>
+        <button class="cta-primary" onclick="nextStep()">Continue <span class="arrow">&rarr;</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 2: EXPOSURE -->
+    <div class="step hidden" id="step-2">
+      <div class="step-header">
+        <div class="step-num">Step 2 of 5</div>
+        <h2>Exposure Profile</h2>
+        <p>Quantify your agentic footprint: authority levels and financial throughput.</p>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q04</div>
+        <label class="q">What Is the Highest Autonomy Tier Any Agent in Your Fleet Operates at?</label>
+        <div class="hint">Pick the most autonomous agent you run&mdash;not the average.</div>
+        <div class="opts" data-field="autonomy">
+          <label class="opt"><input type="radio" name="autonomy" value="1"><div class="opt-body"><div class="opt-label">Read-Only <span class="opt-chip chip-l1">Lowest Autonomy</span></div><div class="opt-sub"><strong>Observational Risk.</strong> Monitoring and reporting only; no transactional or executive authority. <em>Examples:</em> Spend Dashboards, Budget Alerts, Compliance Logs.</div></div></label>
+          <label class="opt"><input type="radio" name="autonomy" value="2"><div class="opt-body"><div class="opt-label">Limited Action <span class="opt-chip chip-l2">Intermediate Autonomy</span></div><div class="opt-sub"><strong>Assisted Execution.</strong> Human-in-the-loop required; agent drafts, proposes, or initiates but a person must approve before any action completes. <em>Examples:</em> Draft Purchase Orders, Requisition Submission, Anomaly Flagging.</div></div></label>
+          <label class="opt"><input type="radio" name="autonomy" value="3"><div class="opt-body"><div class="opt-label">Transactional <span class="opt-chip chip-l0">Highest Autonomy</span></div><div class="opt-sub"><strong>Unattended Execution.</strong> No human-in-the-loop. Agent is authorized to commit capital or execute legally binding contracts. <em>Examples:</em> Autonomous PO Generation, Payment Initiation, Contract Execution.</div></div></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q05</div>
+        <label class="q">Total Agent Fleet Size (Production Environment)</label>
+        <input type="text" name="fleet" inputmode="numeric" placeholder="e.g. 25">
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q06</div>
+        <label class="q">Maximum Autonomous Authorization Limit ($)</label>
+        <div class="hint">The highest single-event financial commitment an agent can execute without human intervention.</div>
+        <input type="text" name="perTxn" inputmode="numeric" placeholder="e.g. 10,000">
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q07</div>
+        <label class="q">Total Annual Managed Spend Under Agent Authority ($)</label>
+        <div class="hint">The total projected dollar volume processed or committed by your agent fleet over the next 12 months.</div>
+        <input type="text" name="aggregate" inputmode="numeric" placeholder="e.g. 2,500,000">
+      </div>
+
+      <div class="nav-row">
+        <button class="cta-secondary" onclick="prevStep()">&larr; Back</button>
+        <button class="cta-primary" onclick="nextStep()">Continue <span class="arrow">&rarr;</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 3: GOVERNANCE MATURITY (THE AGT SCORECARD) -->
+    <div class="step hidden" id="step-3">
+      <div class="step-header">
+        <div class="step-num">Step 3 of 5 &middot; Governance Maturity</div>
+        <h2>AI Agent Governance Scorecard</h2>
+        <p>Five questions aligned with Microsoft and OWASP frameworks to assess your control environment.</p>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q08</div>
+        <label class="q">Agent Inventory &amp; Identity Management</label>
+        <div class="hint">Do you maintain a verified record of active agents and their assigned owners?</div>
+        <div class="opts" data-field="agt_inventory">
+          <label class="opt"><input type="radio" name="agt_inventory" value="0"><div class="opt-body"><div class="opt-label">No Formal Inventory</div><div class="opt-sub">Agents are deployed ad hoc; no centralized visibility.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_inventory" value="1"><div class="opt-body"><div class="opt-label">Manual Registry (Spreadsheet / Wiki)</div><div class="opt-sub">Centrally listed, but lacks real-time updates or identity verification.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_inventory" value="2"><div class="opt-body"><div class="opt-label">Standard Central Registry</div><div class="opt-sub">Documented owner, purpose, and authority limits for all production agents.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_inventory" value="3"><div class="opt-body"><div class="opt-label">Cryptographic Identity Binding</div><div class="opt-sub">Each agent is bound to a verifiable credential (Decentralized Identifier, service principal, or signed manifest).</div></div></label>
+          <label class="opt"><input type="radio" name="agt_inventory" value="4"><div class="opt-body"><div class="opt-label">Dynamic Zero-Trust Governance</div><div class="opt-sub">Automated Shadow AI discovery and continuous behavioral trust scoring.</div></div></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q09</div>
+        <label class="q">Human-in-the-Loop (HITL) &amp; Execution Guardrails</label>
+        <div class="hint">What mechanisms govern agent authorization for irreversible or high-value actions?</div>
+        <div class="opts" data-field="agt_hitl">
+          <label class="opt"><input type="radio" name="agt_hitl" value="0"><div class="opt-body"><div class="opt-label">No Approval Gates</div><div class="opt-sub">Agents execute all authorized actions autonomously without secondary review.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_hitl" value="1"><div class="opt-body"><div class="opt-label">Prompt-Based Thresholds</div><div class="opt-sub">Limits are defined in natural-language instructions (system prompts); no programmatic enforcement layer.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_hitl" value="2"><div class="opt-body"><div class="opt-label">Hard-Coded Application Logic</div><div class="opt-sub">Approval thresholds are enforced within the application code or middleware frameworks.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_hitl" value="3"><div class="opt-body"><div class="opt-label">Deterministic Policy Engine</div><div class="opt-sub">Externalized policy enforcement (e.g., Open Policy Agent, Cedar) evaluates every action against corporate governance rules before execution.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_hitl" value="4"><div class="opt-body"><div class="opt-label">Multi-Sig Approval &amp; Execution Sandboxing</div><div class="opt-sub">Quorum (multi-sig) approval required for critical actions; privilege rings isolate high-risk operations from the core environment.</div></div></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q10</div>
+        <label class="q">Observability &amp; Forensic Auditability</label>
+        <div class="hint">Can you reconstruct agent decision-logic and tool-calls in a tamper-evident format? Verifiable logs are a prerequisite for Authority Breach and Execution Error coverage triggers.</div>
+        <div class="opts" data-field="agt_audit">
+          <label class="opt"><input type="radio" name="agt_audit" value="0"><div class="opt-body"><div class="opt-label">Ephemeral or Absent Logs</div><div class="opt-sub">No persistent logging or session transcripts only; data is lost after execution.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_audit" value="1"><div class="opt-body"><div class="opt-label">Decentralized Application Logs</div><div class="opt-sub">Partial capture of agent actions; logs are not centralized and lack a formal retention policy.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_audit" value="2"><div class="opt-body"><div class="opt-label">Centralized Telemetry &amp; Trace</div><div class="opt-sub">All tool-calls, inputs, and outputs logged to a central repository with at least 12-month retention.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_audit" value="3"><div class="opt-body"><div class="opt-label">Immutable Audit Trail</div><div class="opt-sub">Policy decisions and execution logs stored in Write-Once-Read-Many (WORM) or append-only ledgers.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_audit" value="4"><div class="opt-body"><div class="opt-label">Cryptographic Attestation &amp; Hash-Chaining</div><div class="opt-sub">Digitally signed evidence files with hash-chained integrity, verifiable via the Agent Governance Toolkit or independent audit tools.</div></div></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q11</div>
+        <label class="q">Incident Response &amp; Failure Mitigation</label>
+        <div class="hint">In the event of agent misalignment or unauthorized execution, what protocols are in place to detect, escalate, and terminate the session?</div>
+        <div class="opts" data-field="agt_ir">
+          <label class="opt"><input type="radio" name="agt_ir" value="0"><div class="opt-body"><div class="opt-label">No Agent-Specific Response Plan</div><div class="opt-sub">Reliance on general IT runbooks; no specific documentation for agent failure modes or prompt injection.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_ir" value="1"><div class="opt-body"><div class="opt-label">Static Agent Runbook</div><div class="opt-sub">Written procedures exist for agent termination, but have not been formally tested or exercised.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_ir" value="2"><div class="opt-body"><div class="opt-label">Tabletop Tested (Annual)</div><div class="opt-sub">Agent-specific failure modes (e.g., recursive loops, authority breach) exercised via tabletop in the last 12 months.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_ir" value="3"><div class="opt-body"><div class="opt-label">Automated Termination &amp; Circuit Breakers</div><div class="opt-sub">Real-time monitoring triggers automated kill-switches or circuit breakers; response protocols tested semi-annually.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_ir" value="4"><div class="opt-body"><div class="opt-label">Resilience Engineering &amp; Continuous Testing</div><div class="opt-sub">Service Level Objectives and error budgets applied to agent behavior; chaos engineering utilized to simulate and harden against autonomous failure modes.</div></div></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q12</div>
+        <label class="q">Third-Party &amp; Plugin Risk Management</label>
+        <div class="hint">How do you vet the models, frameworks, and plugins your agents rely on? Unmanaged third-party dependencies create &ldquo;blind-spot&rdquo; liabilities.</div>
+        <div class="opts" data-field="agt_vendor">
+          <label class="opt"><input type="radio" name="agt_vendor" value="0"><div class="opt-body"><div class="opt-label">No Formal Review</div><div class="opt-sub">Third-party models and plugins are integrated without legal or technical risk assessment.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_vendor" value="1"><div class="opt-body"><div class="opt-label">General Legal Review</div><div class="opt-sub">Standard procurement review completed, but lacks specific clauses for AI output or autonomous execution risk.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_vendor" value="2"><div class="opt-body"><div class="opt-label">Liability &amp; Indemnity Alignment</div><div class="opt-sub">Indemnity and liability caps for model output and agent failure specifically negotiated in Master Service Agreements (MSAs).</div></div></label>
+          <label class="opt"><input type="radio" name="agt_vendor" value="3"><div class="opt-body"><div class="opt-label">Verified Performance Warranties</div><div class="opt-sub">Plugin manifests are cryptographically signed; contracts include specific performance warranties and uptime requirements for agentic workflows.</div></div></label>
+          <label class="opt"><input type="radio" name="agt_vendor" value="4"><div class="opt-body"><div class="opt-label">Capability Gating &amp; Trust-Tiering</div><div class="opt-sub">Only cryptographically verified plugins with pre-audited Service Level Agreements are permitted in production; capabilities are gated by the plugin&rsquo;s trust score.</div></div></label>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <button class="cta-secondary" onclick="prevStep()">&larr; Back</button>
+        <button class="cta-primary" onclick="nextStep()">Continue <span class="arrow">&rarr;</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 4: COVERAGE AUDIT -->
+    <div class="step hidden" id="step-4">
+      <div class="step-header">
+        <div class="step-num">Step 4 of 5</div>
+        <h2>Current Coverage Audit</h2>
+        <p>Map your existing Property &amp; Casualty (P&amp;C) tower to identify where standard policies end and AI agent execution risk begins.</p>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q13</div>
+        <label class="q">Which Coverages Do You Currently Carry? (Select All That Apply)</label>
+        <div class="opts" data-field="coverage">
+          <label class="opt"><input type="checkbox" name="coverage" value="eo"><div class="opt-body"><div class="opt-label">Errors &amp; Omissions / Tech E&amp;O</div><div class="opt-sub">Covers financial loss from professional negligence or the failure of technology products to perform as intended.</div></div></label>
+          <label class="opt"><input type="checkbox" name="coverage" value="cyber"><div class="opt-body"><div class="opt-label">Cyber Liability</div><div class="opt-sub">Covers data breaches, network security failures, and privacy liability; typically focused on unauthorized external access rather than autonomous agent logic.</div></div></label>
+          <label class="opt"><input type="checkbox" name="coverage" value="cgl"><div class="opt-body"><div class="opt-label">Commercial General Liability (CGL)</div><div class="opt-sub">Protects against third-party claims for bodily injury and property damage arising from business operations or products.</div></div></label>
+          <label class="opt"><input type="checkbox" name="coverage" value="do"><div class="opt-body"><div class="opt-label">Directors &amp; Officers (D&amp;O)</div><div class="opt-sub">Protects leadership against claims of &ldquo;wrongful acts,&rdquo; including breach of fiduciary duty or mismanagement of corporate assets.</div></div></label>
+          <label class="opt"><input type="checkbox" name="coverage" value="epli"><div class="opt-body"><div class="opt-label">Employment Practices Liability (EPLI)</div><div class="opt-sub">Protects against claims of wrongful termination, discrimination, or harassment.</div></div></label>
+          <label class="opt"><input type="checkbox" name="coverage" value="none"><div class="opt-body"><div class="opt-label">None of the Above</div></div></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q14</div>
+        <label class="q">2026 Renewal &amp; AI Exclusion Status</label>
+        <div class="hint">Are you aware of Affirmative AI Exclusions or &ldquo;Restricted Tech&rdquo; endorsements being added to your current renewals?</div>
+        <div class="opts" data-field="exclusion">
+          <label class="opt"><input type="radio" name="exclusion" value="yes"><div class="opt-body"><div class="opt-label">Yes</div><div class="opt-sub">I have identified specific exclusion endorsements or narrowed coverage definitions in recent quotes.</div></div></label>
+          <label class="opt"><input type="radio" name="exclusion" value="no"><div class="opt-body"><div class="opt-label">No / Not Sure</div><div class="opt-sub">I haven&rsquo;t performed a detailed review of 2026 endorsement changes or &ldquo;Silent AI&rdquo; language.</div></div></label>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <button class="cta-secondary" onclick="prevStep()">&larr; Back</button>
+        <button class="cta-primary" onclick="nextStep()">Continue <span class="arrow">&rarr;</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 5: CONTACT -->
+    <div class="step hidden" id="step-5">
+      <div class="step-header">
+        <div class="step-num">Step 5 of 5</div>
+        <h2>Deliver My Report</h2>
+        <p>We'll Email Your Governance Tier, Gap Analysis, and Indicative Premium Range.</p>
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q15</div>
+        <label class="q">Your Work Email</label>
+        <input type="email" name="email" placeholder="you@company.com">
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q16</div>
+        <label class="q">First Name</label>
+        <input type="text" name="firstName">
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q17</div>
+        <label class="q">Last Name</label>
+        <input type="text" name="lastName">
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q18</div>
+        <label class="q">Company</label>
+        <input type="text" name="company">
+      </div>
+
+      <div class="field">
+        <div class="q-num">Q19</div>
+        <label class="q">Job Title</label>
+        <input type="text" name="title" placeholder="Job Title">
+      </div>
+
+      <div class="nav-row">
+        <button class="cta-secondary" onclick="prevStep()">&larr; Back</button>
+        <button class="cta-primary" id="submit-btn" onclick="calculateAndShow()">Get Your Risk Assessment <span class="arrow">&rarr;</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results" class="hidden"></section>
 </main>
 
 <footer>
-  <div>© 2026 RiskHelm, LLC</div>
+  <div>&copy; 2026 RiskHelm, LLC</div>
   <div><a href="https://www.riskhelm.com/privacy">Privacy</a><a href="https://www.riskhelm.com/terms">Terms</a></div>
 </footer>
 
 <script>
-/* =============================================================
-   RiskHelm AAL Risk Assessment
-   Formula-driven Pure Premium with referral short-circuit.
-   Pairs with riskhelm_aal_score.py (keep these in sync).
-   ============================================================= */
+/* ============================================================
+   RiskHelm AAL Scanner v3 — AGT-aligned scoring backbone
+   ============================================================ */
 
-const BASE_LIMITS    = { startup:  50000, small:    50000, mid:   200000, ent: 1000000 };
-const TARGET_LIMITS  = { startup: 500000, small:   500000, mid: 1000000,  ent: 2000000 };
-const RETENTIONS     = { startup:   1000, small:     2500, mid:     5000, ent:    10000 };
+/* ---------- Constants (mirror AM-001 §2.2) ---------- */
+const BASE_LIMITS   = { startup:50000,  small:50000,  mid:200000,   ent:1000000 };
+const TARGET_LIMITS = { startup:500000, small:500000, mid:1000000,  ent:2000000 };
+const RETENTIONS    = { startup:1000,   small:2500,   mid:5000,     ent:10000   };
+const FLOORS        = { startup:1000,   small:2000,   mid:5000,     ent:20000   };
+const CAPACITY_CAP  = 5000000;
+const REFERRAL_TIV_CAP     = 30000000;
+const REFERRAL_PREMIUM_CAP = 50000;
+const CALENDLY_URL         = "https://calendly.com/chen-chianese-riskhelm/30min";
 
-const MDR                = 0.20;
-const EXPENSE_RATIO      = 0.50;
-const P_LOSS_BY_AUTONOMY = { 1:0.0025, 2:0.0100, 3:0.0350 };
-const PREMIUM_FLOORS     = { startup: 1000, small: 2000, mid: 4000, ent: 15000 };
+/* Governance-tier-driven P(Loss) */
+const P_LOSS_BY_GOV_TIER = { prefer:0.0025, standard:0.0100, substd:0.0350 };
+const GOV_MODIFIER = { prefer: 0.90, standard: 1.00, substd: 1.25 };
+const MDR = 0.20;
+const EXPENSE_RATIO = 0.50;
 
-// Mandate Adjustment Factors — credit for closed-loop enforcement
-const MAF_BY_MANDATE = {
-  infra:  0.70,   // Infrastructure-Based: hard API limits, RBAC — 30% credit
-  logic:  0.85,   // Logic-Based: real-time guardrails — 15% credit
-  prompt: 1.00,   // Prompt-Based: no credit
+/* Autonomy drives severity */
+const AUTONOMY_SEVERITY_MULT = { 1: 0.50, 2: 1.00, 3: 1.50 };
+
+/* Weighted 100-point governance scorecard */
+const DOMAIN_WEIGHTS = {
+  agt_inventory: 25,
+  agt_audit:     25,
+  agt_hitl:      20,
+  agt_ir:        15,
+  agt_vendor:    15
+};
+const GOV_TIER_THRESHOLDS = { prefer:85, standard:50, substd:25 };
+
+/* ---------- State ---------- */
+const state = {
+  step: 1,
+  entity:null, size:null, vertical:null, vertical_other:'',
+  autonomy:null, fleet:null, perTxn:null, aggregate:null,
+  agt_inventory:null, agt_hitl:null, agt_audit:null, agt_ir:null, agt_vendor:null,
+  coverage:[], exclusion:null,
+  firstName:'', lastName:'', title:'', company:'', email:''
 };
 
-// Referral triggers
-const REFERRAL_PREMIUM_CAP  =    50000;      // Tightened from $100k for manual oversight
-const REFERRAL_CAPACITY_CAP = 30000000;      // Automated treaty attachment
-
-const CTA_TEXT          = "Final pricing requires a UW conversation. Schedule a call to receive a custom quote for your exposure.";
-const CTA_TEXT_REFERRAL = "Your exposure profile requires manual underwriting review. Schedule a call with our UW team to discuss a tailored structure.";
-const CALENDLY_URL      = "https://calendly.com/chen-chianese-riskhelm/30min";
-
-// Google Apps Script Web App endpoint for lead capture (see deployment notes at bottom of file).
-// Every scanner submission POSTs the full assessment here, whether or not the prospect books a call.
-// Paste the Web App URL from your deployed Apps Script below. Leave as empty string to disable.
-const SHEETS_ENDPOINT   = ""; // e.g. "https://script.google.com/macros/s/AKfycbz.../exec"
-const PRIORITY_ORDER    = { Critical:0, High:1, Medium:2, Low:3 };
-
-function riskTier(autonomy, mandate){
-  if (autonomy === 3 && mandate === 'prompt') return { label:"Critical Risk · Transactional + Weak Guardrails", cls:"crit" };
-  if (autonomy === 3) return { label:"High Risk · Transactional Exposure", cls:"high" };
-  if (autonomy === 2) return { label:"Moderate Risk · Limited Action", cls:"mod" };
-  return { label:"Low Risk · Read-Only Exposure", cls:"low" };
+/* ---------- Wire up inputs ---------- */
+function bindRadios(name){
+  document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+    inp.addEventListener('change', () => {
+      const v = inp.value;
+      state[name] = (name === 'autonomy' || name.startsWith('agt_')) ? parseInt(v,10) : v;
+      document.querySelectorAll(`input[name="${name}"]`).forEach(o => {
+        o.closest('.opt').classList.toggle('active', o.checked);
+      });
+    });
+  });
+}
+function bindCheckboxes(name){
+  document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+    inp.addEventListener('change', () => {
+      if (inp.value === 'none' && inp.checked) {
+        document.querySelectorAll(`input[name="${name}"]`).forEach(o => {
+          if (o.value !== 'none'){ o.checked=false; o.closest('.opt').classList.remove('active'); }
+        });
+      } else if (inp.checked) {
+        const none = document.querySelector(`input[name="${name}"][value="none"]`);
+        if (none && none.checked){ none.checked=false; none.closest('.opt').classList.remove('active'); }
+      }
+      inp.closest('.opt').classList.toggle('active', inp.checked);
+      state[name] = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(o => o.value);
+    });
+  });
+}
+function bindText(name){
+  const el = document.querySelector(`[name="${name}"]`);
+  if (!el) return;
+  el.addEventListener('input', () => { state[name] = el.value; });
+}
+function bindCurrency(name){
+  const el = document.querySelector(`[name="${name}"]`);
+  if (!el) return;
+  el.addEventListener('input', () => {
+    const raw = el.value.replace(/[^0-9]/g, '');
+    if (raw === '') { state[name] = null; el.value = ''; return; }
+    const num = parseInt(raw, 10);
+    state[name] = num;
+    const formatted = num.toLocaleString('en-US');
+    if (el.value !== formatted) {
+      const selStart = el.selectionStart;
+      const before = el.value.length;
+      el.value = formatted;
+      const diff = formatted.length - before;
+      const newPos = Math.max(0, (selStart || 0) + diff);
+      try { el.setSelectionRange(newPos, newPos); } catch (e) {}
+    }
+  });
 }
 
-function premiumAndReferral(size, autonomy, mandate, tiv){
-  const pLoss  = P_LOSS_BY_AUTONOMY[autonomy] || 0.01;
-  const maf    = MAF_BY_MANDATE[mandate] || 1.00;
-  let anchor   = (tiv * pLoss * MDR * maf) / (1 - EXPENSE_RATIO);
-  anchor       = Math.max(anchor, PREMIUM_FLOORS[size] || 1000);
-  const low    = Math.round(anchor * 0.80);
-  const high   = Math.round(anchor * 1.20);
-  // Evaluate triggers in priority order. Large Account first (has its own label).
-  // Reason strings captured for lead payload; NOT displayed to prospect.
-  let isReferral = false, reason = '';
-  if (tiv > REFERRAL_CAPACITY_CAP){
-    isReferral = true; reason = 'Large Account / Facultative Pricing Required.';
-  } else if (high > REFERRAL_PREMIUM_CAP){
-    isReferral = true; reason = 'High-exposure account — indicative premium exceeds $50k automated binding limit.';
-  } else if (autonomy === 3 && mandate === 'prompt'){
-    isReferral = true; reason = 'Control deficit — high-autonomy execution requires infrastructure-based mandates.';
+['entity','size','autonomy','exclusion','agt_inventory','agt_hitl','agt_audit','agt_ir','agt_vendor'].forEach(bindRadios);
+bindCheckboxes('coverage');
+bindCurrency('fleet');
+bindCurrency('perTxn');
+bindCurrency('aggregate');
+['firstName','lastName','title','company','email','vertical_other'].forEach(n => bindText(n));
+
+document.getElementById('f-vertical').addEventListener('change', (e) => {
+  state.vertical = e.target.value;
+  document.getElementById('vertical-other-wrap').classList.toggle('hidden', e.target.value !== 'other');
+  if (e.target.value !== 'other') state.vertical_other = '';
+});
+
+/* ---------- Navigation ---------- */
+function startAssessment(){
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('assessment').classList.remove('hidden');
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function showStep(n){
+  state.step = n;
+  for (let i=1;i<=5;i++) document.getElementById(`step-${i}`).classList.toggle('hidden', i !== n);
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function updateProgress(){
+  document.querySelectorAll('#progress .seg').forEach(s => {
+    const i = parseInt(s.dataset.step, 10);
+    s.classList.toggle('done',   i < state.step);
+    s.classList.toggle('active', i === state.step);
+  });
+  document.querySelectorAll('#progress .labels span').forEach(s => {
+    const i = parseInt(s.dataset.step, 10);
+    s.classList.toggle('active', i === state.step);
+  });
+}
+function validateStep(n){
+  const errs = [];
+  if (n === 1) {
+    if (!state.entity) errs.push('Select Entity Type');
+    if (!state.size)   errs.push('Select Company Size');
+    if (!state.vertical) errs.push('Select Vertical');
+    if (state.vertical === 'other' && !state.vertical_other) errs.push('Describe Your Vertical');
   }
-  return { low, high, isReferral, reason };
+  if (n === 2) {
+    if (!state.autonomy) errs.push('Select Autonomy Tier');
+    if (state.fleet == null) errs.push('Enter Fleet Size');
+    if (state.perTxn == null) errs.push('Enter Per-Transaction Limit');
+    if (state.aggregate == null) errs.push('Enter Annual Autonomous Spend');
+  }
+  if (n === 3) {
+    ['agt_inventory','agt_hitl','agt_audit','agt_ir','agt_vendor'].forEach(k => {
+      if (state[k] == null) errs.push(`Answer ${k.replace('agt_','')} Question`);
+    });
+  }
+  if (n === 4) {
+    if (!state.coverage.length) errs.push('Select at Least One Coverage Option (or "None")');
+    if (!state.exclusion) errs.push('Answer AI Exclusion Question');
+  }
+  return errs;
+}
+function nextStep(){
+  const errs = validateStep(state.step);
+  if (errs.length){ alert(errs.join('\n')); return; }
+  if (state.step < 5) showStep(state.step + 1);
+}
+function prevStep(){ if (state.step > 1) showStep(state.step - 1); }
+
+/* ---------- Scoring ---------- */
+function scoreAssessment(s){
+  const agtLevels = [s.agt_inventory, s.agt_hitl, s.agt_audit, s.agt_ir, s.agt_vendor];
+  const domainPoints = {
+    agt_inventory: (s.agt_inventory / 4) * DOMAIN_WEIGHTS.agt_inventory,
+    agt_audit:     (s.agt_audit     / 4) * DOMAIN_WEIGHTS.agt_audit,
+    agt_hitl:      (s.agt_hitl      / 4) * DOMAIN_WEIGHTS.agt_hitl,
+    agt_ir:        (s.agt_ir        / 4) * DOMAIN_WEIGHTS.agt_ir,
+    agt_vendor:    (s.agt_vendor    / 4) * DOMAIN_WEIGHTS.agt_vendor
+  };
+  const totalAgt = Math.round(
+    domainPoints.agt_inventory + domainPoints.agt_audit + domainPoints.agt_hitl +
+    domainPoints.agt_ir + domainPoints.agt_vendor
+  );
+
+  const minAgt = Math.min(...agtLevels);
+  const zeroInCoverageCritical = (s.agt_inventory === 0 || s.agt_audit === 0);
+
+  let govTier, govTierName;
+  if (zeroInCoverageCritical || minAgt === 0) {
+    govTier = 'refer'; govTierName = 'Refer to Underwriting';
+  } else if (totalAgt >= GOV_TIER_THRESHOLDS.prefer) {
+    govTier = 'prefer'; govTierName = 'Preferred';
+  } else if (totalAgt >= GOV_TIER_THRESHOLDS.standard) {
+    govTier = 'standard'; govTierName = 'Standard';
+  } else if (totalAgt >= GOV_TIER_THRESHOLDS.substd) {
+    govTier = 'substd'; govTierName = 'Baseline';
+  } else {
+    govTier = 'refer'; govTierName = 'Refer to Underwriting';
+  }
+
+  const targetLimit     = TARGET_LIMITS[s.size];
+  const aggregateLimit  = targetLimit * 3;
+  const execSublimit    = targetLimit * 0.5;
+  const retention       = RETENTIONS[s.size];
+
+  let premLow = null, premHigh = null, premMid = null;
+  let referralReason = null;
+
+  if (s.aggregate > REFERRAL_TIV_CAP) referralReason = 'Large Account / Facultative Pricing';
+  if (govTier === 'refer') referralReason = referralReason || 'Governance Deficit — manual underwriting required';
+
+  if (!referralReason && govTier !== 'refer') {
+    const pLoss = P_LOSS_BY_GOV_TIER[govTier];
+    const sevMult = AUTONOMY_SEVERITY_MULT[s.autonomy] || 1.00;
+    const govMod = GOV_MODIFIER[govTier];
+    const adjustedTIV = s.aggregate * sevMult;
+    const anchor = (adjustedTIV * pLoss * MDR * govMod) / (1 - EXPENSE_RATIO);
+    const floor = FLOORS[s.size];
+    premMid = Math.max(anchor, floor);
+    premLow = premMid * 0.8;
+    premHigh = premMid * 1.2;
+    if (premHigh > REFERRAL_PREMIUM_CAP) referralReason = 'High Exposure Account — manual underwriting required';
+  }
+
+  const gaps = buildGaps(s, govTier, totalAgt, premHigh);
+
+  return {
+    govTier, govTierName, totalAgt, agtLevels, domainPoints, minAgt,
+    targetLimit, aggregateLimit, execSublimit, retention,
+    premLow, premHigh, premMid, referralReason, gaps
+  };
 }
 
-function computeGaps(inp, targetLimit, baseLimit){
-  // Coverage Gap Logic V2 — complete coverage-aware set
+function buildGaps(s, govTier, totalAgt, premHigh){
   const gaps = [];
-  const cov = new Set(inp.coverage);
-  const noCoverage = cov.has('none') || inp.coverage.length === 0;
 
-  // --- A. Critical Priority (Binding Blockers) ---
-
-  if (inp.aggregate > 30_000_000){
-    gaps.push({ title:"Facultative Pricing Required (Large Account)",
-      body:"Your agentic spend volume places you in Large Account territory. Exposures of this size sit outside automated treaty authority and require facultative pricing \u2014 a manual underwriting review of your infrastructure, controls, and loss history to structure bespoke capacity.",
-      priority:"Critical" });
+  if (s.agt_audit === 0) {
+    gaps.push({priority:'crit', title:'Audit Trail Deficit — Coverage Trigger Blocker',
+      body:'You Have No Persistent Audit Trail of Agent Actions. Under the RiskHelm Agent Authority Liability Master Policy, Both Authority Breach and Execution Error Claims Are Adjudicated Against Immutable Agent Logs. Without Verifiable Logs, There Is No Claim-Path — Any Policy Written Today Would Be Unenforceable at Loss.'});
   }
-  if (inp.autonomy === 3 && inp.mandate === 'prompt'){
-    gaps.push({ title:"Runtime Enforcement Deficit",
-      body:"You are running fully transactional agents with prompt-only enforcement. Without infrastructure-level kill-switches or hard API limits, there is no structural ceiling on an agent\u2019s authority at runtime \u2014 an \u201copen-loop\u201d posture that standard carriers currently consider uninsurable.",
-      priority:"Critical" });
+  if (s.agt_inventory === 0) {
+    gaps.push({priority:'crit', title:'Inventory Deficit — Scope of Cover Undefined',
+      body:'You Have No Formal Agent Inventory. RiskHelm Coverage Attaches to Named Agents With Documented Authority Scope. Without an Inventory, There Is No Way to Bind the Policy to a Definable Risk — Every Agent Claim Becomes a Scope Dispute.'});
   }
-
-  // --- B. Medium Priority (Structural Misalignment) ---
-
-  if (noCoverage){
-    gaps.push({ title:"Complete Coverage Void",
-      body:"You have no commercial liability tower in place. Every financial loss from an authority breach, execution error, or regulatory violation is currently absorbed directly by the balance sheet. For a business running autonomous AI agents, this is the highest-severity posture in the framework \u2014 a single adverse event has no indemnification path.",
-      priority:"Medium" });
+  if (s.aggregate > REFERRAL_TIV_CAP) {
+    gaps.push({priority:'crit', title:'Facultative Pricing Required (Large Account)',
+      body:'Your Agentic Spend Places You in Large Account Territory. Exposures of This Size Sit Outside Automated Treaty Authority and Require Facultative Pricing — a Manual Underwriting Review of Your Infrastructure, Controls, and Loss History to Structure Bespoke Capacity.'});
   }
-  if (cov.has('eo')){
-    gaps.push({ title:"The Human-Negligence Gap (Tech E&O)",
-      body:"<strong>The Mismatch:</strong> Standard Tech E&O is built on the foundation of human error. It covers your team\u2019s mistakes, but it isn\u2019t structured to indemnify the actions of a fully transactional autonomous agent. <strong>The Risk:</strong> When an \u201cerror\u201d is actually a validly executed but unintended transaction by an AI Agent, traditional E&O triggers fail to align with the claim, leaving a significant coverage void.",
-      priority:"Medium" });
-  }
-  if (cov.has('cyber')){
-    gaps.push({ title:"The \u201cHacker-Only\u201d Constraint (Cyber)",
-      body:"<strong>The Mismatch:</strong> Cyber insurance generally requires a \u201cbreach\u201d or \u201chack\u201d by a malicious third party. <strong>The Risk:</strong> If an authorized AI Agent makes a financial error or exceeds its mandate while operating internally, adjusters will likely deny the claim as an \u201coperational error\u201d rather than a security event.",
-      priority:"Medium" });
-  }
-  if (cov.has('cgl')){
-    gaps.push({ title:"The Intangible Harm Exclusion (CGL)",
-      body:"<strong>The Mismatch:</strong> Commercial General Liability (CGL) is designed for physical outcomes: bodily injury and property damage. <strong>The Risk:</strong> AI agents primarily cause intangible financial harm \u2014 unauthorized transactions, regulatory fines, and operational disruptions \u2014 which fall outside CGL triggers. Furthermore, carriers are now aggressively adding affirmative AI exclusions (ISO endorsements CG 40 47/48) at renewal.",
-      priority:"Medium" });
-  }
-  if (cov.has('do')){
-    gaps.push({ title:"The Entity vs. Execution Gap (D&O)",
-      body:"<strong>The Mismatch:</strong> D&O protects leadership decisions (e.g., shareholder suits over AI strategy); it does not protect the company\u2019s balance sheet from the AI\u2019s actual output. <strong>The Risk:</strong> D&O and AI Agent Liability (AAL) address different tiers of risk \u2014 one protects the person, the other protects the capital. Without AAL, the company\u2019s balance sheet is directly exposed to the agent\u2019s autonomous conduct.",
-      priority:"Medium" });
-  }
-  if (inp.entity === 'platform' && inp.autonomy >= 2){
-    gaps.push({ title:"The Deployment Blocker (The Agency Question)",
-      body:"<strong>The Mismatch:</strong> The legal landscape has shifted. Recent precedents (including California\u2019s 2026 updates) hold the Deployer strictly liable for autonomous agent conduct. <strong>The Risk:</strong> This \u201cAgency Liability Gap\u201d is currently stalling enterprise adoption. Legal teams are blocking deployments to protect the balance sheet. <strong>The Solution:</strong> RiskHelm closes this gap with an embedded indemnity wrap, providing the \u201csafe harbor\u201d your customers need to deploy with confidence. <strong>Action:</strong> Contact us at contact@riskhelm.com to transform your autonomous features from a legal liability into a competitive advantage.",
-      priority:"High" });
+  if (s.autonomy === 3 && s.agt_hitl <= 1) {
+    gaps.push({priority:'crit', title:'Runtime Enforcement Deficit',
+      body:'You are operating Transactional-tier agents with "Prompt-Based" controls. Without policy-engine-level interception, there is no structural ceiling on agent authority at runtime. Standard carriers currently view this "Open-Loop" posture as an unquantifiable—and therefore uninsurable—risk.'});
   }
 
-  // --- C. Low Priority (Narrower Misalignments + Fallback) ---
-
-  if (cov.has('prof_liab')){
-    gaps.push({ title:"The Licensed-Professional Mismatch (PL)",
-      body:"<strong>The Mismatch:</strong> Professional Liability (Medical, Legal, Financial) is predicated on licensed practitioners exercising judgment. <strong>The Risk:</strong> Because AI agents aren\u2019t licensed professionals, these policies often fail to respond.",
-      priority:"Low" });
+  if (s.entity === 'platform' && s.autonomy >= 2) {
+    gaps.push({priority:'high', title:'The Deployment Blocker (Agency Liability)',
+      body:'Current legal precedents (including 2026 California updates) hold the deployer strictly liable for autonomous agent conduct. This "Agency Liability Gap" is currently the primary blocker for enterprise-wide scaling. Bridging this gap is required to unblock your revenue pipeline.'});
   }
-  if (cov.has('epli')){
-    gaps.push({ title:"The Employment-Only Scope (EPLI)",
-      body:"<strong>The Mismatch:</strong> EPLI is strictly limited to HR-related claims like discrimination or wrongful termination. <strong>The Risk:</strong> While EPLI might cover a lawsuit if your AI screening tool displays bias, it offers zero protection for the agent\u2019s execution errors or the resulting financial losses.",
-      priority:"Low" });
-  }
-
-  // Catch-all fallback — rare now that most coverage selections fire their own rule
-  if (gaps.length === 0){
-    gaps.push({ title:"Indemnity Framework Missing",
-      body:"You lack a formal framework for AI agent indemnity. Establishing this early provides the risk pedigree needed to scale your AI spend.",
-      priority:"Low" });
+  const weakDomains = [];
+  if (s.agt_hitl <= 1 && s.agt_hitl > 0) weakDomains.push('Human-in-the-Loop Controls');
+  if (s.agt_ir <= 1 && s.agt_ir > 0) weakDomains.push('Incident Response');
+  if (s.agt_vendor <= 1 && s.agt_vendor > 0) weakDomains.push('Vendor Review');
+  if (weakDomains.length >= 2) {
+    gaps.push({priority:'high', title:'Governance Maturity Gap — Multiple Weak Domains',
+      body:`Your governance scorecard shows weak maturity across ${weakDomains.length} domains (${weakDomains.join(', ')}). A governance program with multiple single-point-of-failure domains produces an elevated loss-frequency profile and pushes you toward Baseline tier pricing. Upgrading any one domain to Level 3 typically moves the pricing modifier by 15–25%.`});
   }
 
-  gaps.sort((a,b) => PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority]);
+  const cov = s.coverage || [];
+  if (cov.includes('none') || cov.length === 0) {
+    gaps.push({priority:'med', title:'Complete Coverage Void',
+      body:'You Have No Commercial Liability Tower in Place. Every Financial Loss From an Authority Breach, Execution Error, or Regulatory Violation Is Currently Absorbed Directly by the Balance Sheet. For a Business Running Autonomous AI Agents, This Is the Highest-Severity Posture — a Single Adverse Event Has No Indemnification Path.'});
+  }
+  if (cov.includes('eo')) {
+    gaps.push({priority:'med', title:'Errors &amp; Omissions / Tech E&amp;O',
+      body:'<strong>Standard:</strong> Covers financial loss from professional negligence or software failing to perform as intended.<br><strong>The Gap:</strong> Restricted to "human-in-the-loop" errors. Autonomous agent decisions—made without direct human intervention—are often excluded as "unauthorized acts."'});
+  }
+  if (cov.includes('cyber')) {
+    gaps.push({priority:'med', title:'Cyber Liability',
+      body:'<strong>Standard:</strong> Covers data breaches and privacy liability resulting from unauthorized external access.<br><strong>The Gap:</strong> Designed for external hacks, not internal agency. If an authorized agent leaks data or breaches privacy while performing its task, it\'s an operational failure, not a security breach.'});
+  }
+  if (cov.includes('cgl')) {
+    gaps.push({priority:'med', title:'Commercial General Liability (CGL)',
+      body:'<strong>Standard:</strong> Covers third-party bodily injury and property damage arising from business operations.<br><strong>The Gap:</strong> 2026 ISO endorsements (CG 40 47/48) specifically carve out AI-driven "occurrences." Autonomous physical or financial damage is increasingly a total exclusion.'});
+  }
+  if (cov.includes('do')) {
+    gaps.push({priority:'med', title:'Directors &amp; Officers (D&amp;O)',
+      body:'<strong>Standard:</strong> Protects leadership against claims of breach of fiduciary duty or mismanagement.<br><strong>The Gap:</strong> Boards face personal exposure for "AI Oversight Failure." Standard policies don\'t account for the governance of autonomous systems that cause enterprise-level loss.'});
+  }
+
+  if (cov.includes('epli')) {
+    gaps.push({priority:'low', title:'Employment Practices (EPLI)',
+      body:'<strong>Standard:</strong> Covers claims of wrongful termination, discrimination, or harassment.<br><strong>The Gap:</strong> "Systemic Bias" vs. "Individual Event." Automated hiring or performance decisions are often flagged as excluded systemic design flaws rather than covered personnel incidents.'});
+  }
+
+  if (gaps.length === 0) {
+    gaps.push({priority:'low', title:'Indemnity Framework Missing',
+      body:'You Lack a Formal Framework for AI Agent Indemnity. Establishing This Early Provides the Risk Pedigree Needed to Scale Your AI Spend With Confidence.'});
+  }
+
+  const order = { crit:0, high:1, med:2, low:3 };
+  gaps.sort((a,b) => order[a.priority] - order[b.priority]);
   return gaps;
 }
 
-function score(inp){
-  const target = TARGET_LIMITS[inp.size];
-  const base   = BASE_LIMITS[inp.size];
-  const tier   = riskTier(inp.autonomy, inp.mandate);
-  const p      = premiumAndReferral(inp.size, inp.autonomy, inp.mandate, inp.aggregate);
-  return {
-    risk_tier: tier.label, risk_class: tier.cls,
-    target_limit: target, aggregate_limit: target * 3,
-    exec_error_sublimit: Math.floor(target / 2),
-    retention: RETENTIONS[inp.size],
-    premium_range_low: p.low, premium_range_high: p.high,
-    is_referral: p.isReferral,
-    referral_reason: p.reason,             // captured for lead payload / UW routing; NOT displayed
-    cta: p.isReferral ? CTA_TEXT_REFERRAL : CTA_TEXT,
-    gaps: computeGaps(inp, target, base),
+/* ---------- Render results ---------- */
+function fmt$(n){ return '$' + Math.round(n).toLocaleString(); }
+
+function renderResults(r){
+  const domainLabels = ['Agent Inventory','Human-in-the-Loop Controls','Audit Trail','Incident Response','Vendor Review'];
+  const gapHtml = r.gaps.map(g => `
+    <div class="gap ${g.priority}">
+      <div class="gap-title">${g.title}</div>
+      <div class="gap-body">${g.body}</div>
+    </div>
+  `).join('');
+
+  const domainKeys = ['agt_inventory','agt_hitl','agt_audit','agt_ir','agt_vendor'];
+  const domainHtml = domainLabels.map((lbl,i) => {
+    const level = r.agtLevels[i];
+    const key = domainKeys[i];
+    const pts = r.domainPoints[key];
+    const max = DOMAIN_WEIGHTS[key];
+    const pct = (level/4*100).toFixed(0);
+    return `<div class="domain-row">
+      <span class="dr-name">${lbl}</span>
+      <div style="display:flex;align-items:center">
+        <span class="dr-bar"><span class="dr-bar-fill" style="width:${pct}%"></span></span>
+        <span class="dr-score">${Math.round(pts)} / ${max} pts</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  if (r.referralReason) {
+    document.getElementById('results').innerHTML = `
+      <div class="results-head">
+        <div class="eyebrow">Autonomous Execution Risk Report</div>
+        <h2>Refer to Underwriting</h2>
+        <p class="sub">Your Exposure Profile Requires Manual Underwriting Review. Our Underwriting Team Will Walk Through a Tailored Structure on the Call.</p>
+      </div>
+      <div class="tier-banner ${r.govTier}">
+        <div>
+          <div class="tier-label">Governance Tier</div>
+          <div class="tier-name">${r.govTierName}</div>
+          <div class="tier-score">Governance Maturity Score ${r.totalAgt} / 100</div>
+        </div>
+      </div>
+      <div class="domain-grid">
+        <div class="dg-title">Governance Domain Scores</div>
+        ${domainHtml}
+      </div>
+      <div class="gaps"><h3>Coverage Gaps</h3>${gapHtml}</div>
+      <div class="cta-card">
+        <h3>Schedule a Call With Underwriting</h3>
+        <p>Your Exposure Profile Requires Manual Underwriting Review. Book a Call to Discuss a Tailored Structure.</p>
+        <div class="cta-actions">
+          <button class="cta-primary" onclick="showCalendly('calendlyContainer')">Book Consultation &rarr;</button>
+          <button class="cta-secondary" onclick="window.print()">Download Summary</button>
+        </div>
+      </div>
+      <div id="calendlyContainer" class="calendly-wrap hidden"></div>
+    `;
+    window.scrollTo({top:0, behavior:'smooth'});
+    return;
+  }
+
+  document.getElementById('results').innerHTML = `
+    <div class="results-head">
+      <div class="eyebrow">Autonomous Execution Risk Report</div>
+      <h2>Your Indicative Pricing</h2>
+      <p class="sub">Based on Your Governance Scorecard and Exposure Profile. Final Pricing Requires an Underwriting Conversation.</p>
+    </div>
+
+    <div class="tier-banner ${r.govTier}">
+      <div>
+        <div class="tier-label">Governance Tier</div>
+        <div class="tier-name">${r.govTierName}</div>
+        <div class="tier-score">Governance Maturity Score ${r.totalAgt} / 100 &middot; Modifier &times;${GOV_MODIFIER[r.govTier].toFixed(2)}</div>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><div class="k">Target Per-Occurrence</div><div class="v">${fmt$(r.targetLimit)}</div><div class="v-sub">Aggregate ${fmt$(r.aggregateLimit)}</div></div>
+      <div class="metric"><div class="k">Execution Error Sublimit</div><div class="v">${fmt$(r.execSublimit)}</div><div class="v-sub">50% of Per-Occurrence</div></div>
+      <div class="metric"><div class="k">Retention</div><div class="v">${fmt$(r.retention)}</div><div class="v-sub">Per Claim</div></div>
+      <div class="metric"><div class="k">Indicative Premium</div><div class="v">${fmt$(r.premLow)} &ndash; ${fmt$(r.premHigh)}</div><div class="v-sub">Annual, Subject to Underwriting Review</div></div>
+    </div>
+
+    <div class="domain-grid">
+      <div class="dg-title">Governance Domain Scores</div>
+      ${domainHtml}
+    </div>
+
+    <div class="gaps"><h3>Coverage Gaps</h3>${gapHtml}</div>
+
+    <div class="cta-card">
+      <h3>Schedule an Underwriting Call</h3>
+      <p>Final Pricing Requires an Underwriting Conversation. Book a 30-Minute Call to Receive a Custom Quote for Your Exposure.</p>
+      <div class="cta-actions">
+        <button class="cta-primary" onclick="showCalendly('calendlyContainer')">Book Consultation &rarr;</button>
+        <button class="cta-secondary" onclick="window.print()">Download Report</button>
+      </div>
+    </div>
+    <div id="calendlyContainer" class="calendly-wrap hidden"></div>
+  `;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function calculateAndShow(){
+  if (!state.email || !state.firstName || !state.lastName || !state.company) {
+    alert('Please Complete All Contact Fields');
+    return;
+  }
+  const r = scoreAssessment(state);
+  document.getElementById('assessment').classList.add('hidden');
+  const res = document.getElementById('results');
+  res.classList.remove('hidden');
+  renderResults(r);
+
+  /* Lead payload */
+  const leadPayload = {
+    ...state,
+    gov_tier: r.govTier,
+    gov_tier_name: r.govTierName,
+    agt_total: r.totalAgt,
+    agt_levels: r.agtLevels,
+    agt_domain_points: r.domainPoints,
+    target_limit: r.targetLimit,
+    aggregate_limit: r.aggregateLimit,
+    exec_sublimit: r.execSublimit,
+    retention: r.retention,
+    premium_low: r.premLow,
+    premium_high: r.premHigh,
+    referral_reason: r.referralReason,
+    gap_count: r.gaps.length,
+    gap_titles: r.gaps.map(g => g.title),
+    ts: new Date().toISOString()
   };
-}
+  window.__riskhelmPayload = leadPayload;
+  console.log('[RiskHelm] lead payload:', leadPayload);
 
-function fmtUsd(n){ if (!n && n !== 0) return "$0"; return "$" + Math.round(n).toLocaleString('en-US'); }
-function fmtUsdShort(n){
-  if (n >= 1_000_000) return "$" + (n/1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 1) + "M";
-  if (n >= 1_000)     return "$" + (n/1_000).toFixed(n % 1_000 === 0 ? 0 : 1) + "K";
-  return "$" + n;
-}
-
-/* Email validation */
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const FREE_MAIL_DOMAINS = new Set(['gmail.com','googlemail.com','yahoo.com','yahoo.co.uk','yahoo.ca','hotmail.com','hotmail.co.uk','outlook.com','live.com','msn.com','icloud.com','me.com','mac.com','aol.com','aim.com','protonmail.com','proton.me','gmx.com','gmx.net','mail.com','zoho.com','yandex.com','qq.com','163.com','126.com']);
-const DISPOSABLE_DOMAINS = new Set(['mailinator.com','10minutemail.com','10minutemail.net','guerrillamail.com','guerrillamail.net','sharklasers.com','yopmail.com','tempmail.com','temp-mail.org','throwaway.email','getnada.com','maildrop.cc','trashmail.com','dispostable.com','fakeinbox.com','mohmal.com','emailondeck.com','mintemail.com','tempinbox.com','spambox.us']);
-const TYPO_SUGGESTIONS = {'gmial.com':'gmail.com','gmai.com':'gmail.com','gamil.com':'gmail.com','yaho.com':'yahoo.com','yahooo.com':'yahoo.com','hotmial.com':'hotmail.com','hotnail.com':'hotmail.com','outlok.com':'outlook.com','outloo.com':'outlook.com'};
-
-function validateEmail(raw){
-  const email = (raw || '').trim().toLowerCase();
-  if (!email) return { ok:false, reason:'Work email is required.' };
-  if (!EMAIL_REGEX.test(email)) return { ok:false, reason:'Enter a valid email address.' };
-  const domain = email.split('@')[1];
-  if (!domain || domain.indexOf('.') < 0) return { ok:false, reason:'Email domain looks incomplete.' };
-  if (TYPO_SUGGESTIONS[domain]) return { ok:false, reason:`Did you mean @${TYPO_SUGGESTIONS[domain]}?` };
-  if (DISPOSABLE_DOMAINS.has(domain)) return { ok:false, reason:'Disposable email services are not accepted. Use your work email.' };
-  if (FREE_MAIL_DOMAINS.has(domain)) return { ok:false, reason:'Please use your business email — we cannot send underwriting materials to personal accounts.' };
-  const local = email.split('@')[0];
-  if (local.startsWith('.') || local.endsWith('.') || local.includes('..')) return { ok:false, reason:'Email address format is invalid.' };
-  const tld = domain.split('.').pop();
-  if (tld.length < 2 || /^\d+$/.test(tld)) return { ok:false, reason:'Email domain looks invalid.' };
-  return { ok:true };
-}
-
-/* State */
-const state = {
-  step: 0,
-  data: {
-    entity:'', volume:'', size:'', vertical:'', vertical_other:'',
-    autonomy:null, fleet:'', ids:'', mandate:'',
-    wallets:'', perTxn:'', aggregate:'', concerns:[], concerns_other:'',
-    coverage:[], exclusion:'', intent:'',
-    firstName:'', lastName:'', title:'', company:'', email:''
-  }
-};
-const Q = { n:0, reset(){this.n=0}, resume(l){this.n=l}, next(){this.n++;return "Q"+String(this.n).padStart(2,'0')}, get current(){return this.n} };
-const stepEndNumbers = [0,0,0,0];
-
-/* Step templates */
-const steps = [
-  // STEP 1 — Entity → (volume for platform) → Size → Vertical
-  () => {
-    Q.reset();
-    const qEntity   = Q.next();
-    const qVolume   = state.data.entity === 'platform' ? Q.next() : null;
-    const qSize     = Q.next();
-    const qVertical = Q.next();
-    stepEndNumbers[0] = Q.current;
-    return `
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">Step 01 of 04 · Entity &amp; Ecosystem</div>
-        <h2>Tell us about your organization.</h2>
-      </div>
-
-      <div class="field">
-        <span class="qnum">${qEntity}</span>
-        <label>What is your organization&rsquo;s role in the AI value chain? <span class="req">*</span></label>
-        <div class="options">
-          ${renderRadio('entity', 'deployer', 'AI Agent Deployer', 'You run AI agents inside your business to execute workflows.')}
-          ${renderRadio('entity', 'platform', 'AI Platform / Framework', 'You build or sell the platform that other companies deploy agents on.')}
-        </div>
-      </div>
-
-      ${qVolume ? `
-      <div class="field">
-        <span class="qnum">${qVolume}</span>
-        <label>How many customers run AI agents on your platform today? <span class="req">*</span></label>
-        <div class="options">
-          ${renderRadio('volume', '1-100',   '1–100 customers', '')}
-          ${renderRadio('volume', '101-500', '101–500 customers', '')}
-          ${renderRadio('volume', '500+',    '500+ customers', '')}
-        </div>
-      </div>` : ''}
-
-      <div class="field">
-        <span class="qnum">${qSize}</span>
-        <label>What is your company size? <span class="req">*</span></label>
-        <div class="options">
-          ${renderRadio('size', 'startup', 'Startup · under 50 employees', '')}
-          ${renderRadio('size', 'small',   'Small · 50–150 employees', '')}
-          ${renderRadio('size', 'mid',     'Mid-Market · 150–500 employees', '')}
-          ${renderRadio('size', 'ent',     'Enterprise · 500+ employees', '')}
-        </div>
-      </div>
-
-      <div class="field">
-        <span class="qnum">${qVertical}</span>
-        <label>Which industry vertical best describes your business? <span class="req">*</span></label>
-        <div class="options">
-          ${renderRadio('vertical', 'finserv', 'Financial Services', '')}
-          ${renderRadio('vertical', 'health',  'Healthcare / Life Sciences', '')}
-          ${renderRadio('vertical', 'supply',  'Supply Chain / Logistics', '')}
-          ${renderRadio('vertical', 'proc',    'Procurement / AP Automation', '')}
-          ${renderRadio('vertical', 'prof',    'Professional Services', '')}
-          ${renderRadio('vertical', 'infra',   'Infrastructure / DevOps', '')}
-          ${renderRadio('vertical', 'other',   'Other (specify)', '')}
-        </div>
-        ${state.data.vertical === 'other' ? `
-          <div class="conditional-box">
-            <label>Describe your vertical</label>
-            <input type="text" maxlength="60" placeholder="e.g. Legal tech, agriculture, energy trading"
-                   value="${state.data.vertical_other}" oninput="update('vertical_other', this.value)">
-          </div>` : ''}
-      </div>
-    </div>`;
-  },
-
-  // STEP 2 — Autonomy
-  () => {
-    Q.resume(stepEndNumbers[0]);
-    const q1=Q.next(), q2=Q.next(), q3=Q.next(), q4=Q.next();
-    stepEndNumbers[1] = Q.current;
-    return `
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">Step 02 of 04 · Autonomy &amp; Guardrails</div>
-        <h2>How much authority do your agents actually have?</h2>
-      </div>
-      <div class="field">
-        <span class="qnum">${q1}</span>
-        <label>What is the highest autonomy level any agent in your fleet operates at? <span class="req">*</span></label>
-        <p class="hint">Pick the most autonomous agent you run today — not the average.</p>
-        <div class="options autonomy">
-          <label class="opt ${state.data.autonomy===1?'selected':''}">
-            <input type="radio" name="autonomy" value="1" ${state.data.autonomy===1?'checked':''} onchange="update('autonomy', 1)">
-            <span class="bullet"></span>
-            <span class="opt-body">
-              <span class="opt-label">Level 1 · Read-Only <span class="opt-chip lowest">Lowest</span></span>
-              <span class="opt-sub">Monitoring and reporting only. No transactional authority. Examples: spend dashboards, budget alerts.</span>
-            </span>
-          </label>
-          <label class="opt ${state.data.autonomy===2?'selected':''}">
-            <input type="radio" name="autonomy" value="2" ${state.data.autonomy===2?'checked':''} onchange="update('autonomy', 2)">
-            <span class="bullet"></span>
-            <span class="opt-body">
-              <span class="opt-label">Level 2 · Limited Action <span class="opt-chip mid">Intermediate</span></span>
-              <span class="opt-sub">Initiates but does not finalize. Requires human approval. Examples: draft POs, submit requisitions.</span>
-            </span>
-          </label>
-          <label class="opt ${state.data.autonomy===3?'selected':''}">
-            <input type="radio" name="autonomy" value="3" ${state.data.autonomy===3?'checked':''} onchange="update('autonomy', 3)">
-            <span class="bullet"></span>
-            <span class="opt-body">
-              <span class="opt-label">Level 3 · Transactional <span class="opt-chip highest">Highest</span></span>
-              <span class="opt-sub">Full autonomous purchasing authority. No human-in-the-loop. Examples: autonomous POs, payment initiation.</span>
-            </span>
-          </label>
-        </div>
-      </div>
-      <div class="field">
-        <span class="qnum">${q2}</span>
-        <label>How many agents are in production today across your entire fleet?</label>
-        <input type="number" min="0" placeholder="e.g. 12" value="${state.data.fleet}" oninput="update('fleet', this.value)">
-      </div>
-      <div class="field">
-        <span class="qnum">${q3}</span>
-        <label>Does each agent have a unique, traceable ID in your logs? <span class="req">*</span></label>
-        <div class="options">
-          ${renderRadio('ids', 'yes', 'Yes', 'Every agent action is attributable to a specific persistent identifier.')}
-          ${renderRadio('ids', 'no',  'No',  'Agents share credentials or use rotating identifiers.')}
-        </div>
-      </div>
-      <div class="field">
-        <span class="qnum">${q4}</span>
-        <label>How is the agent&rsquo;s authority boundary enforced at runtime? <span class="req">*</span></label>
-        <div class="options">
-          ${renderRadio('mandate', 'prompt', 'Prompt-Based', 'Natural language instructions or system prompts only.')}
-          ${renderRadio('mandate', 'logic',  'Logic-Based',  'Real-time guardrails and behavior monitors in the agent framework.')}
-          ${renderRadio('mandate', 'infra',  'Infrastructure-Based', 'Hard API spend limits, sandboxing, and RBAC.')}
-        </div>
-      </div>
-    </div>`;
-  },
-
-  // STEP 3 — Financial Exposure
-  () => {
-    Q.resume(stepEndNumbers[1]);
-    const q1=Q.next(), q2=Q.next(), q3=Q.next(), q4=Q.next();
-    stepEndNumbers[2] = Q.current;
-    return `
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">Step 03 of 04 · Financial Exposure</div>
-        <h2>Quantify what&rsquo;s at stake.</h2>
-      </div>
-      <div class="field">
-        <span class="qnum">${q1}</span>
-        <label>Do agents have direct access to financial wallets or payment APIs? <span class="req">*</span></label>
-        <div class="options">
-          ${renderRadio('wallets', 'yes', 'Yes', 'Agents can initiate money movement.')}
-          ${renderRadio('wallets', 'no',  'No',  'Read-only financial context; no payment authority.')}
-        </div>
-      </div>
-      <div class="field">
-        <span class="qnum">${q2}</span>
-        <label>What is the single largest transaction an agent can execute?</label>
-        <p class="hint">Max dollar amount a single agent action can commit.</p>
-        <input type="number" min="0" placeholder="e.g. 25000" value="${state.data.perTxn}" oninput="update('perTxn', this.value)">
-      </div>
-      <div class="field">
-        <span class="qnum">${q3}</span>
-        <label>What is the 12-month aggregate exposure across your entire fleet (USD)? <span class="req">*</span></label>
-        <p class="hint">Total dollars flowing through autonomous AI agent authority over the next 12 months.</p>
-        <input type="number" min="0" placeholder="e.g. 5000000" value="${state.data.aggregate}" oninput="update('aggregate', this.value)">
-      </div>
-      <div class="field">
-        <span class="qnum">${q4}</span>
-        <label>What are your top loss concerns? <span class="max-note" id="concernsCount">Select up to 3</span></label>
-        <div class="options">
-          ${renderCheckbox('concerns','authority_breach','Authority Breach','Agent executes a transaction exceeding its mandate.')}
-          ${renderCheckbox('concerns','execution_error','Execution Error','Agent operates in scope but executes incorrectly.')}
-          ${renderCheckbox('concerns','prompt_injection','Prompt Injection','Malicious external interference with agent logic.')}
-          ${renderCheckbox('concerns','regulatory_fine','Regulatory Fine','AB 316, EU AI Act, or sector-specific violations.')}
-          ${renderCheckbox('concerns','cascading_failure','Cascading Failure','One agent&rsquo;s error scaling across the fleet.')}
-          ${renderCheckbox('concerns','pii_exposure','Data Exfiltration / PII','Agent retrieves or transmits sensitive data out-of-bounds.')}
-          ${renderCheckbox('concerns','ip_infringement','IP Infringement','Agent-generated content infringes third-party IP.')}
-          ${renderCheckbox('concerns','other','Other (specify)','A concern not listed above.')}
-        </div>
-        <div id="concernsOtherWrap" class="${state.data.concerns.includes('other') ? 'show' : ''}">
-          <label>Briefly describe this concern (one sentence)</label>
-          <textarea maxlength="140" placeholder="e.g. Agent-generated customer emails flagged by recipient spam filters."
-                    oninput="update('concerns_other', this.value)">${state.data.concerns_other}</textarea>
-        </div>
-      </div>
-    </div>`;
-  },
-
-  // STEP 4 — Coverage & Contact
-  () => {
-    Q.resume(stepEndNumbers[2]);
-    const q1=Q.next(), q2=Q.next(), q3=Q.next(), q4=Q.next();
-    stepEndNumbers[3] = Q.current;
-    return `
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">Step 04 of 04 · Coverage &amp; Contact</div>
-        <h2>One last step — then we generate your profile.</h2>
-      </div>
-      <div class="field">
-        <span class="qnum">${q1}</span>
-        <label>Which commercial insurance policies does your organization currently hold?</label>
-        <p class="hint">Select all that apply.</p>
-        <div class="options">
-          ${renderCheckbox('coverage','eo','E&amp;O (including Tech E&amp;O)','Errors &amp; Omissions / professional liability.')}
-          ${renderCheckbox('coverage','cyber','Cyber Liability','First- and third-party cyber.')}
-          ${renderCheckbox('coverage','cgl','Commercial General Liability (CGL)','Bodily injury and property damage.')}
-          ${renderCheckbox('coverage','do','Directors &amp; Officers (D&amp;O)','Management liability.')}
-          ${renderCheckbox('coverage','prof_liab','Professional Liability (PL)','Sector-specific (medical, legal, etc.).')}
-          ${renderCheckbox('coverage','epli','Employment Practices (EPLI)','Employment-related claims.')}
-          ${renderCheckbox('coverage','none','None of the above','Unchecks all other options.')}
-        </div>
-      </div>
-      <div class="field">
-        <span class="qnum">${q2}</span>
-        <label>Are you aware of the AI exclusions being added in 2026? <span class="req">*</span></label>
-        <div class="options">
-          ${renderRadio('exclusion','yes','Yes','I&rsquo;ve reviewed renewal endorsement language and AI exclusion clauses.')}
-          ${renderRadio('exclusion','no','No','I haven&rsquo;t reviewed this with my broker yet.')}
-        </div>
-      </div>
-      <div class="field">
-        <span class="qnum">${q3}</span>
-        <label>What best describes your intent with this assessment?</label>
-        <div class="options">
-          ${renderRadio('intent','active','Actively Buying','Ready to bind coverage now.')}
-          ${renderRadio('intent','quantify','Quantifying Exposure','Mapping risk before a board or leadership conversation.')}
-          ${renderRadio('intent','explore','Exploring the Market','Researching what&rsquo;s available and how it&rsquo;s priced.')}
-        </div>
-      </div>
-      <div class="field">
-        <span class="qnum">${q4}</span>
-        <label>Your contact details <span class="req">*</span></label>
-        <p class="hint">Required to generate your report and schedule a follow-up call.</p>
-        <div class="stack-inputs">
-          <input type="text"  placeholder="First name *"  value="${state.data.firstName}" oninput="update('firstName', this.value)" id="inpFirst">
-          <input type="text"  placeholder="Last name *"   value="${state.data.lastName}"  oninput="update('lastName', this.value)"  id="inpLast">
-          <input type="text"  placeholder="Job title"     value="${state.data.title}"     oninput="update('title', this.value)">
-          <input type="text"  placeholder="Company *"     value="${state.data.company}"   oninput="update('company', this.value)" id="inpCompany">
-          <input type="email" placeholder="Work email *"  value="${state.data.email}"     oninput="update('email', this.value)"   id="inpEmail">
-        </div>
-      </div>
-    </div>`;
-  },
-];
-
-/* Render helpers */
-function renderRadio(field, val, label, sub){
-  const checked = state.data[field] === val;
-  return `<label class="opt ${checked?'selected':''}"><input type="radio" name="${field}" value="${val}" ${checked?'checked':''} onchange="update('${field}', '${val}')"><span class="bullet"></span><span class="opt-body"><span class="opt-label">${label}</span>${sub?`<span class="opt-sub">${sub}</span>`:''}</span></label>`;
-}
-function renderCheckbox(field, val, label, sub){
-  const checked = state.data[field].includes(val);
-  return `<label class="opt ${checked?'selected':''}"><input type="checkbox" name="${field}" value="${val}" ${checked?'checked':''} onchange="toggleMulti('${field}', '${val}')"><span class="bullet"></span><span class="opt-body"><span class="opt-label">${label}</span>${sub?`<span class="opt-sub">${sub}</span>`:''}</span></label>`;
-}
-
-function update(field, val){
-  if (field === 'autonomy') val = parseInt(val, 10);
-  state.data[field] = val;
-  if (field === 'entity' && val !== 'platform') state.data.volume = '';
-  if (field === 'vertical' && val !== 'other') state.data.vertical_other = '';
-  // Conditional-field toggles on step 1 require a DOM restructure (show/hide volume or vertical_other).
-  // Everything else is a simple visual-state update — no re-render needed.
-  if (state.step === 0 && (field === 'entity' || field === 'vertical')){
-    renderStepSmooth();
-    return;
-  }
-  updateSelectedStyling(field, val);
-}
-
-function toggleMulti(field, val){
-  const arr = state.data[field];
-
-  // Coverage "None of the above" is exclusive with all other coverage options — needs a re-render
-  // to uncheck the other boxes (or to re-enable them when "None" is un-clicked).
-  if (field === 'coverage' && val === 'none'){
-    state.data.coverage = arr.includes('none') ? [] : ['none'];
-    renderStepSmooth();
-    return;
-  }
-  // If user picks any non-"none" coverage while "none" is currently selected, uncheck "none" first.
-  // That also requires a re-render (to visually uncheck the None option).
-  if (field === 'coverage' && val !== 'none' && arr.includes('none')){
-    state.data.coverage = [val];
-    renderStepSmooth();
-    return;
-  }
-
-  // Concerns have a max-3 rule and a conditional "other" sub-input. Re-renders only when those fire.
-  if (field === 'concerns'){
-    const hasOtherBefore = arr.includes('other');
-
-    if (arr.includes(val)){
-      state.data.concerns = arr.filter(x => x !== val);
-    } else {
-      if (arr.length >= 3){
-        const c = document.getElementById('concernsCount');
-        if (c){
-          c.textContent = 'Max 3 — uncheck one first';
-          c.classList.add('warn');
-          setTimeout(() => { c.textContent = 'Select up to 3'; c.classList.remove('warn'); }, 2000);
-        }
-        return;   // nothing changed — no re-render needed
-      }
-      state.data.concerns = [...arr, val];
-    }
-
-    // Handle the "other" sub-input visibility with CSS, not a full re-render.
-    const wrap = document.getElementById('concernsOtherWrap');
-    const hasOtherAfter = state.data.concerns.includes('other');
-    if (wrap){
-      if (hasOtherAfter) wrap.classList.add('show');
-      else { wrap.classList.remove('show'); state.data.concerns_other = ''; }
-    }
-    // Just update visual state on the option card we toggled — no DOM rebuild.
-    updateCheckboxStyling(field, val);
-    return;
-  }
-
-  // Default path: simple multi-select toggle (used by the coverage list, excluding the "none" cases above).
-  if (arr.includes(val)) state.data[field] = arr.filter(x => x !== val);
-  else state.data[field] = [...arr, val];
-  updateCheckboxStyling(field, val);
-}
-
-function updateSelectedStyling(field, val){
-  // For radios: exactly one option is .selected at a time.
-  document.querySelectorAll(`input[name="${field}"]`).forEach(el => {
-    const opt = el.closest('.opt'); if (!opt) return;
-    if (el.value == String(val)) opt.classList.add('selected'); else opt.classList.remove('selected');
-  });
-}
-
-function updateCheckboxStyling(field, val){
-  // For checkboxes: the specific toggled option gets its .selected class flipped.
-  // We only re-sync the one option the user clicked, not the whole group.
-  document.querySelectorAll(`input[name="${field}"][value="${val}"]`).forEach(el => {
-    const opt = el.closest('.opt'); if (!opt) return;
-    if (state.data[field].includes(val)) opt.classList.add('selected');
-    else opt.classList.remove('selected');
-  });
-}
-
-function renderStepSmooth(){
-  // Used for the rare in-step re-renders where the DOM actually needs restructuring
-  // (conditional fields showing/hiding, "None" exclusivity). Fades the step out, swaps,
-  // fades back in — preserves scroll position throughout.
-  const container = document.getElementById('stepContainer');
-  if (!container) return;
-  const prevScroll = window.scrollY;
-  container.style.transition = 'opacity 120ms ease-out';
-  container.style.opacity = '0.4';
-  setTimeout(() => {
-    render(true);
-    container.style.opacity = '1';
-    window.scrollTo({ top: prevScroll, behavior: 'auto' });
-  }, 120);
-}
-
-/* Nav */
-function start(){
-  if (window.va) window.va('event', { name:'assessment_started' });
-  document.getElementById('intro').classList.add('hidden');
-  document.getElementById('assessment').classList.remove('hidden');
-  render();
-}
-function render(preserveScroll){
-  // Low-level render: rewrites the step container from the current state. Does NOT scroll
-  // (callers handle scroll: renderStepNav scrolls to top after fade, renderStepSmooth preserves position).
-  const prevScroll = preserveScroll ? window.scrollY : null;
-
-  const c = document.getElementById('stepContainer');
-  c.innerHTML = steps[state.step]();
-  for (let i = 1; i <= 4; i++){
-    const seg = document.getElementById('seg'+i);
-    const lbl = document.getElementById('lbl'+i);
-    seg.classList.remove('done','active'); lbl.classList.remove('active');
-    if (i - 1 < state.step) seg.classList.add('done');
-    if (i - 1 === state.step){ seg.classList.add('active'); lbl.classList.add('active'); }
-  }
-  document.getElementById('backBtn').style.visibility = state.step === 0 ? 'hidden' : 'visible';
-  document.getElementById('nextLabel').textContent = state.step === steps.length - 1 ? 'Get Your Risk Assessment' : 'Continue';
-  document.getElementById('gateError').textContent = '';
-
-  if (prevScroll !== null){
-    window.scrollTo({ top: prevScroll, behavior: 'auto' });
-  }
-}
-function back(){
-  if (state.step > 0){ state.step--; renderStepNav(); }
-}
-function next(){
-  const ok = validateStep(state.step);
-  if (!ok.valid){
-    document.getElementById('gateError').textContent = ok.msg;
-    (ok.fields || []).forEach(f => { const el = document.getElementById(f); if (el) el.classList.add('error'); });
-    return;
-  }
-  if (state.step < steps.length - 1){
-    if (window.va) window.va('event', { name:'step_complete', step: state.step + 1 });
-    state.step++; renderStepNav();
-  } else {
-    if (window.va) window.va('event', { name:'assessment_submitted' });
-    submitAndShowResults();
-  }
-}
-
-function renderStepNav(){
-  // Smooth step transition: fade out → scroll to top → swap → fade in.
-  // The scroll happens while the old step is invisible, so the user never sees the jump.
-  const container = document.getElementById('stepContainer');
-  if (!container) { render(); return; }
-  container.style.transition = 'opacity 180ms ease-out';
-  container.style.opacity = '0';
-  setTimeout(() => {
-    window.scrollTo({ top: 0, behavior: 'auto' });
-    render(true);  // re-render preserves scroll=0 we just set
-    container.style.opacity = '1';
-  }, 180);
-}
-
-function validateStep(i){
-  const d = state.data; const missing = []; const fields = []; let customMsg = null;
-  if (i === 0){
-    if (!d.entity)   missing.push('organization role');
-    if (d.entity === 'platform' && !d.volume) missing.push('platform customer volume');
-    if (!d.size)     missing.push('company size');
-    if (!d.vertical) missing.push('industry vertical');
-    if (d.vertical === 'other' && !d.vertical_other.trim()) missing.push('vertical description');
-  }
-  if (i === 1){
-    if (!d.autonomy) missing.push('autonomy level');
-    if (!d.ids)      missing.push('traceable agent IDs');
-    if (!d.mandate)  missing.push('mandate enforcement');
-  }
-  if (i === 2){
-    if (!d.wallets)  missing.push('payment API access');
-    if (!d.aggregate || parseFloat(d.aggregate) < 0) missing.push('12-month aggregate exposure');
-  }
-  if (i === 3){
-    if (!d.exclusion) missing.push('AI exclusion awareness');
-    if (!d.firstName.trim()){ missing.push('first name'); fields.push('inpFirst'); }
-    if (!d.lastName.trim()){  missing.push('last name');  fields.push('inpLast'); }
-    if (!d.company.trim()){   missing.push('company');    fields.push('inpCompany'); }
-    const emailCheck = validateEmail(d.email);
-    if (!emailCheck.ok){ customMsg = '⚠ ' + emailCheck.reason; fields.push('inpEmail'); }
-  }
-  if (customMsg && missing.length === 0) return { valid:false, msg: customMsg, fields };
-  if (missing.length === 0) return { valid:true };
-  const base = `⚠ Required to continue: ${missing.join(', ')}.`;
-  return { valid:false, msg: customMsg ? `${base} ${customMsg.replace('⚠ ','')}` : base, fields };
-}
-
-/* Submit */
-function submitAndShowResults(){
-  const inp = {
-    entity: state.data.entity, size: state.data.size, vertical: state.data.vertical,
-    autonomy: state.data.autonomy, mandate: state.data.mandate, ids: state.data.ids,
-    aggregate: parseFloat(state.data.aggregate) || 0,
-    coverage: state.data.coverage, exclusion: state.data.exclusion,
-    concerns: state.data.concerns, concerns_other: state.data.concerns_other || '',
-  };
-  const r = score(inp);
-  const payload = {
-    ...state.data,
-    risk_tier: r.risk_tier, risk_class: r.risk_class,
-    target_limit: r.target_limit, aggregate_limit: r.aggregate_limit,
-    exec_error_sublimit: r.exec_error_sublimit, retention: r.retention,
-    premium_range: r.is_referral ? null : [r.premium_range_low, r.premium_range_high],
-    is_referral: r.is_referral,
-    referral_reason: r.referral_reason,    // captured for UW routing only
-    gaps: r.gaps,
-    critical_gap_count: r.gaps.filter(g => g.priority === 'Critical').length,
-    high_gap_count:     r.gaps.filter(g => g.priority === 'High').length,
-    timestamp: new Date().toISOString(),
-    utm: new URLSearchParams(window.location.search).toString(),
-  };
-  // Stash in-memory so the Calendly embed on the results page can pick it up
-  window.__riskhelmPayload = payload;
-
-  // Fire-and-forget POST to Google Sheets (if configured).
-  if (window.fetch && SHEETS_ENDPOINT){
-    fetch(SHEETS_ENDPOINT, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload),
-    }).catch(err => console.warn('Lead capture failed (check SHEETS_ENDPOINT):', err));
-  }
-
-  // Send lead to chen.chianese@riskhelm.com via Web3Forms.
+  /* Web3Forms lead capture */
   if (window.fetch){
-    const d = state.data;
-    const premRange = r.is_referral
-      ? 'REFER TO UNDERWRITING — ' + (r.referral_reason || '')
-      : `${fmtUsd(r.premium_range_low)} – ${fmtUsd(r.premium_range_high)}`;
-    const coverageList = d.coverage.length ? d.coverage.join(', ') : 'None';
-
+    const premRange = r.referralReason
+      ? 'REFER TO UNDERWRITING — ' + (r.referralReason || '')
+      : `${fmt$(r.premLow)} – ${fmt$(r.premHigh)}`;
+    const coverageList = state.coverage.length ? state.coverage.join(', ') : 'None';
     const gapLines = r.gaps.map((g, i) => {
-      const body = g.body.replace(/<\/?strong>/g, '').replace(/\u2014/g, '—').replace(/\u201c/g, '"').replace(/\u201d/g, '"');
+      const body = g.body.replace(/<\/?strong>/g, '').replace(/<br>/g, ' ');
       return `[${g.priority}] ${g.title}: ${body}`;
     }).join('\n');
 
     const leadData = {
       access_key: '9444d2f1-6868-4736-bcc6-37a3c05d158b',
-      subject: `AAL Lead: ${d.company} — ${r.risk_tier}`,
+      subject: `AAL Lead: ${state.company} — ${r.govTierName}`,
       from_name: 'RiskHelm AAL Assessment',
-      name: `${d.firstName} ${d.lastName}`,
-      email: d.email,
-      company: d.company,
-      job_title: d.title || '—',
-      entity_type: d.entity === 'platform' ? 'AI Platform / Framework' : 'AI Agent Deployer',
-      company_size: d.size,
-      industry_vertical: d.vertical + (d.vertical_other ? ` (${d.vertical_other})` : ''),
-      platform_customers: (d.entity === 'platform' && d.volume) ? d.volume : undefined,
-      autonomy_level: `Level ${d.autonomy} (${d.autonomy === 1 ? 'Read-Only' : d.autonomy === 2 ? 'Limited Action' : 'Transactional'})`,
-      fleet_size: d.fleet || '—',
-      traceable_agent_ids: d.ids,
-      mandate_enforcement: d.mandate,
-      wallet_payment_access: d.wallets,
-      max_per_transaction: d.perTxn ? fmtUsd(Number(d.perTxn)) : '—',
-      twelve_month_aggregate_tiv: fmtUsd(parseFloat(d.aggregate) || 0),
-      loss_concerns: d.concerns.length ? d.concerns.join(', ') : '—',
-      other_concern: d.concerns_other || undefined,
+      name: `${state.firstName} ${state.lastName}`,
+      email: state.email,
+      company: state.company,
+      job_title: state.title || '—',
+      entity_type: state.entity === 'platform' ? 'AI Platform / Framework' : 'AI Agent Deployer',
+      company_size: state.size,
+      industry_vertical: state.vertical + (state.vertical_other ? ` (${state.vertical_other})` : ''),
+      autonomy_level: `Level ${state.autonomy} (${state.autonomy === 1 ? 'Read-Only' : state.autonomy === 2 ? 'Limited Action' : 'Transactional'})`,
+      fleet_size: state.fleet || '—',
+      per_transaction: state.perTxn ? fmt$(state.perTxn) : '—',
+      annual_managed_spend_tiv: fmt$(state.aggregate || 0),
+      governance_tier: `${r.govTierName} (${r.totalAgt}/100)`,
+      agt_inventory_level: state.agt_inventory,
+      agt_hitl_level: state.agt_hitl,
+      agt_audit_level: state.agt_audit,
+      agt_ir_level: state.agt_ir,
+      agt_vendor_level: state.agt_vendor,
       current_coverage: coverageList,
-      ai_exclusion_aware: d.exclusion,
-      buyer_intent: d.intent || '—',
-      risk_tier: r.risk_tier,
-      target_per_occurrence: fmtUsd(r.target_limit),
-      aggregate_limit: fmtUsd(r.aggregate_limit),
-      exec_error_sublimit: fmtUsd(r.exec_error_sublimit),
-      retention: fmtUsd(r.retention),
+      ai_exclusion_aware: state.exclusion,
+      target_per_occurrence: fmt$(r.targetLimit),
+      aggregate_limit: fmt$(r.aggregateLimit),
+      exec_error_sublimit: fmt$(r.execSublimit),
+      retention: fmt$(r.retention),
       premium_range: premRange,
-      pricing_path: r.is_referral ? 'REFERRAL' : 'AUTOMATED',
-      referral_reason: r.referral_reason || undefined,
-      gap_count: `${r.gaps.filter(g=>g.priority==='Critical').length} Critical, ${r.gaps.filter(g=>g.priority==='High').length} High, ${r.gaps.filter(g=>g.priority==='Medium').length} Medium, ${r.gaps.filter(g=>g.priority==='Low').length} Low`,
+      pricing_path: r.referralReason ? 'REFERRAL' : 'AUTOMATED',
+      referral_reason: r.referralReason || undefined,
+      gap_count: `${r.gaps.filter(g=>g.priority==='crit').length} Critical, ${r.gaps.filter(g=>g.priority==='high').length} High, ${r.gaps.filter(g=>g.priority==='med').length} Medium, ${r.gaps.filter(g=>g.priority==='low').length} Low`,
       gaps_detail: gapLines,
       timestamp: new Date().toISOString()
     };
-
-    // Remove undefined keys
     Object.keys(leadData).forEach(k => leadData[k] === undefined && delete leadData[k]);
 
     fetch('https://api.web3forms.com/submit', {
@@ -1118,147 +1062,39 @@ function submitAndShowResults(){
       body: JSON.stringify(leadData),
     }).catch(err => console.warn('Email lead capture failed:', err));
   }
-
-  console.log('[RiskHelm AAL] Lead payload:', payload);
-  renderResults(r);
 }
 
-function renderResults(r){
-  document.getElementById('assessment').classList.add('hidden');
-  const el = document.getElementById('results');
-  el.classList.remove('hidden');
-
-  // FULL SHORT-CIRCUIT when referral triggers
-  if (r.is_referral){
-    el.innerHTML = `
-      <div class="referral-block">
-        <div class="eyebrow">Manual Underwriting Review Required</div>
-        <h2>Your exposure profile needs <em>a direct conversation</em>.</h2>
-        <p class="lede">Based on your responses, your AI agent risk profile falls outside our automated binding parameters. We&rsquo;ll need a 20-minute underwriting call to understand your exposure in detail and build a coverage structure that actually fits.</p>
-        <div class="cta-row">
-          <button class="cta-primary lg" onclick="showCalendly('calendlyContainer')">
-            Schedule a Call with Underwriting
-            <svg class="arrow" width="16" height="12" viewBox="0 0 16 12"><path d="M1 6h13M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="cta-secondary" onclick="window.print()">Download Summary</button>
-        </div>
-      </div>
-      <div id="calendlyContainer" class="calendly-wrap hidden"></div>`;
-    window.scrollTo({ top:0, behavior:'smooth' });
-    return;
-  }
-
-  // STANDARD results path — show metrics, premium, gaps
-  const gapHtml = r.gaps.map(g => `
-    <div class="gap ${g.priority.toLowerCase().slice(0,4)}">
-      <div class="prio"><span class="bar"></span>${g.priority}</div>
-      <div class="body">
-        <div class="title">${g.title}</div>
-        <div class="copy">${g.body}</div>
-      </div>
-    </div>`).join('');
-  el.innerHTML = `
-    <div class="verdict">
-      <div class="eyebrow">Risk Assessment · Complete</div>
-      <h2>Your AI agent execution risk profile is <em>ready.</em></h2>
-      <div class="risk-label ${r.risk_class}"><span class="dot"></span>${r.risk_tier}</div>
-    </div>
-    <div class="metrics">
-      <div class="metric"><div class="key">Target Per-Occurrence</div><div class="val">${fmtUsdShort(r.target_limit)}</div><div class="sub">Per claim</div></div>
-      <div class="metric"><div class="key">Aggregate Limit</div><div class="val">${fmtUsdShort(r.aggregate_limit)}</div><div class="sub">3× per-occurrence</div></div>
-      <div class="metric"><div class="key">Exec. Error Sublimit</div><div class="val">${fmtUsdShort(r.exec_error_sublimit)}</div><div class="sub">50% of per-occ</div></div>
-      <div class="metric"><div class="key">Retention</div><div class="val">${fmtUsdShort(r.retention)}</div><div class="sub">Per claim deductible</div></div>
-    </div>
-    <div class="premium-block">
-      <div class="key">Indicative Annual Premium Range</div>
-      <div class="range">${fmtUsd(r.premium_range_low)} <em>—</em> ${fmtUsd(r.premium_range_high)}</div>
-      <div class="disclaimer">${r.cta}</div>
-    </div>
-    <h3 class="gaps-title">Coverage Gap Analysis</h3>
-    <p class="gaps-sub">Findings from your current posture, ranked by priority.</p>
-    ${gapHtml}
-    <div class="cta-block">
-      <div>
-        <h3>Ready for a <em>real quote?</em></h3>
-        <p>A 20-minute call with our underwriting team turns this assessment into a bindable coverage structure tailored to your exposure.</p>
-      </div>
-      <div class="actions">
-        <button class="cta-primary" onclick="showCalendly('calendlyContainer')">
-          Schedule a Call
-          <svg class="arrow" width="15" height="11" viewBox="0 0 16 12"><path d="M1 6h13M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="cta-secondary" onclick="window.print()">Download Report</button>
-      </div>
-    </div>
-    <div id="calendlyContainer" class="calendly-wrap hidden"></div>`;
-  window.scrollTo({ top:0, behavior:'smooth' });
-}
-
+/* ---------- Calendly ---------- */
 function buildCalendlyUrl(payload){
-  // Builds a Calendly URL with prefilled invitee info + structured assessment as custom answers.
-  //
-  // Calendly honors these query params out of the box:
-  //   ?name=First+Last&email=user@company.com
-  //
-  // For the structured assessment, we pass each field as a1..a10 custom answers.
-  // These require matching "Custom Questions" configured in the Calendly event type:
-  //   a1 = Company
-  //   a2 = Risk Tier
-  //   a3 = Company Size
-  //   a4 = Autonomy / Mandate
-  //   a5 = Total Insured Value (autonomously managed spend, 12-month)
-  //   a6 = Target Coverage Limit
-  //   a7 = Indicative Premium Range (or "Refer to Underwriting")
-  //   a8 = Gap Summary (Critical/High/Medium/Low counts + titles)
-  //   a9 = Current Coverage + AI Exclusion Awareness
-  //   a10 = Buyer Intent + Industry Vertical
-  //
-  // Configure these custom questions in your Calendly event type BEFORE going live,
-  // otherwise the prefill values will be ignored.
-
   if (!payload) return CALENDLY_URL;
   const p = payload;
   const name = `${p.firstName || ''} ${p.lastName || ''}`.trim();
-
-  const fleet = p.fleet ? `${p.fleet} agents` : 'fleet size not provided';
-  const tiv   = p.aggregate ? `$${Number(p.aggregate).toLocaleString()}` : 'not provided';
-  const prem  = p.is_referral
-    ? `REFER TO UNDERWRITING — ${p.referral_reason || ''}`
-    : `$${p.target_limit ? p.premium_range[0].toLocaleString() : '?'} – $${p.premium_range ? p.premium_range[1].toLocaleString() : '?'}`;
-
-  const gapLines = (p.gaps || []).map(g => `[${g.priority}] ${g.title}`).join(' | ');
-  const gapSummary = `${p.critical_gap_count || 0} Critical, ${p.high_gap_count || 0} High — ${gapLines}`;
-
+  const tiv = p.aggregate ? `$${Number(p.aggregate).toLocaleString()}` : 'n/a';
+  const fleet = p.fleet ? `${p.fleet} agents` : 'n/a';
+  const prem = p.referral_reason
+    ? `REFER — ${p.referral_reason}`
+    : `$${(p.premium_low||0).toLocaleString()} – $${(p.premium_high||0).toLocaleString()}`;
+  const gapTitles = (p.gap_titles || []).join(' | ');
   const coverageList = (p.coverage && p.coverage.length) ? p.coverage.join(', ') : 'None';
   const exclusionAware = p.exclusion === 'yes' ? 'Aware of AI exclusions' : 'NOT aware of AI exclusions';
-
-  const a2 = p.risk_tier || '';
-  const a3 = p.size ? p.size.charAt(0).toUpperCase() + p.size.slice(1) : '';
-  const a4 = `Level ${p.autonomy || '?'}, ${p.mandate || '?'} mandate, ${p.ids || '?'} traceable IDs`;
-  const a5 = `${fleet}, ${tiv} TIV, ${p.perTxn ? '$'+Number(p.perTxn).toLocaleString()+' per-txn' : 'no per-txn cap'}, wallets: ${p.wallets || '?'}`;
-  const a6 = `$${(p.target_limit || 0).toLocaleString()} per-occurrence, $${(p.aggregate_limit || 0).toLocaleString()} aggregate, $${(p.exec_error_sublimit || 0).toLocaleString()} exec sublimit, $${(p.retention || 0).toLocaleString()} retention`;
-  const a7 = prem;
-  const a8 = gapSummary;
-  const a9 = `${coverageList}; ${exclusionAware}`;
-  const a10 = `${p.vertical || '?'}${p.vertical_other ? ' ('+p.vertical_other+')' : ''}, intent: ${p.intent || '?'}`;
+  const agtBreakdown = p.agt_levels ? `Inv:${p.agt_levels[0]} HITL:${p.agt_levels[1]} Audit:${p.agt_levels[2]} IR:${p.agt_levels[3]} Vendor:${p.agt_levels[4]}` : '';
 
   const params = new URLSearchParams();
   if (name)    params.set('name', name);
   if (p.email) params.set('email', p.email);
   params.set('a1', p.company || '');
-  params.set('a2', a2);
-  params.set('a3', a3);
-  params.set('a4', a4);
-  params.set('a5', a5);
-  params.set('a6', a6);
-  params.set('a7', a7);
-  params.set('a8', a8);
-  params.set('a9', a9);
-  params.set('a10', a10);
-  // UTM for referral-source attribution in Calendly analytics
+  params.set('a2', `${p.gov_tier_name || ''}, ${p.agt_total || 0}/100`);
+  params.set('a3', p.size ? p.size.charAt(0).toUpperCase() + p.size.slice(1) : '');
+  params.set('a4', `Level ${p.autonomy || '?'} (${p.autonomy === 1 ? 'Read-Only' : p.autonomy === 2 ? 'Limited Action' : 'Transactional'})`);
+  params.set('a5', agtBreakdown);
+  params.set('a6', `TIV: ${tiv}, Per-txn: ${p.perTxn ? '$'+Number(p.perTxn).toLocaleString() : 'n/a'}, Fleet: ${fleet}`);
+  params.set('a7', `$${(p.target_limit||0).toLocaleString()} per-occ, $${(p.aggregate_limit||0).toLocaleString()} agg, $${(p.exec_sublimit||0).toLocaleString()} exec, $${(p.retention||0).toLocaleString()} ret`);
+  params.set('a8', prem);
+  params.set('a9', gapTitles);
+  params.set('a10', `${coverageList}; ${exclusionAware}; ${p.vertical || '?'}`);
   params.set('utm_source', 'riskhelm_aal_scanner');
   params.set('utm_medium', 'assessment');
-  params.set('utm_campaign', p.is_referral ? 'referral_uw' : 'standard_quote');
+  params.set('utm_campaign', p.referral_reason ? 'referral_uw' : 'standard_quote');
 
   return `${CALENDLY_URL}?${params.toString()}`;
 }
@@ -1268,26 +1104,19 @@ function showCalendly(containerId){
   if (!container) return;
   container.classList.remove('hidden');
   embedCalendly(containerId);
-  // Smooth-scroll to the embed after a beat so the widget has time to layout
   setTimeout(() => {
     container.scrollIntoView({ behavior:'smooth', block:'start' });
   }, 150);
 }
 
 function embedCalendly(containerId){
-  // Injects the Calendly inline widget into `containerId`. Loads the Calendly
-  // widget script on demand (cached across renders). Widget picks up the
-  // ?name=...&a1=... query string automatically and prefills the booking form.
   const container = document.getElementById(containerId);
   if (!container) return;
   const url = buildCalendlyUrl(window.__riskhelmPayload);
-
-  // Calendly's inline embed renders a responsive iframe inside this div
   container.innerHTML = `<div class="calendly-inline-widget"
     data-url="${url}"
     style="min-width:320px;height:700px;"></div>`;
 
-  // Load widget script once
   if (!document.getElementById('calendly-widget-script')){
     const s = document.createElement('script');
     s.id = 'calendly-widget-script';
@@ -1295,11 +1124,8 @@ function embedCalendly(containerId){
     s.async = true;
     document.head.appendChild(s);
   } else if (window.Calendly && window.Calendly.initInlineWidgets){
-    // Widget already loaded — re-init so our new container gets hydrated
     window.Calendly.initInlineWidgets();
   }
-
-  if (window.va) window.va('event', { name:'cta_book_consultation', referral: !!window.__riskhelmPayload?.is_referral });
 }
 </script>
 </body>
