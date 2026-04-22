@@ -1096,7 +1096,8 @@ function buildCalendlyUrl(payload){
   params.set('utm_medium', 'assessment');
   params.set('utm_campaign', p.referral_reason ? 'referral_uw' : 'standard_quote');
 
-  return `${CALENDLY_URL}?${params.toString()}`;
+  /* Replace '+' with '%20' so Calendly renders spaces instead of plus signs */
+  return `${CALENDLY_URL}?${params.toString().replace(/\+/g, '%20')}`;
 }
 
 function showCalendly(containerId){
